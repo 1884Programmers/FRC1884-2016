@@ -6,6 +6,7 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -20,6 +21,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class Robot extends SampleRobot {
     int session;
     Image frame;
+    
+    DigitalInput toggle1;
     
     Relay ledRing;
 
@@ -37,14 +40,16 @@ public class Robot extends SampleRobot {
         ledRing = new Relay(0);
         
         joystick = new Joystick(0);
+        
+        toggle1 = new DigitalInput(0);
     }
 
     public void operatorControl() {
     	
     	//LEDToggle ledToggle = LEDToggle.off;
-    	boolean toggle = false;
-    	boolean currButton = false;
-    	boolean lastButton = false;
+    	//boolean toggle = false;
+    	//boolean currButton = false;
+    	//boolean lastButton = false;
     	
         NIVision.IMAQdxStartAcquisition(session);
 
@@ -64,18 +69,24 @@ public class Robot extends SampleRobot {
 
             /** robot code here! **/
             
-            lastButton = currButton;
-            currButton = joystick.getRawButton(1);
+            //lastButton = currButton;
+            //currButton = joystick.getRawButton(1);
             
-            if (!lastButton && currButton){
-            	toggle = !toggle;
-            }
+            //if (!lastButton && currButton){
+            	//toggle = !toggle;
+            //}
             
-            if(toggle) {
+            if(toggle1.get()) {
             	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
-            } else {
-            	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
-            }
+        	} else {
+        		ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
+        	}
+            
+            //if(toggle) {
+            	//ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
+            //} else {
+            	//ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
+            //}
             
             Timer.delay(0.005);		// wait for a motor update time
         }

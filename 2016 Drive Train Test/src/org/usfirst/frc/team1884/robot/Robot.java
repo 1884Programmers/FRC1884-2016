@@ -33,8 +33,10 @@ public class Robot extends IterativeRobot {
 		aux2 = new VictorSP(4);
 		aux1 = new VictorSP(5);
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
-		//drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontRight, true);
-		//drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontLeft, true);
+		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontRight, true);
+		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontLeft, true);
+		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearRight, true);
+		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearLeft, true);
 	}
 
 	/**
