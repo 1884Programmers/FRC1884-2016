@@ -6,6 +6,8 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -18,7 +20,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class Robot extends SampleRobot {
     int session;
     Image frame;
+    
+    Relay ledRing;
 
+    Joystick joystick;
+    
     public void robotInit() {
 
         frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
@@ -27,9 +33,19 @@ public class Robot extends SampleRobot {
         session = NIVision.IMAQdxOpenCamera("cam0",
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
+        
+        ledRing = new Relay(0);
+        
+        joystick = new Joystick(0);
     }
 
     public void operatorControl() {
+    	
+    	//LEDToggle ledToggle = LEDToggle.off;
+    	boolean toggle = false;
+    	boolean currButton = false;
+    	boolean lastButton = false;
+    	
         NIVision.IMAQdxStartAcquisition(session);
 
         /**
@@ -47,11 +63,36 @@ public class Robot extends SampleRobot {
             CameraServer.getInstance().setImage(frame);
 
             /** robot code here! **/
+            
+            lastButton = currButton;
+            currButton = joystick.getRawButton(1);
+            
+            if (!lastButton && currButton){
+            	toggle = !toggle;
+            }
+            
+            if(toggle) {
+            	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
+            } else {
+            	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
+            }
+            
             Timer.delay(0.005);		// wait for a motor update time
         }
         NIVision.IMAQdxStopAcquisition(session);
     }
 
     public void test() {
+    }
+    
+    private enum LEDToggle {
+    	on, off;
+    	LEDToggle toggle() {
+    		if(this == LEDToggle.on) {
+    			return LEDToggle.off;
+    		} else {
+    			return LEDToggle.on;
+    		}
+    	}
     }
 }
