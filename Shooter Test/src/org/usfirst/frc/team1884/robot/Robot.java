@@ -4,6 +4,7 @@ package org.usfirst.frc.team1884.robot;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -15,15 +16,15 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends IterativeRobot {
     
 	Joystick joystick;
-	CANTalon frontLeft;
+	VictorSP auxilary1;
 	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-    	joystick = new Joystick(0);
-    	frontLeft = new CANTalon(6);
+    	joystick = new Joystick(3);
+    	auxilary1 = new VictorSP(5);
     }
     
 	/**
@@ -57,7 +58,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    	frontLeft.set(joystick.getY()*10);
+    	auxilary1.set(joystick.getRawAxis(3)*10);
     }
     
 }
