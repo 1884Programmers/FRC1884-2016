@@ -41,15 +41,15 @@ public class Robot extends SampleRobot {
         
         joystick = new Joystick(0);
         
-        toggle1 = new DigitalInput(0);
+        //toggle1 = new DigitalInput(0);
     }
 
     public void operatorControl() {
     	
-    	//LEDToggle ledToggle = LEDToggle.off;
-    	//boolean toggle = false;
-    	//boolean currButton = false;
-    	//boolean lastButton = false;
+//    	LEDToggle ledToggle = LEDToggle.off;
+    	boolean toggle = false;
+    	boolean currButton = false;
+    	boolean lastButton = false;
     	
         NIVision.IMAQdxStartAcquisition(session);
 
@@ -69,24 +69,24 @@ public class Robot extends SampleRobot {
 
             /** robot code here! **/
             
-            //lastButton = currButton;
-            //currButton = joystick.getRawButton(1);
+            lastButton = currButton;
+            currButton = joystick.getRawButton(1);
             
-            //if (!lastButton && currButton){
-            	//toggle = !toggle;
-            //}
+            if (!lastButton && currButton){
+            	toggle = !toggle;
+            }
             
-            if(toggle1.get()) {
+//            if(toggle1.get()) {
+//            	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
+//        	} else {
+//        		ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
+//        	}
+            
+            if(toggle) {
             	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
-        	} else {
-        		ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
-        	}
-            
-            //if(toggle) {
-            	//ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
-            //} else {
-            	//ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
-            //}
+            } else {
+            	ledRing.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
+            }
             
             Timer.delay(0.005);		// wait for a motor update time
         }
@@ -96,14 +96,14 @@ public class Robot extends SampleRobot {
     public void test() {
     }
     
-    private enum LEDToggle {
-    	on, off;
-    	LEDToggle toggle() {
-    		if(this == LEDToggle.on) {
-    			return LEDToggle.off;
-    		} else {
-    			return LEDToggle.on;
-    		}
-    	}
-    }
+//    private enum LEDToggle {
+//    	on, off;
+//    	LEDToggle toggle() {
+//    		if(this == LEDToggle.on) {
+//    			return LEDToggle.off;
+//    		} else {
+//    			return LEDToggle.on;
+//    		}
+//    	}
+//    }
 }
