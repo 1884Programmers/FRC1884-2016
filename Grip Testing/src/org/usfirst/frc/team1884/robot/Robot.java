@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class Robot extends IterativeRobot {
 
 	private final static String[] GRIP_ARGS = new String[] { "/usr/local/frc/JRE/bin/java", "-jar",
-			"/home/lvuser/grip.jar", "/home/lvuser/project.grip" };
+			"/home/lvuser/grip.jar", "/home/lvuser/Rudimentary Vision Tracking.grip" };
 
 	private final NetworkTable grip = NetworkTable.getTable("grip");
 
