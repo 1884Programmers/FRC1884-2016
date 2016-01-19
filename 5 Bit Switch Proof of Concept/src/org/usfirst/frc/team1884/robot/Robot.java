@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
     	fieldObs = fiveBit.getFieldObstacle();
     	SmartDashboard.putString("DB/String 0", fieldObs.toString());
     	SmartDashboard.putString("DB/String 1", fieldPos.toString());
-    	if(fieldPos == FieldPosition.pos1 && fieldObs == FieldObstacle.Portcullis) {
+    	if(fieldPos == FieldPosition.pos4 && fieldObs == FieldObstacle.RoughTerrain) {
     		ledToggle.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
     	} else {
     		ledToggle.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
