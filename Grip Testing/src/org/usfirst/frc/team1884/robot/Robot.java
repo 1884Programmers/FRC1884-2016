@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot;
 
-import java.io.IOException;
+import java.io.IOException; 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 

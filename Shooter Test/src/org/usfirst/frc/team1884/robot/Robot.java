@@ -23,8 +23,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	joystick = new Joystick(3);
-    	auxilary1 = new VictorSP(5);
+    	joystick = new Joystick(0);
+    	auxilary1 = new VictorSP(4);
     }
     
 	/**
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional comparisons to the switch structure below with additional strings.
 	 * If using the SendableChooser make sure to add them to the chooser code above as well.
 	 */
-    public void autonomousInit() {
+    public void autonomousInit() { 
     	
     }
 
@@ -51,14 +51,13 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+    	auxilary1.set(joystick.getRawAxis(3));
     }
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    	auxilary1.set(joystick.getRawAxis(3)*10);
     }
     
 }
