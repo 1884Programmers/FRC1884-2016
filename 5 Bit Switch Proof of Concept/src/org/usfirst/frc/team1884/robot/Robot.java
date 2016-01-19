@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,6 +18,10 @@ public class Robot extends IterativeRobot {
 	FiveBitSwitch fiveBit;
 	
 	Relay ledToggle;
+	
+	FieldPosition fieldPos;
+	
+	FieldObstacle fieldObs;
 	
 //	DigitalInput port0, port1, port2, port3, port4;
 	
@@ -41,9 +45,14 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	SmartDashboard.putString("DB/String 0", fiveBit.getFieldObstacle().toString());
-    	if(fiveBit.getFieldPosition() == FieldPosition.pos1 && fiveBit.getFieldObstacle() == FieldObstacle.Portcullis) {
+    	fieldPos = fiveBit.getFieldPosition();
+    	fieldObs = fiveBit.getFieldObstacle();
+    	SmartDashboard.putString("DB/String 0", fieldObs.toString());
+    	SmartDashboard.putString("DB/String 1", fieldPos.toString());
+    	if(fieldPos == FieldPosition.pos4 && fieldObs == FieldObstacle.RoughTerrain) {
     		ledToggle.set(edu.wpi.first.wpilibj.Relay.Value.kForward);
+    	} else {
+    		ledToggle.set(edu.wpi.first.wpilibj.Relay.Value.kOff);
     	}
 //    	SmartDashboard.putString("DB/String 0", Boolean.toString(port0.get()));
 //    	SmartDashboard.putString("DB/String 1", Boolean.toString(port1.get()));
