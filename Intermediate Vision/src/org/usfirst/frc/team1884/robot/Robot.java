@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.Timer;
  * The image is acquired from the USB Webcam, then a circle is overlayed on it. 
  * The NIVision class supplies dozens of methods for different types of processing. 
  * The resulting image can then be sent to the FRC PC Dashboard with setImage()
+ * 
+ * It also features @author Kaito testing grip files
  */
 public class Robot extends SampleRobot {
     int session;
