@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	joystick = new Joystick(0);
-    	auxilary1 = new VictorSP(4);
+    	auxilary1 = new VictorSP(5);
     }
     
 	/**
