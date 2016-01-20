@@ -2,6 +2,7 @@ package org.usfirst.frc.team1884.robot;
 
 import java.io.IOException;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class Robot extends IterativeRobot {
@@ -27,5 +28,6 @@ public class Robot extends IterativeRobot {
 		for (double area : grip.getNumberArray("targets/area", new double[0])) {
 			System.out.println("Got contour with area=" + area);
 		}
+		 Timer.delay(0.005);
 	}
 }
