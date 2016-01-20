@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * This is a demo program showing the use of the NIVision class to do vision processing. 
@@ -24,24 +25,44 @@ public class Robot extends SampleRobot {
     int session;
     Image frame;
     
+    NetworkTable table;
+    
     DigitalInput toggle1;
     
     Relay ledRing;
 
     Joystick joystick;
     
+    public Robot(){
+    	table = NetworkTable.getTable("GRIP/myContoursReport");	
+    }
+    
     public void robotInit() {
+    	
+    	
+    	double[] defaultValue = new double[0];
+    	while (true){
+    		double[] areas = table.getNumberArray("area", defaultValue);
+    		System.out.print("areas: ");
+    		for (double area: areas){
+    			System.out.print(area + " ");
+    			
+    		}
+    		System.out.println("");
+    		Timer.delay(1);
+    		
+    	}
 
-        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+       // frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
         // the camera name (ex "cam0") can be found through the roborio web interface
-        session = NIVision.IMAQdxOpenCamera("cam0",
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        NIVision.IMAQdxConfigureGrab(session);
+        // session = NIVision.IMAQdxOpenCamera("cam0",
+       //         NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        // NIVision.IMAQdxConfigureGrab(session);
         
-        ledRing = new Relay(0);
+        // ledRing = new Relay(0);
         
-        joystick = new Joystick(0);
+        // joystick = new Joystick(0);
         
         //toggle1 = new DigitalInput(0);
     }
