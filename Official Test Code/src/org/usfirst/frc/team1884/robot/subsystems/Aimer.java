@@ -16,7 +16,7 @@ public class Aimer {
 	private int processValue;
 	private int rightPower;
 
-	private final static Aimer INSTANCE;
+	public final static Aimer INSTANCE;
 
 	static {
 		INSTANCE = new Aimer();
