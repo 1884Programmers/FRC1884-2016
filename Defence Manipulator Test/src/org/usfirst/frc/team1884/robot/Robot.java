@@ -56,6 +56,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	auxilary1.set(joystick.getY()/2);
+    	int counter = encoder.get();
     }
     
     /**
