@@ -1,7 +1,7 @@
-
 package org.usfirst.frc.team1884.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -17,6 +17,7 @@ public class Robot extends IterativeRobot {
     
 	Joystick joystick;
 	VictorSP auxilary1;
+	Encoder encoder;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -25,6 +26,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	joystick = new Joystick(0);
     	auxilary1 = new VictorSP(5);
+    	encoder = new Encoder(5, 6);
+    	// encoder have 250 click, so when turned fully 360 and say encoder.get() 270 is returned
     }
     
 	/**
@@ -52,12 +55,12 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	auxilary1.set(joystick.getY()/2);
+    	int counter = encoder.get();
     }
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    }
-    
+    }   
 }
