@@ -1,6 +1,6 @@
 # FRC Team 1884 (The Griffins) - 2016 Robot Code
 **Javadoc Rules**  
-At the beginning of the class:  
+At the beginning of the class Javadoc comments **MUST**:  
 • Explain the class  
 • @author _(Firstname Lastname)_  
 • @version _(For every push, increment by 1)_  
@@ -19,12 +19,14 @@ At the beginning of the class:
 */
 //Class body
 ```
+
+Order Of Tags:  
 1. @author (classes and interfaces only, required)  
-2. @version (classes and interfaces only, required. See footnote 1) 
-3. @param (methods and constructors only)
-4. @return (methods only)
-5. @exception (@throws is a synonym added in Javadoc 1.2)
-6. @see
-7. @since
-8. @serial (or @serialField or @serialData)
-9. @deprecated (see How and When To Deprecate APIs)
+2. @version (classes and interfaces only, required. See footnote 1)  
+3. @param (methods and constructors only)  
+4. @return (methods only)  
+5. @exception (@throws is a synonym added in Javadoc 1.2)  
+6. @see  
+7. @since  
+8. @serial (or @serialField or @serialData)  
+9. @deprecated (see How and When To Deprecate APIs)  
