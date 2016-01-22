@@ -1,10 +1,10 @@
 # FRC Team 1884 (The Griffins) - 2016 Robot Code
 **Javadoc Rules**  
-At the beginning of the class Javadoc comments **MUST**:  
-• Explain the class  
+Before the class body, Javadoc comments **MUST** have:  
+• Description of the class
 • @author _(Firstname Lastname)_  
 • @version _(For every push, increment by 1)_  
-• @since _(When the class was created)_  
+• @since _(Date the class was created)_  
 
 *Example:*
 ```java
@@ -19,6 +19,27 @@ At the beginning of the class Javadoc comments **MUST**:
 */
 //Class body
 ```
+Before a method body, Javadoc comments **MUST** have:  
+• Short one line description of the method  
+• Longer description of the method  
+• @param _(If any, describe every method parameter)_  
+• @return _(Describe the return value)_  
+• @exception/@throw _(If any, describe every exception that may be thrown from this method)_
+
+*Example:*
+```java
+/**
+* (One line description)
+* <p>
+* (Longer description)
+* <p>
+* @param paramName paramDescription
+* @return returnDescription
+* @throw exceptionDescription
+*/
+//Class body
+```
+
 
 Order Of Tags:  
 1. @author (classes and interfaces only, required)  
