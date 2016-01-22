@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1884.robot;
 
+<<<<<<< HEAD
+=======
+import edu.wpi.first.wpilibj.CANTalon;
+>>>>>>> 1884Programmers/test_code
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -36,11 +40,14 @@ public class Robot extends IterativeRobot {
 		// encoder.get() 270 is returned
 	}
 
+<<<<<<< HEAD
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 
+=======
+>>>>>>> 1884Programmers/test_code
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -74,6 +81,7 @@ public class Robot extends IterativeRobot {
 		auxilary2.set(joystick.getRawAxis(3) / 2);
 
 
+<<<<<<< HEAD
 		int counter = encoder.getRaw(); 
 		distance = encoder.getDistance();
 		double rate = encoder.getRate();
@@ -97,4 +105,12 @@ public class Robot extends IterativeRobot {
  */
 public void testPeriodic() {
 	}
+=======
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+	}
+
+>>>>>>> 1884Programmers/test_code
 }
