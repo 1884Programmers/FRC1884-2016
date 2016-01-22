@@ -6,7 +6,7 @@ At the beginning of the class:
 • @version _(For every push, increment by 1)_  
 • @since _(When the class was created)_  
 
-*Example:*  
+*Example:*
 ```java
 //Import Statements
 
