@@ -37,9 +37,18 @@ Before a method body, Javadoc comments **MUST** have:
 * @return returnDescription
 * @throw exceptionDescription
 */
-//Class body
+//Method body
 ```
+Before a field declaration, Javadoc comments **MUST** have:  
+• Short one line description of the field  
 
+*Example:*
+```java
+/**
+* (One line description)
+*/
+//Field Declaration
+```
 
 Order Of Tags:  
 1. @author (classes and interfaces only, required)  
