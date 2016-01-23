@@ -1,5 +1,5 @@
 # FRC Team 1884 (The Griffins) - 2016 Robot Code
-**Javadoc Rules**  
+###Javadoc Rules###
 Before the class body, Javadoc comments **MUST** have:  
 • Description of the class
 • @author _(Firstname Lastname)_  
@@ -52,7 +52,7 @@ Before a field declaration, Javadoc comments **MUST** have:
 
 Order Of Tags:  
 1. @author (classes and interfaces only, required)  
-2. @version (classes and interfaces only, required. See footnote 1)  
+2. @version (classes and interfaces only, required.)  
 3. @param (methods and constructors only)  
 4. @return (methods only)  
 5. @exception (@throws is a synonym added in Javadoc 1.2)  
