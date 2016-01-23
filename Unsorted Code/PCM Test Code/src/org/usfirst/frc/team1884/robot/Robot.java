@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	Compressor kippy;
 	DoubleSolenoid kaito = new DoubleSolenoid(0, 1);
 	Joystick will = new Joystick(0);
     /**
@@ -25,7 +24,6 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	kippy = new Compressor(0);
     }
     
 	/**
@@ -56,6 +54,8 @@ public class Robot extends IterativeRobot {
         	kaito.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kForward);
         } else if(will.getRawButton(3)) {
         	kaito.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse);
+        } else {
+        	kaito.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kOff);
         }
     }
     
