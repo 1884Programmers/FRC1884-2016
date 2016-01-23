@@ -61,6 +61,8 @@ Order Of Tags:
 8. @serial (or @serialField or @serialData)  
 9. @deprecated (see How and When To Deprecate APIs)  
 
+**NOTE:** It is only necessary to write a Javadoc comment if it is public, although you may want to write Javadoc comments for private classes/constructors/methods/fields.
+
 ###Updating The Master Repository
 **Prerequisites**
 * A Github Account
