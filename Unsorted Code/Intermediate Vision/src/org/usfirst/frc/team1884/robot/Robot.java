@@ -34,7 +34,7 @@ public class Robot extends SampleRobot {
     Joystick joystick;
     
     public Robot(){
-    	table = NetworkTable.getTable("GRIP/myContoursReport");	
+    	table = NetworkTable.getTable("GRIP/myContoursReport");
     }
     
     public void robotInit() {
