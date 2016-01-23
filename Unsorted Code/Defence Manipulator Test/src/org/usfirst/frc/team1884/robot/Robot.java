@@ -1,9 +1,6 @@
 package org.usfirst.frc.team1884.robot;
 
-<<<<<<< HEAD
-=======
 import edu.wpi.first.wpilibj.CANTalon;
->>>>>>> 1884Programmers/test_code
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -35,19 +32,15 @@ public class Robot extends IterativeRobot {
 		joystick = new Joystick(0);
 		auxilary1 = new VictorSP(5);
 		auxilary2 = new VictorSP(4);
-		encoder = new Encoder(5, 6, true, EncodingType.k1X);
+		encoder = new Encoder(0, 1, true, EncodingType.k1X);
 		// encoders have 270 click, so when turned fully 360 and say
 		// encoder.get() 270 is returned
 	}
-
-<<<<<<< HEAD
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 
-=======
->>>>>>> 1884Programmers/test_code
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -80,12 +73,10 @@ public class Robot extends IterativeRobot {
 		auxilary1.set(joystick.getY() / 2);
 		auxilary2.set(joystick.getRawAxis(3) / 2);
 
-
-<<<<<<< HEAD
 		int counter = encoder.getRaw(); 
 		distance = encoder.getDistance();
 		double rate = encoder.getRate();
-		String output = "Rate is:" + rate;
+		String output = "Rate is: " + rate;
 		SmartDashboard.putString("DB/String 0", output); 
 		boolean direction =
 				encoder.getDirection(); 
@@ -105,12 +96,4 @@ public class Robot extends IterativeRobot {
  */
 public void testPeriodic() {
 	}
-=======
-	/**
-	 * This function is called periodically during test mode
-	 */
-	public void testPeriodic() {
-	}
-
->>>>>>> 1884Programmers/test_code
 }
