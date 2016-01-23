@@ -1,10 +1,10 @@
 # FRC Team 1884 (The Griffins) - 2016 Robot Code
 ###Javadoc Rules###
 Before the class body, Javadoc comments **MUST** have:  
-• Description of the class
+• Description of the class  
 • @author _(Firstname Lastname)_  
 • @version _(For every push, increment by 1)_  
-• @since _(Date the class was created)_  
+• @since _(Date the class was created in DD/MM/YYYY)_  
 
 *Example:*
 ```java
