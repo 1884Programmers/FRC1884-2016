@@ -68,7 +68,7 @@ Order Of Tags:
 * Eclipse (set up with [WPILIB](https://wpilib.screenstepslive.com/s/4485/m/13809/l/145002-installing-eclipse-c-java)) (recommended)  
   
 **Setup**  
-1. Ask the programming team to add you to the 1884 Programmers group.  
+1. Ask the programming team to add you to the 1884Programmers organization.  
 2. Go to [the master repository](https://github.com/1884Programmers/FRC1884-2016/tree/test_code) and click "fork". This will create a copy of the repo that is linked to the master one.  
 3. Open up Eclipse, and press "Navigate => Show In => Repositories" in the menu bar.  
 4. In the Git Repositories view, press the button that says "git" on it and has a blue curved arrow pointing down. When you hover over it, it should say "Clone a Git Repository and add the clone to this view".  
