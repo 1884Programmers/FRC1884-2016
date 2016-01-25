@@ -78,4 +78,8 @@ Order Of Tags:
 8. Also in Github Desktop, click "+" again. Click "clone" in the top of the window, put in the link to the 1884Programmers version of the repository.  
 
 **Committing Code to the Master Repository**  
-TODO
+1. Open up your fork of the repo in Github Desktop and sync it. Under the compare view, click on the dropdown menu with the arrow to the right of a repository name and select "upstream/[whatever branch you're editing]".  
+2. Click the button that says "Update from [selected branch]", which should make your local copy up to date with the one up in the cloud.  
+3. **PROGRAM!!!**  
+4. Go back into your fork in Github Desktop, and go into the changes view which can be accessed by clickin in "Changes" in the top of the window. Put your commit message in the box labeled "Summary" and click "Commit to [selected branch]". Click "Sync" to add your commits to your cloud fork.  
+5. Final Step: Click "Pull Request" and make sure you are pushing to the correct repository and branch. Go into GitHub and check the Master Repo for the pull request. If they are able to be merged, click merge on the pull request page and you are done. If you run into issues, go to Will so you don't further screw up your code.
