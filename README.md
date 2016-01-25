@@ -73,8 +73,9 @@ Order Of Tags:
 3. Open up Eclipse, and press "Navigate => Show In => Repositories" in the menu bar.  
 4. In the Git Repositories view, press the button that says "git" on it and has a blue curved arrow pointing down. When you hover over it, it should say "Clone a Git Repository and add the clone to this view".  
 5. In the box that pops up, put the link to your fork in the box labeled "URI", and put you login information in "Authentication". *Note:* If you click "Store in Secure Store", then your login credentials will be stored for future use. If you do not click this, you will have to log in every time you want to commit code.  
-6. In Github Desktop, you want to click the "+" icon in the top left. Click "browse", and browse to where you put the local files of your github repository, then click "Add Repository". *Note:* The default location for the local files of the github repository is in a folder named "git" under your user folder.
-7. Also in Github Desktop, click "+" again. Click "clone" in the top of the window, put in the link to the 1884Programmers version of the repository.  
+6. Go to the "Git Repositories" view, and expand the repository you just cloned. Right click on "Remotes", and select "Create Remote". Name it "upstream". In the next menu paste the url for the master 1884Programmers repository. When you expand "Remotes" you should now see "upstream". If you see any remote other than origin and upstream, remove it by right clicking on it an then selecting remove as it is not needed.  
+7. In Github Desktop, you want to click the "+" icon in the top left. Click "browse", and browse to where you put the local files of your github repository, then click "Add Repository". *Note:* The default location for the local files of the github repository is in a folder named "git" under your user folder.  
+8. Also in Github Desktop, click "+" again. Click "clone" in the top of the window, put in the link to the 1884Programmers version of the repository.  
 
 **Committing Code to the Master Repository**  
 TODO
