@@ -21,8 +21,8 @@ public class Robot extends IterativeRobot {
 	Joystick joystick;
 	VictorSP auxilary1;
 	VictorSP auxilary2;
-	Encoder encoder;
-	Double distance;
+//	Encoder encoder;
+//	Double distance;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 		joystick = new Joystick(0);
 		auxilary1 = new VictorSP(5);
 		auxilary2 = new VictorSP(4);
-		encoder = new Encoder(0, 1, true, EncodingType.k1X);
+//		encoder = new Encoder(0, 1, true, EncodingType.k1X);
 		// encoders have 270 click, so when turned fully 360 and say
 		// encoder.get() 270 is returned
 	}
