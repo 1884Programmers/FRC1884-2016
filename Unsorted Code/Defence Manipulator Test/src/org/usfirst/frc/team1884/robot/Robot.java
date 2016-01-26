@@ -70,30 +70,36 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 
-		auxilary1.set(joystick.getY() / 2);
-		auxilary2.set(joystick.getRawAxis(3) / 2);
+		auxilary1.set(joystick.getY());
+		auxilary2.set(joystick.getRawAxis(3));
 
-		int counter = encoder.getRaw(); 
+		// int counter = encoder.getRaw();
 		distance = encoder.getDistance();
 		double rate = encoder.getRate();
-		String output = "Rate is: " + rate;
-		SmartDashboard.putString("DB/String 0", output); 
-		boolean direction =
-				encoder.getDirection(); 
-		if (direction) { 
-			while (counter < 67.5) { 
-				auxilary1.set(joystick.getY() / 2); } 
-		}
-		else { 
-			while(counter < 67.5){
-				auxilary1.set(joystick.getY() / 2);
-				} 
-			} 
+		String output = "Rate is: " + encoder.getRate();
+		String output2 = "Distance is: " + encoder.getDistance();
+		// double asdf = joystick.getRawAxis(3);
+		int count = 0;
+		String output3 = "Please Set Degree Turn" + count;
+
+		while (joystick.getRawButton(2)) {
+			count += 1;
+			SmartDashboard.putString("DB/String 2", output3);
 		}
 
-/**
- * This function is called periodically during test mode
- */
-public void testPeriodic() {
+		SmartDashboard.putString("DB/String 0", output);
+		SmartDashboard.putString("DB/String 1", output2);
+
+		while (encoder.getDistance() <= count) {
+			auxilary1.set(1);
+		}
+		auxilary1.stopMotor();
+
+	}
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
 	}
 }
