@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team1884.robot;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -17,7 +18,7 @@ public class Robot extends IterativeRobot {
 
 	Joystick joystick;
 
-	VictorSP frontLeft, frontRight, backLeft, backRight, aux1, aux2;
+	CANTalon frontLeft, frontRight, backLeft, backRight, aux1, aux2;
 
 	RobotDrive drive;
 	/**
@@ -26,17 +27,17 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		joystick = new Joystick(0);
-		frontLeft = new VictorSP(3);
-		frontRight = new VictorSP(2);
-		backLeft = new VictorSP(1);
-		backRight = new VictorSP(0);
-		aux2 = new VictorSP(4);
-		aux1 = new VictorSP(5);
+		frontLeft = new CANTalon(3);
+		frontRight = new CANTalon(2);
+		backLeft = new CANTalon(1);
+		backRight = new CANTalon(0);
+		aux1 = new CANTalon(4);
+		aux2 = new CANTalon(5);
 		drive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
-		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontRight, true);
-		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontLeft, true);
-		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearRight, true);
-		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearLeft, true);
+//		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontRight, true);
+//		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kFrontLeft, true);
+//		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearRight, true);
+//		drive.setInvertedMotor(edu.wpi.first.wpilibj.RobotDrive.MotorType.kRearLeft, true);
 	}
 
 	/**
