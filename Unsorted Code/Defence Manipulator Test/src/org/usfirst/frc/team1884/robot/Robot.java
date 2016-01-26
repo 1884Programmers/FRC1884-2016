@@ -74,26 +74,26 @@ public class Robot extends IterativeRobot {
 		auxilary2.set(joystick.getRawAxis(3));
 
 		// int counter = encoder.getRaw();
-		distance = encoder.getDistance();
-		double rate = encoder.getRate();
-		String output = "Rate is: " + encoder.getRate();
-		String output2 = "Distance is: " + encoder.getDistance();
+//		distance = encoder.getDistance();
+//		double rate = encoder.getRate();
+//		String output = "Rate is: " + encoder.getRate();
+//		String output2 = "Distance is: " + encoder.getDistance();
 		// double asdf = joystick.getRawAxis(3);
-		int count = 0;
-		String output3 = "Please Set Degree Turn" + count;
+//		int count = 0;
+//		String output3 = "Please Set Degree Turn" + count;
 
-		while (joystick.getRawButton(2)) {
-			count += 1;
-			SmartDashboard.putString("DB/String 2", output3);
-		}
+//		while (joystick.getRawButton(2)) {
+//			count += 1;
+//			SmartDashboard.putString("DB/String 2", output3);
+//		}
 
-		SmartDashboard.putString("DB/String 0", output);
-		SmartDashboard.putString("DB/String 1", output2);
+//		SmartDashboard.putString("DB/String 0", output);
+//		SmartDashboard.putString("DB/String 1", output2);
 
-		while (encoder.getDistance() <= count) {
-			auxilary1.set(1);
-		}
-		auxilary1.stopMotor();
+//		while (encoder.getDistance() <= count) {
+//			auxilary1.set(1);
+//		}
+//		auxilary1.stopMotor();
 
 	}
 
