@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.VictorSP;
 public class Robot extends IterativeRobot {
     
 	Joystick joystick;
-	VictorSP auxilary1;
+	CANTalon auxilary1;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	joystick = new Joystick(0);
-    	auxilary1 = new VictorSP(4);
+    	auxilary1 = new CANTalon(5);
     }
     
 	/**

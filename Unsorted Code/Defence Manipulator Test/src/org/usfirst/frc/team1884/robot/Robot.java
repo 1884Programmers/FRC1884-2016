@@ -19,8 +19,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	Joystick joystick;
-	VictorSP auxilary1;
-	VictorSP auxilary2;
+	CANTalon auxilary1;
+	CANTalon auxilary2;
 	Encoder encoder;
 	Double distance;
 
@@ -30,8 +30,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		joystick = new Joystick(0);
-		auxilary1 = new VictorSP(5);
-		auxilary2 = new VictorSP(4);
+		auxilary1 = new CANTalon(4);
+		auxilary2 = new CANTalon(5);
 		encoder = new Encoder(0, 1, true, EncodingType.k1X);
 		// encoders have 270 click, so when turned fully 360 and say
 		// encoder.get() 270 is returned
