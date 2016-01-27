@@ -30,8 +30,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		joystick = new Joystick(0);
-		auxilary1 = new VictorSP(5);
-		auxilary2 = new VictorSP(4);
+		auxilary1 = new VictorSP(0);
+		auxilary2 = new VictorSP(1);
 //		encoder = new Encoder(0, 1, true, EncodingType.k1X);
 		// encoders have 270 click, so when turned fully 360 and say
 		// encoder.get() 270 is returned
@@ -70,8 +70,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 
-		auxilary1.set(joystick.getY());
-		auxilary2.set(joystick.getRawAxis(3));
+		auxilary1.set(-joystick.getY()/2);
+		auxilary2.set(joystick.getRawAxis(3)/2);
 
 		// int counter = encoder.getRaw();
 //		distance = encoder.getDistance();
