@@ -1,10 +1,10 @@
 # FRC Team 1884 (The Griffins) - 2016 Robot Code
 ###Javadoc Rules###
 Before the class body, Javadoc comments **MUST** have:  
-• Description of the class
+• Description of the class  
 • @author _(Firstname Lastname)_  
 • @version _(For every push, increment by 1)_  
-• @since _(Date the class was created)_  
+• @since _(Date the class was created in DD/MM/YYYY)_  
 
 *Example:*
 ```java
@@ -60,6 +60,8 @@ Order Of Tags:
 7. @since  
 8. @serial (or @serialField or @serialData)  
 9. @deprecated (see How and When To Deprecate APIs)  
+
+**NOTE:** It is only necessary to write a Javadoc comment if it is public, although you may want to write Javadoc comments for private classes/constructors/methods/fields.
 
 ###Updating The Master Repository
 **Prerequisites**
