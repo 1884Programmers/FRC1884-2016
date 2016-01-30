@@ -65,8 +65,15 @@ public class Robot extends IterativeRobot {
     		backRight.set(-joystick.getY());
     		
     	} else {
-    		frontRight.set(0);
-    		backRight.set(0);
+    		if (joystick.getRawButton(8)){
+    			frontRight.set(joystick.getY());
+        		backRight.set(-joystick.getY());
+    		}
+    		else {
+    			frontRight.set(0);
+        		//backRight.set(0);
+    		}
+
     	}
     }
     
