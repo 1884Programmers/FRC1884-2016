@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	DoubleSolenoid kaito = new DoubleSolenoid(0, 1);
+	DoubleSolenoid kippy = new DoubleSolenoid(2, 3);
 	Joystick will = new Joystick(0);
     /**
      * This function is run when the robot is first started up and should be
@@ -57,7 +58,15 @@ public class Robot extends IterativeRobot {
         } else {
         	kaito.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kOff);
         }
+        if(will.getRawButton(1)) {
+        	kippy.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kForward);
+        } else if(will.getRawButton(4)) {
+        	kippy.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kReverse);
+        } else {
+        	kippy.set(edu.wpi.first.wpilibj.DoubleSolenoid.Value.kOff);
+        }
     }
+    
     
     /**
      * This function is called periodically during test mode

@@ -17,6 +17,7 @@ public class Robot extends IterativeRobot {
     
 	Joystick joystick;
 	CANTalon auxilary1;
+	CANTalon auxilary2;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -24,7 +25,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	joystick = new Joystick(0);
-    	auxilary1 = new CANTalon(5);
+    	auxilary1 = new CANTalon(0);
+    	auxilary2 = new CANTalon(2);
     }
     
 	/**
@@ -51,7 +53,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	auxilary1.set(joystick.getRawAxis(3));
+    	auxilary1.set(-joystick.getRawAxis(3));
+    	auxilary2.set(joystick.getY());
     }
     
     /**
