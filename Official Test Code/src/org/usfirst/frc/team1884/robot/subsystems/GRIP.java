@@ -4,11 +4,19 @@ import java.io.IOException;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
+/**
+ * Helps process data from the GRIP Network table.
+ * 
+ * @author Kaito Arai
+ * @version 1
+ * @since 29/1/2016
+ *
+ */
 public class GRIP {
 	private static String[] GRIP_ARGS;
 	private NetworkTable table;
 
-	private final static GRIP INSTANCE;
+	public final static GRIP INSTANCE;
 
 	static {
 		INSTANCE = new GRIP();
@@ -25,6 +33,12 @@ public class GRIP {
 		}
 	}
 
+	/**
+	 * Finds the center x coordinate of the largest contour.
+	 * <p>
+	 * First the method finds the contour with the largest area and records the index number of this contour.
+	 * It then proceeds to return the value of the x coordinate of the center of the contour. 
+	 */
 	public double getCenter() {
 		int largestIndex = -1;
 		double largestNumber = 0;
