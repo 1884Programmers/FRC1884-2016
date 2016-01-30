@@ -1,20 +1,28 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.TalonSRX;
 
+/**
+ * Helps the robot aim towards the goal using Vision Tracking.
+ * 
+ * @author Kaito Arai
+ * @version 2
+ * @since 21/1/2016
+ *
+ */
 public class Aimer {
-	private final int KP = 1;
-	private final int SETPOINT = 500;
-	private final int TARGET_POWER = 0;
-	private final int TOLERANCE = 0;
+	private final static double KP = 1.0 / 160.0;
+	private final static double SETPOINT = 160.0;
+	private final static double TARGET_POWER = 0.0;
+	private final static double TOLERANCE = 0.0;
 
-	private VictorSP frontLeft, frontRight, backLeft, backRight;
+	private TalonSRX frontLeft, frontRight, backLeft, backRight;
 
-	private int error;
-	private int leftPower;
-	private int output;
-	private int processValue;
-	private int rightPower;
+	private double error;
+	private double leftPower;
+	private double output;
+	private double processValue;
+	private double rightPower;
 
 	public final static Aimer INSTANCE;
 
@@ -23,14 +31,23 @@ public class Aimer {
 	}
 
 	private Aimer() {
-		frontLeft = new VictorSP(3);
-		frontRight = new VictorSP(2);
-		backLeft = new VictorSP(1);
-		backRight = new VictorSP(0);
+		frontLeft = new TalonSRX(3);
+		frontRight = new TalonSRX(2);
+		backLeft = new TalonSRX(1);
+		backRight = new TalonSRX(0);
 	}
 
+	/**
+	 * When prompted, the robot will align the center of its vision from the
+	 * camera with the center of the largest contour.
+	 * <p>
+	 * With processed data passed from the {@link GRIP} class, the robot uses a
+	 * proportional control system to align the robot to the largest contour in
+	 * the camera's field of view.
+	 */
 	public void align() {
 		while (error > TOLERANCE || -TOLERANCE < error) {
+			processValue = GRIP.INSTANCE.getCenter();
 			error = processValue - SETPOINT;
 			output = error * KP;
 			leftPower = TARGET_POWER - output;
