@@ -3,7 +3,9 @@ package org.usfirst.frc.team1884.robot;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,7 +19,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
-	CANTalon frontRight;
+	CANTalon frontRight, backRight;
+	DigitalInput clicker;
+	Joystick joystick;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -25,6 +29,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	frontRight = new CANTalon(2);
+    	backRight = new CANTalon(0);
+    	clicker = new DigitalInput(0);
+    	joystick = new Joystick(0);
     }
     
 	/**
@@ -44,15 +51,23 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-    	System.out.println("Position: " + frontRight.getEncPosition());
-    	System.out.println("Velocity: " + frontRight.getEncVelocity());
+    	
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+    	System.out.println("Position: " + frontRight.getEncPosition());
+    	System.out.println("Velocity: " + frontRight.getEncVelocity());
+    	if (clicker.get()){
+    		frontRight.set(joystick.getY());
+    		backRight.set(-joystick.getY());
+    		
+    	} else {
+    		frontRight.set(0);
+    		backRight.set(0);
+    	}
     }
     
     /**
