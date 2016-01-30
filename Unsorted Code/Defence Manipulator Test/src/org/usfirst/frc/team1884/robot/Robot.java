@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	Joystick joystick;
-	CANTalon auxilary1;
-	CANTalon auxilary2;
-	Encoder encoder;
-	Double distance;
+	VictorSP auxilary1;
+	VictorSP auxilary2;
+//	Encoder encoder;
+//	Double distance;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -30,9 +30,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		joystick = new Joystick(0);
-		auxilary1 = new CANTalon(4);
-		auxilary2 = new CANTalon(5);
-		encoder = new Encoder(0, 1, true, EncodingType.k1X);
+		auxilary1 = new VictorSP(0);
+		auxilary2 = new VictorSP(1);
+//		encoder = new Encoder(0, 1, true, EncodingType.k1X);
 		// encoders have 270 click, so when turned fully 360 and say
 		// encoder.get() 270 is returned
 	}
@@ -70,30 +70,36 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 
-		auxilary1.set(joystick.getY() / 2);
-		auxilary2.set(joystick.getRawAxis(3) / 2);
+		auxilary1.set(-joystick.getY()/2);
+		auxilary2.set(joystick.getRawAxis(3)/2);
 
-		int counter = encoder.getRaw(); 
-		distance = encoder.getDistance();
-		double rate = encoder.getRate();
-		String output = "Rate is: " + rate;
-		SmartDashboard.putString("DB/String 0", output); 
-		boolean direction =
-				encoder.getDirection(); 
-		if (direction) { 
-			while (counter < 67.5) { 
-				auxilary1.set(joystick.getY() / 2); } 
-		}
-		else { 
-			while(counter < 67.5){
-				auxilary1.set(joystick.getY() / 2);
-				} 
-			} 
-		}
+		// int counter = encoder.getRaw();
+//		distance = encoder.getDistance();
+//		double rate = encoder.getRate();
+//		String output = "Rate is: " + encoder.getRate();
+//		String output2 = "Distance is: " + encoder.getDistance();
+		// double asdf = joystick.getRawAxis(3);
+//		int count = 0;
+//		String output3 = "Please Set Degree Turn" + count;
 
-/**
- * This function is called periodically during test mode
- */
-public void testPeriodic() {
+//		while (joystick.getRawButton(2)) {
+//			count += 1;
+//			SmartDashboard.putString("DB/String 2", output3);
+//		}
+
+//		SmartDashboard.putString("DB/String 0", output);
+//		SmartDashboard.putString("DB/String 1", output2);
+
+//		while (encoder.getDistance() <= count) {
+//			auxilary1.set(1);
+//		}
+//		auxilary1.stopMotor();
+
+	}
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
 	}
 }
