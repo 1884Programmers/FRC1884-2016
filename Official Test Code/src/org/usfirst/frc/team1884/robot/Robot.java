@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
-
+import org.usfirst.frc.team1884.robot.subsystems.Proportional;
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,8 +19,9 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser chooser;
-
-	private Joystick joystick;
+	
+	private CANTalon intake, shooter;
+	private Proportional p;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -32,7 +33,12 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
 
-		joystick = new Joystick(0);
+		//joystick = new Joystick(0);
+		intake = new CANTalon(0);
+		shooter = new CANTalon(2);
+		shooter.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooter.setControlMode(0);
+		p = new Proportional(0.1/4000.0,-30000.0);
 	}
 
 	/**
@@ -72,9 +78,10 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		if (joystick.getRawButton(1)) {
-			Aimer.INSTANCE.align();
-		}
+		double i = p.getOutput(shooter.getEncVelocity());
+		intake.set(-1);
+		shooter.set(0.8+i);
+		System.out.println(shooter.getEncVelocity()+"	"+(0.8+i));
 	}
 
 	/**

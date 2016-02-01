@@ -13,16 +13,13 @@ import edu.wpi.first.wpilibj.TalonSRX;
 public class Aimer {
 	private final static double KP = 1.0 / 160.0;
 	private final static double SETPOINT = 160.0;
-	private final static double TARGET_POWER = 0.0;
 	private final static double TOLERANCE = 0.0;
 
 	private TalonSRX frontLeft, frontRight, backLeft, backRight;
 
-	private double error;
-	private double leftPower;
 	private double output;
-	private double processValue;
-	private double rightPower;
+	
+	public final Proportional p;
 
 	public final static Aimer INSTANCE;
 
@@ -35,6 +32,7 @@ public class Aimer {
 		frontRight = new TalonSRX(2);
 		backLeft = new TalonSRX(1);
 		backRight = new TalonSRX(0);
+		p = new Proportional(KP, SETPOINT);
 	}
 
 	/**
@@ -46,16 +44,13 @@ public class Aimer {
 	 * the camera's field of view.
 	 */
 	public void align() {
-		while (error > TOLERANCE || -TOLERANCE < error) {
-			processValue = GRIP.INSTANCE.getCenter();
-			error = processValue - SETPOINT;
-			output = error * KP;
-			leftPower = TARGET_POWER - output;
-			rightPower = TARGET_POWER + output;
-			frontLeft.set(leftPower);
-			backLeft.set(leftPower);
-			frontRight.set(rightPower);
-			backRight.set(rightPower);
+		output = p.getOutput(GRIP.INSTANCE.getCenter());
+		while (Math.abs(p.getError()) > TOLERANCE) {
+			output = p.getOutput(GRIP.INSTANCE.getCenter());
+			frontLeft.set(-output);
+			backLeft.set(-output);
+			frontRight.set(output);
+			backRight.set(output);
 		}
 	}
 }
