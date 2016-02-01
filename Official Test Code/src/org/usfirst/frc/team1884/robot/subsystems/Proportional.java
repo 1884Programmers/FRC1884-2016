@@ -15,4 +15,20 @@ public class Proportional {
 		error = processValue - setpoint;
 		return error * kp;
 	}
+
+	public double getError() {
+		return error;
+	}
+
+	public void setError(double error) {
+		this.error = error;
+	}
+
+	public double getSetpoint() {
+		return setpoint;
+	}
+
+	public void setSetpoint(double setpoint) {
+		this.setpoint = setpoint;
+	}
 }
