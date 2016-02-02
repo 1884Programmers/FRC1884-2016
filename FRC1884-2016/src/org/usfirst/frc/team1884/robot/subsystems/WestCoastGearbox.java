@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.subsystem;
+package org.usfirst.frc.team1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
