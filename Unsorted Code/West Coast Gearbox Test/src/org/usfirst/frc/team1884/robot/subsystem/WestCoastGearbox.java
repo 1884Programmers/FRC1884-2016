@@ -6,10 +6,12 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class WestCoastGearbox {
+	public static WestCoastGearbox instance = new WestCoastGearbox();
+	
 	RobotDrive drive;
 	VictorSP rightSide, leftSide;
-	Joystick joystick;
 	DoubleSolenoid outputPush, PTOPush;
+	Joystick joystick;
 	boolean toutput = false;
 	
 	boolean tPTO = false;
@@ -28,14 +30,16 @@ public class WestCoastGearbox {
     	
     	drive = new RobotDrive(leftSide, rightSide);
     	
-    	joystick = new Joystick(0);
-    	
     	outputPush = new DoubleSolenoid(0,1);
     	PTOPush = new DoubleSolenoid(2,3);
 	}
 	
+	public void setJoystick(Joystick joystick) {
+		this.joystick = joystick;
+	}
+	
 	public void teleopPeriodic() {
-drive.arcadeDrive(joystick);
+		drive.arcadeDrive(joystick);
     	
     	
     	if(joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonExtend > 200) {
