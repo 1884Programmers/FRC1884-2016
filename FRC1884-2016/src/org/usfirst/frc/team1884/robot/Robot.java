@@ -30,14 +30,14 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+
     }
-    
+
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    
+
     }
-    
+
 }
