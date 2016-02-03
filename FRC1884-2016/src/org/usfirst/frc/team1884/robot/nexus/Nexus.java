@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1884.robot.nexus;
 
+import org.usfirst.frc.team1884.robot.sensors.UltrasonicSensor;
+
+import edu.wpi.first.wpilibj.Joystick;
+
 public class Nexus {
   private UltrasonicSensor ultron;
   private Joystick joystick;

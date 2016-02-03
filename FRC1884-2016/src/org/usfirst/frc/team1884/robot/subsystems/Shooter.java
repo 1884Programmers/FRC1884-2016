@@ -1,11 +1,8 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class Shooter implements Subsystem, Operated{
   public static final int shooterChannel = 0;
