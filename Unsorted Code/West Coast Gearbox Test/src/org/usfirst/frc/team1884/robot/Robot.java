@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.subsystem.WestCoastGearbox;
+import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.Joystick;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
 	WestCoastGearbox gearbox;
 	Joystick joystick;
-	
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
