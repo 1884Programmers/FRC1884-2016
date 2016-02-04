@@ -1,11 +1,14 @@
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.subsystems.GRIP;
 import org.usfirst.frc.team1884.robot.subsystems.Proportional;
+import org.usfirst.frc.team1884.robot.subsystems.Spike;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -15,30 +18,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	final String defaultAuto = "Default";
-	final String customAuto = "My Auto";
-	String autoSelected;
-	SendableChooser chooser;
-	
+
 	private CANTalon intake, shooter;
 	private Proportional p;
+
+	private Joystick joystick;
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-		chooser = new SendableChooser();
-		chooser.addDefault("Default Auto", defaultAuto);
-		chooser.addObject("My Auto", customAuto);
-		SmartDashboard.putData("Auto choices", chooser);
-
-		//joystick = new Joystick(0);
-		intake = new CANTalon(0);
-		shooter = new CANTalon(2);
+		joystick = new Joystick(0);
+		intake = new CANTalon(5);
+		shooter = new CANTalon(4);
 		shooter.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		shooter.setControlMode(0);
-		p = new Proportional(0.1/4000.0,-30000.0);
+		p = new Proportional(0.1 / 4000.0, -30000.0);
 	}
 
 	/**
@@ -53,35 +49,28 @@ public class Robot extends IterativeRobot {
 	 * SendableChooser make sure to add them to the chooser code above as well.
 	 */
 	public void autonomousInit() {
-		autoSelected = (String) chooser.getSelected();
-		// autoSelected = SmartDashboard.getString("Auto Selector",
-		// defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);
 	}
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		switch (autoSelected) {
-		case customAuto:
-			// Put custom auto code here
-			break;
-		case defaultAuto:
-		default:
-			// Put default auto code here
-			break;
-		}
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		if (joystick.getRawButton(1))
+			Spike.INSTANCE.turnOn();
+		if (joystick.getRawButton(2))
+			Spike.INSTANCE.turnOff();
+		System.out.println(GRIP.INSTANCE.getCenter());
 		double i = p.getOutput(shooter.getEncVelocity());
 		intake.set(-1);
-		shooter.set(0.8+i);
-		System.out.println(shooter.getEncVelocity()+"	"+(0.8+i));
+		shooter.set(0.8 + i);
+		// System.out.println(shooter.getEncVelocity()+" "+(0.8+i));
+		Timer.delay(0.005);
 	}
 
 	/**
