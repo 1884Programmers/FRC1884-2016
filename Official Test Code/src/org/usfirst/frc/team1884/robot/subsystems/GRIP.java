@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
@@ -14,6 +13,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  *
  */
 public class GRIP {
+	private static String[] GRIP_ARGS;
 	private NetworkTable table;
 
 	public final static GRIP INSTANCE;
@@ -23,30 +23,27 @@ public class GRIP {
 	}
 
 	private GRIP() {
+		GRIP_ARGS = new String[] { "/usr/local/frc/JRE/bin/java", "-jar", "/home/lvuser/grip.jar",
+				"/home/lvuser/project.grip" };
+		table = NetworkTable.getTable("grip");
 		try {
-			new ProcessBuilder("/usr/local/frc/JRE/bin/java", "-jar", "/home/lvuser/grip.jar",
-					"/home/lvuser/project.grip").inheritIO().start();
+			Runtime.getRuntime().exec(GRIP_ARGS);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		table = NetworkTable.getTable("GRIP");
 	}
 
 	/**
 	 * Finds the center x coordinate of the largest contour.
 	 * <p>
-	 * First the method finds the contour with the largest area and records the
-	 * index number of this contour. It then proceeds to return the value of the
-	 * x coordinate of the center of the contour.
+	 * First the method finds the contour with the largest area and records the index number of this contour.
+	 * It then proceeds to return the value of the x coordinate of the center of the contour. 
 	 */
 	public double getCenter() {
 		int largestIndex = -1;
 		double largestNumber = 0;
 		double[] area = table.getNumberArray("targets/area", new double[0]);
 		double[] centerX = table.getNumberArray("targets/centerX", new double[0]);
-		if (area.length != centerX.length) {
-			return -1;
-		}
 		if (area.length == 0) {
 			return -1;
 		}
@@ -56,14 +53,7 @@ public class GRIP {
 				largestIndex = i;
 			}
 		}
-		if (largestIndex == -1) {
-			return -1;
-		}
 		return centerX[largestIndex];
 	}
 
-	public String test() {
-		double[] area = table.getNumberArray("targets/area", new double[0]);
-		return Arrays.toString(area);
-	}
 }

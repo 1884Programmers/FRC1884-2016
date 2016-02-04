@@ -17,7 +17,6 @@ public class Robot extends IterativeRobot {
     
 	Joystick joystick;
 	VictorSP auxilary1;
-	VictorSP auxilary2;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -26,7 +25,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	joystick = new Joystick(0);
     	auxilary1 = new VictorSP(4);
-    	auxilary2 = new VictorSP(5);
     }
     
 	/**
@@ -54,7 +52,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	auxilary1.set(joystick.getRawAxis(3));
-    	auxilary2.set(joystick.getY());
     }
     
     /**
