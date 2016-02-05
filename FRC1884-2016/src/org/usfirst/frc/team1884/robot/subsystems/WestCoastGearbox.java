@@ -51,7 +51,7 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void autonomousPeriodic() {
-
+		autonomousDrive();
 	}
 
 	public void teleopInit() {
@@ -59,39 +59,49 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void teleopPeriodic() {
-		drive.arcadeDrive(joystick);
+		joystickDrive();
+		PTOShift();
+	}
+
+	private void joystickDrive() {
+			drive.arcadeDrive(joystick);
+	}
+
+	private void autonomousDrive() {
+		//TODO
+	}
+
+	private void PTOShift() {
+		if(joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonExtend > 200) {
+			outputPush.set(DoubleSolenoid.Value.kForward);
+			lastoutputButtonExtend = System.currentTimeMillis();
+			timeOfLastExtensionoutput = System.currentTimeMillis();
+		}
+		if(joystick.getRawButton(2) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonExtend > 200) {
+			pTOPush.set(DoubleSolenoid.Value.kForward);
+			lastpTOButtonExtend = System.currentTimeMillis();
+			timeOfLastExtensionpTO = System.currentTimeMillis();
+		}
+		if(joystick.getRawButton(3) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonRetract > 200) {
+			outputPush.set(DoubleSolenoid.Value.kReverse);
+			lastoutputButtonRetract = System.currentTimeMillis();
+			timeOfLastExtensionoutput = System.currentTimeMillis();
+		}
+		if(joystick.getRawButton(4) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonRetract > 200) {
+			tpTO = !tpTO;
+			pTOPush.set(DoubleSolenoid.Value.kReverse);
+			lastpTOButtonRetract = System.currentTimeMillis();
+			timeOfLastExtensionpTO = System.currentTimeMillis();
+		}
 
 
-    	if(joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonExtend > 200) {
-    		outputPush.set(DoubleSolenoid.Value.kForward);
-    		lastoutputButtonExtend = System.currentTimeMillis();
-    		timeOfLastExtensionoutput = System.currentTimeMillis();
-    	}
-    	if(joystick.getRawButton(2) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonExtend > 200) {
-    		pTOPush.set(DoubleSolenoid.Value.kForward);
-    		lastpTOButtonExtend = System.currentTimeMillis();
-    		timeOfLastExtensionpTO = System.currentTimeMillis();
-    	}
-    	if(joystick.getRawButton(3) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonRetract > 200) {
-    		outputPush.set(DoubleSolenoid.Value.kReverse);
-    		lastoutputButtonRetract = System.currentTimeMillis();
-    		timeOfLastExtensionoutput = System.currentTimeMillis();
-    	}
-    	if(joystick.getRawButton(4) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonRetract > 200) {
-    		tpTO = !tpTO;
-    		pTOPush.set(DoubleSolenoid.Value.kReverse);
-    		lastpTOButtonRetract = System.currentTimeMillis();
-    		timeOfLastExtensionpTO = System.currentTimeMillis();
-    	}
-
-
-    	if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
-    		outputPush.set(DoubleSolenoid.Value.kOff);
-    		timeOfLastExtensionoutput = Long.MAX_VALUE;
-    	}
-    	if (System.currentTimeMillis() - timeOfLastExtensionpTO > 1000) {
-    		pTOPush.set(DoubleSolenoid.Value.kOff);
-    		timeOfLastExtensionpTO = Long.MAX_VALUE;
-    	}
+		if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
+			outputPush.set(DoubleSolenoid.Value.kOff);
+			timeOfLastExtensionoutput = Long.MAX_VALUE;
+		}
+		if (System.currentTimeMillis() - timeOfLastExtensionpTO > 1000) {
+			pTOPush.set(DoubleSolenoid.Value.kOff);
+			timeOfLastExtensionpTO = Long.MAX_VALUE;
+		}
 	}
 }

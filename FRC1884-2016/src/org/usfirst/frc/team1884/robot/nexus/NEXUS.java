@@ -4,7 +4,9 @@ import org.usfirst.frc.team1884.robot.sensors.UltrasonicSensor;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-@SuppressWarnings("unused")
+/**
+* NEXUS EXchanges Useful Sensors
+*/
 public class NEXUS {
   public static final Joystick JOYSTICK;
 
