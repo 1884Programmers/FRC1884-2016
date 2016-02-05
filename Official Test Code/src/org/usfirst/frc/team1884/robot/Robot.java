@@ -1,14 +1,16 @@
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.subsystems.GRIP;
+import org.usfirst.frc.team1884.robot.subsystems.GRIP; 
 import org.usfirst.frc.team1884.robot.subsystems.Proportional;
 import org.usfirst.frc.team1884.robot.subsystems.Spike;
+import org.usfirst.frc.team1884.robot.subsystems.Ultrasonic;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,7 +23,6 @@ public class Robot extends IterativeRobot {
 
 	private CANTalon intake, shooter;
 	private Proportional p;
-
 	private Joystick joystick;
 
 	/**
@@ -70,7 +71,9 @@ public class Robot extends IterativeRobot {
 		intake.set(-1);
 		shooter.set(0.8 + i);
 		// System.out.println(shooter.getEncVelocity()+" "+(0.8+i));
+		Ultrasonic.INSTANCE.teleopPeriodic();
 		Timer.delay(0.005);
+
 	}
 
 	/**
