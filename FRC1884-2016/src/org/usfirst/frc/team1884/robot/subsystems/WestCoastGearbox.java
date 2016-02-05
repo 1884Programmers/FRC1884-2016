@@ -1,19 +1,21 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 
-public class WestCoastGearbox implements Subsystem, Operated {
+public class WestCoastGearbox implements Subsystem {
 	public static final int leftSideChannel = 0;
 	public static final int rightSideChannel = 1;
 
 
-	public static WestCoastGearbox instance;
+	public static WestCoastGearbox INSTANCE;
 
 	static {
-		instance  = new WestCoastGearbox();
+		INSTANCE  = new WestCoastGearbox();
 	}
 
 	RobotDrive drive;
@@ -40,10 +42,8 @@ public class WestCoastGearbox implements Subsystem, Operated {
 
     	outputPush = new DoubleSolenoid(0,1);
     	pTOPush = new DoubleSolenoid(2,3);
-	}
 
-	public void setJoystick(Joystick joystick) {
-		this.joystick = joystick;
+		joystick = NEXUS.JOYSTICK;
 	}
 
 	public void autonomousInit() {
