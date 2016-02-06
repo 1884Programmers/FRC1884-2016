@@ -1,10 +1,12 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class Shooter implements Subsystem, Operated{
+public class Shooter implements Subsystem {
   public static final int shooterChannel = 0;
   public static final int internalIntakeChannel = 1;
   public static final int externalIntakeChannel = 2;
@@ -34,10 +36,8 @@ public class Shooter implements Subsystem, Operated{
     externalIntake.enableBrakeMode(true);
     externalIntake.setControlMode(0);
     externalIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-  }
-
-  public void setJoystick(Joystick joystick) {
-    this.joystick = joystick;
+    
+    joystick = NEXUS.JOYSTICK;
   }
 
   public void autonomousInit() {
