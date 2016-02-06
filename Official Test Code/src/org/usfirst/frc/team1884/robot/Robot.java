@@ -56,6 +56,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		Ultrasonic.INSTANCE.autonomousPeriodic();
+		Timer.delay(0.005);
 	}
 
 	/**
@@ -71,9 +73,8 @@ public class Robot extends IterativeRobot {
 		intake.set(-1);
 		shooter.set(0.8 + i);
 		// System.out.println(shooter.getEncVelocity()+" "+(0.8+i));
-		Ultrasonic.INSTANCE.teleopPeriodic();
-		Timer.delay(0.005);
 
+		Timer.delay(0.005);
 	}
 
 	/**

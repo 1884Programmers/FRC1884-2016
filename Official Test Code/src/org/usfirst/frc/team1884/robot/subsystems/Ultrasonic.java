@@ -12,7 +12,7 @@ public class Ultrasonic {
 	private RobotDrive drive;
 	private AnalogInput ultron;
 	private final static int tolerance = 5;
-	
+
 
 	public final static Ultrasonic INSTANCE;
 
@@ -31,7 +31,7 @@ public class Ultrasonic {
 		drive.drive(i, 0);
 	}
 	
-	public void teleopPeriodic(){
+	public void autonomousPeriodic(){
 		adjustToEightFeet();
 	}
 }
