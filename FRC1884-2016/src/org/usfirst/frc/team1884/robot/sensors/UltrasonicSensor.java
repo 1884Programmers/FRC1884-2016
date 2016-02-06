@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 public class UltrasonicSensor {
 	public static final UltrasonicSensor INSTANCE;
-	
+
 	private AnalogInput ultrasonic;
-	private  static final int ULTRASONIC_CHANNEL = 0;
+	private static final int ULTRASONIC_CHANNEL = 0;
 
 	static {
 		INSTANCE = new UltrasonicSensor();
