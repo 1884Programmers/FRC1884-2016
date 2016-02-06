@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;;
 
 public class Elevator implements Subsystem {
-	private static final Elevator INSTANCE;
+	public static final Elevator INSTANCE;
 
 	private static int LIFT_CHANNEL = 0;
 
