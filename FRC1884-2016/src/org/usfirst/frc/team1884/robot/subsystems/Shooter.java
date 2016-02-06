@@ -7,52 +7,52 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Shooter implements Subsystem {
-  public static final int shooterChannel = 0;
-  public static final int internalIntakeChannel = 1;
-  public static final int externalIntakeChannel = 2;
+	private static final int shooterChannel = 0;
+	private static final int internalIntakeChannel = 1;
+	private static final int externalIntakeChannel = 2;
 
-  public static final Shooter instance;
+	public static final Shooter INSTANCE;
 
-  static {
-    instance = new Shooter();
-  }
+	static {
+		INSTANCE = new Shooter();
+	}
 
-  private Joystick joystick;
-  private CANTalon shooter, internalIntake, externalIntake;
+	private Joystick joystick;
+	private CANTalon shooter, internalIntake, externalIntake;
 
-  private Shooter() {
-    shooter = new CANTalon(shooterChannel);
-    internalIntake = new CANTalon(internalIntakeChannel);
-    externalIntake = new CANTalon(externalIntakeChannel);
+	private Shooter() {
+		shooter = new CANTalon(shooterChannel);
+		internalIntake = new CANTalon(internalIntakeChannel);
+		externalIntake = new CANTalon(externalIntakeChannel);
 
-    shooter.enableBrakeMode(true);
-    shooter.setControlMode(0);
-    shooter.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooter.enableBrakeMode(true);
+		shooter.setControlMode(0);
+		shooter.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
-    internalIntake.enableBrakeMode(true);
-    internalIntake.setControlMode(0);
-    internalIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		internalIntake.enableBrakeMode(true);
+		internalIntake.setControlMode(0);
+		internalIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
-    externalIntake.enableBrakeMode(true);
-    externalIntake.setControlMode(0);
-    externalIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    
-    joystick = NEXUS.JOYSTICK;
-  }
+		externalIntake.enableBrakeMode(true);
+		externalIntake.setControlMode(0);
+		externalIntake.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
-  public void autonomousInit() {
-    //TODO
-  }
+		joystick = NEXUS.JOYSTICK;
+	}
 
-  public void autonomousPeriodic() {
-    //TODO
-  }
+	public void autonomousInit() {
+		// TODO
+	}
 
-  public void teleopInit() {
-    //TODO
-  }
+	public void autonomousPeriodic() {
+		// TODO
+	}
 
-  public void teleopPeriodic() {
-    //TODO
-  }
+	public void teleopInit() {
+		// TODO
+	}
+
+	public void teleopPeriodic() {
+		// TODO
+	}
 }

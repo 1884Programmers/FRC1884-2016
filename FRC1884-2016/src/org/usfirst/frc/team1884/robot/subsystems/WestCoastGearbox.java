@@ -8,40 +8,38 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class WestCoastGearbox implements Subsystem {
-	public static final int leftSideChannel = 0;
-	public static final int rightSideChannel = 1;
+	private static final int LEFT_CHANNEL = 0;
+	private static final int RIGHT_CHANNEL = 1;
 
+	private RobotDrive drive;
+	private VictorSP leftSide, rightSide;
+	private DoubleSolenoid outputPush, pTOPush;
+	private Joystick joystick;
+
+	private boolean tpTO = false;
+
+	private long timeOfLastExtensionoutput = Long.MAX_VALUE;
+	private long timeOfLastExtensionpTO = Long.MAX_VALUE;
+
+	private long lastoutputButtonExtend = 0;
+	private long lastoutputButtonRetract = 0;
+	private long lastpTOButtonExtend = 0;
+	private long lastpTOButtonRetract = 0;
 
 	public static WestCoastGearbox INSTANCE;
 
 	static {
-		INSTANCE  = new WestCoastGearbox();
+		INSTANCE = new WestCoastGearbox();
 	}
 
-	RobotDrive drive;
-	VictorSP rightSide, leftSide;
-	DoubleSolenoid outputPush, pTOPush;
-	Joystick joystick;
-	boolean toutput = false;
-
-	boolean tpTO = false;
-
-	long timeOfLastExtensionoutput = Long.MAX_VALUE;
-	long timeOfLastExtensionpTO = Long.MAX_VALUE;
-
-	long lastoutputButtonExtend = 0;
-	long lastoutputButtonRetract = 0;
-	long lastpTOButtonExtend = 0;
-	long lastpTOButtonRetract = 0;
-
 	private WestCoastGearbox() {
-    	leftSide = new VictorSP(0);
-    	rightSide = new VictorSP(1);
+		leftSide = new VictorSP(LEFT_CHANNEL);
+		rightSide = new VictorSP(RIGHT_CHANNEL);
 
-    	drive = new RobotDrive(leftSide, rightSide);
+		drive = new RobotDrive(leftSide, rightSide);
 
-    	outputPush = new DoubleSolenoid(0,1);
-    	pTOPush = new DoubleSolenoid(2,3);
+		outputPush = new DoubleSolenoid(0, 1);
+		pTOPush = new DoubleSolenoid(2, 3);
 
 		joystick = NEXUS.JOYSTICK;
 	}
@@ -64,36 +62,39 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	private void joystickDrive() {
-			drive.arcadeDrive(joystick);
+		drive.arcadeDrive(joystick);
 	}
 
 	private void autonomousDrive() {
-		//TODO
+		// TODO
 	}
 
 	private void PTOShift() {
-		if(joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonExtend > 200) {
+		if (joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff
+				&& System.currentTimeMillis() - lastoutputButtonExtend > 200) {
 			outputPush.set(DoubleSolenoid.Value.kForward);
 			lastoutputButtonExtend = System.currentTimeMillis();
 			timeOfLastExtensionoutput = System.currentTimeMillis();
 		}
-		if(joystick.getRawButton(2) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonExtend > 200) {
+		if (joystick.getRawButton(2) && pTOPush.get() == DoubleSolenoid.Value.kOff
+				&& System.currentTimeMillis() - lastpTOButtonExtend > 200) {
 			pTOPush.set(DoubleSolenoid.Value.kForward);
 			lastpTOButtonExtend = System.currentTimeMillis();
 			timeOfLastExtensionpTO = System.currentTimeMillis();
 		}
-		if(joystick.getRawButton(3) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonRetract > 200) {
+		if (joystick.getRawButton(3) && outputPush.get() == DoubleSolenoid.Value.kOff
+				&& System.currentTimeMillis() - lastoutputButtonRetract > 200) {
 			outputPush.set(DoubleSolenoid.Value.kReverse);
 			lastoutputButtonRetract = System.currentTimeMillis();
 			timeOfLastExtensionoutput = System.currentTimeMillis();
 		}
-		if(joystick.getRawButton(4) && pTOPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastpTOButtonRetract > 200) {
+		if (joystick.getRawButton(4) && pTOPush.get() == DoubleSolenoid.Value.kOff
+				&& System.currentTimeMillis() - lastpTOButtonRetract > 200) {
 			tpTO = !tpTO;
 			pTOPush.set(DoubleSolenoid.Value.kReverse);
 			lastpTOButtonRetract = System.currentTimeMillis();
 			timeOfLastExtensionpTO = System.currentTimeMillis();
 		}
-
 
 		if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
 			outputPush.set(DoubleSolenoid.Value.kOff);
