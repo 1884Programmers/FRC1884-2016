@@ -1,10 +1,10 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.nexus.NEXUS;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
+
 /**
  *  Max and Axel's Hanger
  */
