@@ -1,12 +1,7 @@
 
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.nexus.NEXUS;
-import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,10 +15,6 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-
-	WestCoastGearbox drive = WestCoastGearbox.INSTANCE;
-	Joystick joystick = NEXUS.JOYSTICK;
-	VictorSP victor = new VictorSP(0);
 
 	public void robotInit() {
 	}
@@ -39,8 +30,6 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		victor.set(joystick.getX());
-		drive.teleopPeriodic();
 	}
 
 	/**
