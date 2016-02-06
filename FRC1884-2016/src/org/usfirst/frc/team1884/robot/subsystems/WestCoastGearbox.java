@@ -92,7 +92,6 @@ public class WestCoastGearbox implements Subsystem {
 			lastpTOButtonRetract = System.currentTimeMillis();
 			timeOfLastExtensionpTO = System.currentTimeMillis();
 		}
-
 		if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
 			outputPush.set(DoubleSolenoid.Value.kOff);
 			timeOfLastExtensionoutput = Long.MAX_VALUE;
