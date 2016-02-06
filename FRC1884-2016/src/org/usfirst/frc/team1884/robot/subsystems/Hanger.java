@@ -1,8 +1,12 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 /**
- *  Max and Gavin's Hanger
+ *  Max and Axel's Hanger
  */
 
 public class Hanger implements Subsystem {
@@ -10,12 +14,13 @@ public class Hanger implements Subsystem {
 
   private static final int HANGINGBUTTON = 8;
   private boolean hasHung = false;
-  //Motor channels
-  //Encoder channels
+  private static final int MOTORCHANNEL = 5;
+  private static final int ENCODERCHANNELA = 0;
+  private static final int ENCODERCHANNELB = 1;
 
   private Joystick joystick;
-  //Motor controllers (Talons)
-  //Encoders
+  private CANTalon motor;
+  private Encoder encoder;
 
   static {
     INSTANCE = new Hanger();
@@ -23,7 +28,8 @@ public class Hanger implements Subsystem {
 
   private Hanger() {
     joystick = NEXUS.JOYSTICK;
-    //initializations
+    motor = new CANTalon(MOTORCHANNEL);
+    encoder = new Encoder(ENCODERCHANNELA, ENCODERCHANNELB);
   }
 
   public void teleopInit() {
@@ -45,7 +51,5 @@ public class Hanger implements Subsystem {
   private void hang() {
     //Debug code
     System.out.println("Hanging");
-
-    //TODO
   }
 }

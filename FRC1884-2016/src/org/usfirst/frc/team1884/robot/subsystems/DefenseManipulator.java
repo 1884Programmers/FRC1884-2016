@@ -1,3 +1,9 @@
+package org.usfirst.frc.team1884.robot.subsystems;
+
+import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+
+import edu.wpi.first.wpilibj.Joystick;
+
 public class DefenseManipulator implements Subsystem {
   public static final DefenseManipulator INSTANCE;
   //motor channels in private static final ints
