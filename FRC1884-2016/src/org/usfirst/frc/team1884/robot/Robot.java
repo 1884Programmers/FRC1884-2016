@@ -4,6 +4,7 @@ package org.usfirst.frc.team1884.robot;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,11 +18,10 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-	
-	WestCoastGearbox drive = WestCoastGearbox.INSTANCE;
-	
-    public void robotInit() {
 
+	WestCoastGearbox drive = WestCoastGearbox.INSTANCE;
+
+    public void robotInit() {
     }
 
     /**
