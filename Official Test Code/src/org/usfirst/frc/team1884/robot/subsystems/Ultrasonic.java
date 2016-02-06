@@ -27,7 +27,7 @@ public class Ultrasonic {
 	}
 	
 	private void adjustToEightFeet(){
-		double i = p.getOutput(ultron.getValue());
+		double i = p.getOutput(ultron.getValue()/7.2436);
 		drive.drive(i, 0);
 	}
 	
