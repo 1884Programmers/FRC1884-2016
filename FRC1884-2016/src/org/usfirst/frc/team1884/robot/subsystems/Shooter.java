@@ -17,6 +17,7 @@ public class Shooter implements Subsystem {
 		INSTANCE = new Shooter();
 	}
 
+	@SuppressWarnings("unused")
 	private Joystick joystick;
 	private CANTalon shooter, internalIntake, externalIntake;
 
