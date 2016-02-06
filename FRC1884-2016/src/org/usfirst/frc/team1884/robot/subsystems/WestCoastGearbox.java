@@ -11,12 +11,10 @@ public class WestCoastGearbox implements Subsystem {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
+	private DoubleSolenoid outputPush, ptoPush;
+	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
-	private DoubleSolenoid outputPush, pTOPush;
-	private Joystick joystick;
-
-	private boolean tpTO = false;
 
 	private long timeOfLastExtensionoutput = Long.MAX_VALUE;
 	private long timeOfLastExtensionpTO = Long.MAX_VALUE;
@@ -33,15 +31,15 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	private WestCoastGearbox() {
-		leftSide = new VictorSP(LEFT_CHANNEL);
-		rightSide = new VictorSP(RIGHT_CHANNEL);
+		outputPush = new DoubleSolenoid(0, 1);
+		ptoPush = new DoubleSolenoid(2, 3);
+
+		joystick = NEXUS.JOYSTICK;
 
 		drive = new RobotDrive(leftSide, rightSide);
 
-		outputPush = new DoubleSolenoid(0, 1);
-		pTOPush = new DoubleSolenoid(2, 3);
-
-		joystick = NEXUS.JOYSTICK;
+		leftSide = new VictorSP(LEFT_CHANNEL);
+		rightSide = new VictorSP(RIGHT_CHANNEL);
 	}
 
 	public void autonomousInit() {
@@ -76,9 +74,9 @@ public class WestCoastGearbox implements Subsystem {
 			lastoutputButtonExtend = System.currentTimeMillis();
 			timeOfLastExtensionoutput = System.currentTimeMillis();
 		}
-		if (joystick.getRawButton(2) && pTOPush.get() == DoubleSolenoid.Value.kOff
+		if (joystick.getRawButton(2) && ptoPush.get() == DoubleSolenoid.Value.kOff
 				&& System.currentTimeMillis() - lastpTOButtonExtend > 200) {
-			pTOPush.set(DoubleSolenoid.Value.kForward);
+			ptoPush.set(DoubleSolenoid.Value.kForward);
 			lastpTOButtonExtend = System.currentTimeMillis();
 			timeOfLastExtensionpTO = System.currentTimeMillis();
 		}
@@ -88,10 +86,9 @@ public class WestCoastGearbox implements Subsystem {
 			lastoutputButtonRetract = System.currentTimeMillis();
 			timeOfLastExtensionoutput = System.currentTimeMillis();
 		}
-		if (joystick.getRawButton(4) && pTOPush.get() == DoubleSolenoid.Value.kOff
+		if (joystick.getRawButton(4) && ptoPush.get() == DoubleSolenoid.Value.kOff
 				&& System.currentTimeMillis() - lastpTOButtonRetract > 200) {
-			tpTO = !tpTO;
-			pTOPush.set(DoubleSolenoid.Value.kReverse);
+			ptoPush.set(DoubleSolenoid.Value.kReverse);
 			lastpTOButtonRetract = System.currentTimeMillis();
 			timeOfLastExtensionpTO = System.currentTimeMillis();
 		}
@@ -101,7 +98,7 @@ public class WestCoastGearbox implements Subsystem {
 			timeOfLastExtensionoutput = Long.MAX_VALUE;
 		}
 		if (System.currentTimeMillis() - timeOfLastExtensionpTO > 1000) {
-			pTOPush.set(DoubleSolenoid.Value.kOff);
+			ptoPush.set(DoubleSolenoid.Value.kOff);
 			timeOfLastExtensionpTO = Long.MAX_VALUE;
 		}
 	}
