@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class NEXUS {
 	public static final Joystick JOYSTICK;
-	public static final Encoder FRONTLEFT, FRONTRIGHT, BACKLEFT, BACKRIGHT;
+	public static final Encoder LEFT, RIGHT;
 
-	private static int BACKRIGHTCHANNELa;
-	private static int BACKRIGHTCHANNELb;
-	private static int FRONTRIGHTCHANNELa;
-	private static int FRONTRIGHTCHANNELb;
-	private static int BACKLEFTCHANNELa;
-	private static int BACKLEFTCHANNELb;
+	private static int LEFT_CHANNELa = 0;
+	private static int LEFT_CHANNELb = 1;
+	private static int RIGHT_CHANNELa = 2;
+	private static int RIGHT_CHANNELb = 3;
 
 	static {
 		JOYSTICK = new Joystick(0);
+		LEFT = new Encoder(LEFT_CHANNELa, LEFT_CHANNELb);
+		RIGHT = new Encoder(RIGHT_CHANNELa, RIGHT_CHANNELb);
 	}
 }
