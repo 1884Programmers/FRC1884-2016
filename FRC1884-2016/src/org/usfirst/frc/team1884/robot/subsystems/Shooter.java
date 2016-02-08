@@ -42,7 +42,7 @@ public class Shooter implements Subsystem {
 	}
 
 	public void autonomousInit() {
-		// TODO
+		// TODO (probably nothing)
 	}
 
 	public void autonomousPeriodic() {
@@ -50,7 +50,7 @@ public class Shooter implements Subsystem {
 	}
 
 	public void teleopInit() {
-		// TODO
+		// TODO (probably nothing)
 	}
 
 	public void teleopPeriodic() {
