@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
