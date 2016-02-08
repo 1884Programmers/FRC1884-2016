@@ -6,7 +6,6 @@ import org.usfirst.frc.team1884.robot.subsystems.Hanger;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.Subsystem;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
@@ -27,7 +26,10 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 	}
-	
+
+	/**
+	 * This function is called once at the beinning of autonomous
+	 */
 	public void autonomousInit() {
 		for(Subsystem s : subsystems) {
 			s.autonomousInit();
@@ -43,12 +45,15 @@ public class Robot extends IterativeRobot {
 		}
 	}
 
+	/**
+	 * This function is called once at the beginning of operator control
+	 */
 	public void teleopInit() {
 		for (Subsystem s : subsystems) {
 			s.teleopInit();
 		}
 	}
-	
+
 	/**
 	 * This function is called periodically during operator control
 	 */

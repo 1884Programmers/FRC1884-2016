@@ -1,7 +1,11 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+<<<<<<< HEAD
 import org.usfirst.frc.team1884.robot.NEXUS;
 
+=======
+import org.usfirst.frc.team1884.robot.nexus.NEXUS;
+>>>>>>> 1884Programmers/master
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -43,7 +47,7 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void autonomousInit() {
-
+		//TODO (probably nothing)
 	}
 
 	public void autonomousPeriodic() {
@@ -51,7 +55,7 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void teleopInit() {
-
+		//TODO (probably nothing)
 	}
 
 	public void teleopPeriodic() {
