@@ -12,7 +12,7 @@ public class Ultrasonic {
 	private RobotDrive drive;
 	private AnalogInput ultron;
 	private final static int tolerance = 5;
-	
+
 
 	public final static Ultrasonic INSTANCE;
 
@@ -21,17 +21,20 @@ public class Ultrasonic {
 	}
 	
 	private Ultrasonic(){
+		leftSide = new VictorSP(3);
+		rightSide = new VictorSP(2);
 		p = new Proportional(KP, SETPOINT);
 		drive = new RobotDrive(leftSide, rightSide);
 		ultron = new AnalogInput(0);
 	}
 	
 	private void adjustToEightFeet(){
-		double i = p.getOutput(ultron.getValue());
+		double i = p.getOutput(ultron.getValue()/7.2436);
+		System.out.println(ultron.getValue()/7.2436);
 		drive.drive(i, 0);
 	}
 	
-	public void teleopPeriodic(){
+	public void runAdjustToEightFeet(){
 		adjustToEightFeet();
 	}
 }
