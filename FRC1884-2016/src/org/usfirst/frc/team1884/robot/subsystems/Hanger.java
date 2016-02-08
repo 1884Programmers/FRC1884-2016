@@ -42,10 +42,10 @@ public class Hanger implements Subsystem {
     }
   }
   public void autonomousInit() {
-    System.out.println("You numpty! Why are you hanging in autonomous?!");
+    //I honestly hope that no one is stupid enough to add code to this method
   }
   public void autonomousPeriodic() {
-    System.out.println("You numpty! Why are you hanging in autonomous?!");
+    //I honestly hope that no one is stupid enough to add code to this method
   }
 
   private void hang() {
