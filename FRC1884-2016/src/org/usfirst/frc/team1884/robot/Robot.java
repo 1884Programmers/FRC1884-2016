@@ -1,9 +1,11 @@
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+import org.usfirst.frc.team1884.robot.subsystems.Hanger;
+import org.usfirst.frc.team1884.robot.subsystems.Shooter;
+import org.usfirst.frc.team1884.robot.subsystems.Subsystem;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,6 +19,7 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+<<<<<<< HEAD
 
 	WestCoastGearbox drive = WestCoastGearbox.INSTANCE;
 
@@ -42,6 +45,48 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 
+=======
+
+	private Subsystem[] subsystems = { Elevator.INSTANCE, Hanger.INSTANCE, Shooter.INSTANCE,
+			WestCoastGearbox.INSTANCE };
+
+	public void robotInit() {
 	}
 
+	/**
+	 * This function is called once at the beinning of autonomous
+	 */
+	public void autonomousInit() {
+		for(Subsystem s : subsystems) {
+			s.autonomousInit();
+		}
+	}
+
+	/**
+	 * This function is called periodically during autonomous
+	 */
+	public void autonomousPeriodic() {
+		for (Subsystem s : subsystems) {
+			s.autonomousPeriodic();
+		}
+	}
+
+	/**
+	 * This function is called once at the beginning of operator control
+	 */
+	public void teleopInit() {
+		for (Subsystem s : subsystems) {
+			s.teleopInit();
+		}
+>>>>>>> 1884Programmers/master
+	}
+
+	/**
+	 * This function is called periodically during operator control
+	 */
+	public void teleopPeriodic() {
+		for (Subsystem s : subsystems) {
+			s.teleopPeriodic();
+		}
+	}
 }
