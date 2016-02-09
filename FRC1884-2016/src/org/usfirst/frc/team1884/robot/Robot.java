@@ -19,33 +19,6 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-<<<<<<< HEAD
-
-	WestCoastGearbox drive = WestCoastGearbox.INSTANCE;
-
-	public void robotInit() {
-	}
-
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	public void autonomousPeriodic() {
-
-	}
-
-	/**
-	 * This function is called periodically during operator control
-	 */
-	public void teleopPeriodic() {
-		drive.teleopPeriodic();
-	}
-
-	/**
-	 * This function is called periodically during test mode
-	 */
-	public void testPeriodic() {
-
-=======
 
 	private Subsystem[] subsystems = { Elevator.INSTANCE, Hanger.INSTANCE, Shooter.INSTANCE,
 			WestCoastGearbox.INSTANCE };
@@ -78,7 +51,6 @@ public class Robot extends IterativeRobot {
 		for (Subsystem s : subsystems) {
 			s.teleopInit();
 		}
->>>>>>> 1884Programmers/master
 	}
 
 	/**
