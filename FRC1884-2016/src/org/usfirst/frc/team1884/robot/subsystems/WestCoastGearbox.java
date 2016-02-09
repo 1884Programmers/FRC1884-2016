@@ -1,11 +1,6 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-<<<<<<< HEAD
 import org.usfirst.frc.team1884.robot.NEXUS;
-
-=======
-import org.usfirst.frc.team1884.robot.nexus.NEXUS;
->>>>>>> 1884Programmers/master
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
