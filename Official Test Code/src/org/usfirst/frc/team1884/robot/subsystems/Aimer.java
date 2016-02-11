@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import edu.wpi.first.wpilibj.TalonSRX;
+import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * Helps the robot aim towards the goal using Vision Tracking.
@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.TalonSRX;
 public class Aimer {
 	private final static double KP = 1.0 / 160.0;
 	private final static double SETPOINT = 160.0;
-	private final static double TOLERANCE = 0.0;
+	private final static double TOLERANCE = 1.0;
 
-	private TalonSRX frontLeft, frontRight, backLeft, backRight;
+	private VictorSP frontLeft, frontRight, backLeft, backRight;
 
 	private double output;
-	
+
 	public final Proportional p;
 
 	public final static Aimer INSTANCE;
@@ -28,10 +28,10 @@ public class Aimer {
 	}
 
 	private Aimer() {
-		frontLeft = new TalonSRX(3);
-		frontRight = new TalonSRX(2);
-		backLeft = new TalonSRX(1);
-		backRight = new TalonSRX(0);
+		frontLeft = new VictorSP(0);
+		frontRight = new VictorSP(2);
+		backLeft = new VictorSP(1);
+		backRight = new VictorSP(3);
 		p = new Proportional(KP, SETPOINT);
 	}
 
@@ -44,13 +44,18 @@ public class Aimer {
 	 * the camera's field of view.
 	 */
 	public void align() {
-		output = p.getOutput(GRIP.INSTANCE.getCenter());
-		while (Math.abs(p.getError()) > TOLERANCE) {
-			output = p.getOutput(GRIP.INSTANCE.getCenter());
-			frontLeft.set(-output);
-			backLeft.set(-output);
-			frontRight.set(output);
-			backRight.set(output);
+		output = Integer.MAX_VALUE;
+		while (Math.abs(output) > TOLERANCE) {
+			double center = GRIP.INSTANCE.getCenter();
+			if (center == -1.0) {
+
+			} else {
+				output = p.getOutput(GRIP.INSTANCE.getCenter());
+				frontLeft.set(output);
+				backLeft.set(output);
+				frontRight.set(output);
+				backRight.set(output);
+			}
 		}
 	}
 }

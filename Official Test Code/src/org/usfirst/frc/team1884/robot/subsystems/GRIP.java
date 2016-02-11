@@ -44,6 +44,9 @@ public class GRIP {
 		double largestNumber = 0;
 		double[] area = table.getNumberArray("targets/area", new double[0]);
 		double[] centerX = table.getNumberArray("targets/centerX", new double[0]);
+		if (area == null || centerX == null) {
+			return -1;
+		}
 		if (area.length != centerX.length) {
 			return -1;
 		}
