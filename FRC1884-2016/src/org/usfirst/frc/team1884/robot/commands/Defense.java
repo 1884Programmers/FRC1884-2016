@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.commands;
 
-public class Defense {
+public class Defense implements Command {
 
 	private int defense;
 
