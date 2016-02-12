@@ -1,20 +1,26 @@
 package org.usfirst.frc.team1884.robot;
 
+<<<<<<< HEAD
 import org.usfirst.frc.team1884.robot.subsystems.Proportional;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+=======
+import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.GRIP;
+import org.usfirst.frc.team1884.robot.subsystems.Proportional;
+import org.usfirst.frc.team1884.robot.subsystems.Spike;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+>>>>>>> 1884Programmers/test_code
+
 public class Robot extends IterativeRobot {
+<<<<<<< HEAD
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	String autoSelected;
@@ -72,23 +78,34 @@ public class Robot extends IterativeRobot {
 			// Put default auto code here
 			break;
 		}
+=======
+
+	RobotDrive drive;
+	Joystick stick;
+	Proportional p;
+	AnalogInput ultrasonic;
+
+	public void teleopInit() {
+		//drive = new RobotDrive(0, 1, 2, 3);
+		stick = new Joystick(0);
+		Spike.INSTANCE.turnOn();
+		// p = new Proportional((1.0 / 96.0), 96);
+		// ultrasonic = new AnalogInput(0);
+>>>>>>> 1884Programmers/test_code
 	}
 
-	/**
-	 * This function is called periodically during operator control
-	 */
 	public void teleopPeriodic() {
+<<<<<<< HEAD
 		double i = p.getOutput(shooter.getEncVelocity());
 		intake.set(-1);
 		shooter.set(0.8+i);
 		System.out.println(shooter.getEncVelocity()+"	"+(0.8+i));
+=======
+		// double output = p.getOutput(ultrasonic.getValue() / 7.2436);
+		// System.out.println(output);
+		// drive.drive(output, 0);
+		//
+		Aimer.INSTANCE.align();
+>>>>>>> 1884Programmers/test_code
 	}
-
-	/**
-	 * This function is called periodically during test mode
-	 */
-	public void testPeriodic() {
-
-	}
-
 }

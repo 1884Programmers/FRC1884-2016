@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.subsystem;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -6,42 +6,38 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 
 public class WestCoastGearbox {
-	public static WestCoastGearbox instance = new WestCoastGearbox();
-
 	RobotDrive drive;
 	VictorSP rightSide, leftSide;
-	DoubleSolenoid outputPush, PTOPush;
 	Joystick joystick;
+	DoubleSolenoid outputPush, PTOPush;
 	boolean toutput = false;
-
+	
 	boolean tPTO = false;
-
+	
 	long timeOfLastExtensionoutput = Long.MAX_VALUE;
 	long timeOfLastExtensionPTO = Long.MAX_VALUE;
-
+	
 	long lastoutputButtonExtend = 0;
 	long lastoutputButtonRetract = 0;
 	long lastPTOButtonExtend = 0;
 	long lastPTOButtonRetract = 0;
-
+	
 	private WestCoastGearbox() {
     	leftSide = new VictorSP(0);
     	rightSide = new VictorSP(1);
-
+    	
     	drive = new RobotDrive(leftSide, rightSide);
-
+    	
+    	joystick = new Joystick(0);
+    	
     	outputPush = new DoubleSolenoid(0,1);
     	PTOPush = new DoubleSolenoid(2,3);
 	}
-
-	public void setJoystick(Joystick joystick) {
-		this.joystick = joystick;
-	}
-
+	
 	public void teleopPeriodic() {
-		drive.arcadeDrive(joystick);
-
-
+drive.arcadeDrive(joystick);
+    	
+    	
     	if(joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff && System.currentTimeMillis() - lastoutputButtonExtend > 200) {
     		outputPush.set(DoubleSolenoid.Value.kForward);
     		lastoutputButtonExtend = System.currentTimeMillis();
@@ -63,8 +59,8 @@ public class WestCoastGearbox {
     		lastPTOButtonRetract = System.currentTimeMillis();
     		timeOfLastExtensionPTO = System.currentTimeMillis();
     	}
-
-
+    	
+    	
     	if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
     		outputPush.set(DoubleSolenoid.Value.kOff);
     		timeOfLastExtensionoutput = Long.MAX_VALUE;
