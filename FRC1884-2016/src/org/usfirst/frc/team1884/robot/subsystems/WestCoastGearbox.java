@@ -35,14 +35,14 @@ public class WestCoastGearbox implements Subsystem {
 
 		joystick = NEXUS.JOYSTICK;
 
-		drive = new RobotDrive(leftSide, rightSide);
-
 		leftSide = new VictorSP(LEFT_CHANNEL);
 		rightSide = new VictorSP(RIGHT_CHANNEL);
+
+		drive = new RobotDrive(leftSide, rightSide);
 	}
 
 	public void autonomousInit() {
-		//TODO (probably nothing)
+		// TODO (probably nothing)
 	}
 
 	public void autonomousPeriodic() {
@@ -50,16 +50,17 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void teleopInit() {
-		//TODO (probably nothing)
+		// TODO (probably nothing)
 	}
 
 	public void teleopPeriodic() {
-		joystickDrive();
+		drive.arcadeDrive(joystick);
 		PTOShift();
 	}
 
-	private void joystickDrive() {
-		drive.arcadeDrive(joystick);
+	public void setMotorSpeed(double leftSpeed, double rightSpeed) {
+		leftSide.set(leftSpeed);
+		rightSide.set(rightSpeed);
 	}
 
 	private void autonomousDrive() {
