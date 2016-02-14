@@ -43,6 +43,11 @@ public class Aimer implements Subsystem {
 			WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
 		}
 		Spike.INSTANCE.turnOff();
+		output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
+		while (Math.abs(p.getError()) > TOLERANCE) {
+			output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
+			WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
+		}
 	}
 
 	@Override
