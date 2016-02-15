@@ -3,6 +3,7 @@ package org.usfirst.frc.team1884.robot;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
@@ -46,6 +47,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
-		Aimer.INSTANCE.teleopPeriodic();
+//		Aimer.INSTANCE.teleopPeriodic();
 	}
 }
