@@ -1,78 +1,29 @@
 #include "WPILib.h"
 
-class Robot: public IterativeRobot
-{
-	//Number of motor controllers the drive has
-		const int numMotors = 2;
+class Robot: public IterativeRobot {
+	CANJaguar *frontLeft;
+	CANJaguar *frontRight;
+	CANJaguar *backLeft;
+	CANJaguar *backRight;
 
-		//Ports if the drive has 2 controllers
-		const int leftPort = 0;
-		const int rightPort = 1;
-
-		//Ports if the drive has 4 controllers
-		const int frontLeftPort = 0;
-		const int frontRightPort = 1;
-		const int backLeftPort = 2;
-		const int backRightPort = 3;
-
-		CANJaguar frontLeft;
-		CANJaguar frontRight;
-		CANJaguar backLeft;
-		CANJaguar backRight;
-
-		Joystick joystick;
-		RobotDrive drive;
+	Joystick *joystick;
+	RobotDrive *drive;
 public:
-
-	void RobotInit()
-	{
-		if(numMotors == 2) {
-			frontLeft(leftPort),
-			frontRight(rightPort),
-			drive(frontLeft,frontRight);
-		} else {
-			frontLeft(frontLeftPort),
-			frontRight(frontRightPort),
-			backLeft(backLeftPort),
-			backRight(backRightPort),
-			drive(frontLeft,frontRight,backLeft,backRight);
-		}
-		joystick(0);
+	Robot() {
+		frontLeft = new CANJaguar(0);
+		frontRight = new CANJaguar(1);
+		backLeft = new CANJaguar(2);
+		backRight = new CANJaguar(3);
+		joystick = new Joystick(0);
+		drive = new RobotDrive(frontLeft,frontRight,backLeft,backRight);
 	}
 
-
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the GetString line to get the auto name from the text box
-	 * below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional comparisons to the if-else structure below with additional strings.
-	 * If using the SendableChooser make sure to add them to the chooser code above as well.
-	 */
-	void AutonomousInit()
-	{
-
+	void AutonomousPeriodic() {
+		drive->Drive(0.25, 0.0);
 	}
 
-	void AutonomousPeriodic()
-	{
-		drive.Drive(0.25,0.0);
-	}
-
-	void TeleopInit()
-	{
-
-	}
-
-	void TeleopPeriodic()
-	{
-		drive.ArcadeDrive(joystick);
-	}
-
-	void TestPeriodic()
-	{
-
+	void TeleopPeriodic() {
+		drive->ArcadeDrive(joystick);
 	}
 };
 
