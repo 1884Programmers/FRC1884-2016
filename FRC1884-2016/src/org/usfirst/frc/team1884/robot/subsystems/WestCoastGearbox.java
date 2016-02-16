@@ -25,6 +25,8 @@ public class WestCoastGearbox implements Subsystem {
 
 	public static WestCoastGearbox INSTANCE;
 
+	private boolean isInverted;
+
 	static {
 		INSTANCE = new WestCoastGearbox();
 	}
@@ -46,7 +48,7 @@ public class WestCoastGearbox implements Subsystem {
 	}
 
 	public void autonomousPeriodic() {
-		autonomousDrive();
+		// TODO
 	}
 
 	public void teleopInit() {
@@ -56,6 +58,7 @@ public class WestCoastGearbox implements Subsystem {
 	public void teleopPeriodic() {
 		drive.arcadeDrive(joystick);
 		PTOShift();
+		reverse();
 	}
 
 	public void setMotorSpeed(double leftSpeed, double rightSpeed) {
@@ -63,8 +66,12 @@ public class WestCoastGearbox implements Subsystem {
 		rightSide.set(rightSpeed);
 	}
 
-	private void autonomousDrive() {
-		// TODO
+	private void reverse() {
+		if (joystick.getRawButton(6)) {
+			drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, isInverted);
+			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, isInverted);
+			isInverted = !isInverted;
+		}
 	}
 
 	private void PTOShift() {
