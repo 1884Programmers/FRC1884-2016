@@ -4,22 +4,23 @@ import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Shooter implements Subsystem {
-	private static final int SHOOTER_CHANNEL = 0;
-	private static final int INTERNAL_INTAKE_CHANNEL = 1;
-	private static final int EXTERNAL_INTAKE_CHANNEL = 2;
+
+	private Joystick joystick;
+	private CANTalon shooter, internalIntake, externalIntake;
+
+	private static final int SHOOTER_CHANNEL = 6;
+	private static final int INTERNAL_INTAKE_CHANNEL = 4;
+	private static final int EXTERNAL_INTAKE_CHANNEL = 3;
 
 	public static final Shooter INSTANCE;
 
 	static {
 		INSTANCE = new Shooter();
 	}
-
-	@SuppressWarnings("unused")
-	private Joystick joystick;
-	private CANTalon shooter, internalIntake, externalIntake;
 
 	private Shooter() {
 		shooter = new CANTalon(SHOOTER_CHANNEL);
@@ -54,6 +55,23 @@ public class Shooter implements Subsystem {
 	}
 
 	public void teleopPeriodic() {
-		// TODO
+		if (joystick.getRawButton(1)) {
+			shooter.set(1.0);
+			internalIntake.set(-1.0);
+			externalIntake.set(-1.0);
+		} else if (joystick.getRawButton(2)) {
+			shooter.set(0);
+			internalIntake.set(-1.0);
+			externalIntake.set(-1.0);
+		}
+		else if (joystick.getRawButton(3)) {
+			shooter.set(0);
+			internalIntake.set(1.0);
+			externalIntake.set(0);
+		} else {
+			shooter.set(0);
+			internalIntake.set(0);
+			externalIntake.set(0);
+		}
 	}
 }
