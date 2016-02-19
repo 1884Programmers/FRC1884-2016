@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * Max and Axel's Hanger
  */
 
-public class Hanger implements Subsystem {
+public class Hanger {
 	public static final Hanger INSTANCE;
 
 	private static final int HANGING_BUTTON = 8;
@@ -28,7 +28,7 @@ public class Hanger implements Subsystem {
 	}
 
 	private Hanger() {
-		joystick = NEXUS.JOYSTICK;
+		joystick = NEXUS.OPERATORSTICK;
 		motor = new CANTalon(MOTOR_CHANNEL);
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
 	}
@@ -44,18 +44,11 @@ public class Hanger implements Subsystem {
 		}
 	}
 
-	public void autonomousInit() {
-		// I honestly hope that no one is stupid enough to add code to this
-		// method
+	public void hang() {
+		// TODO
+		hasHung = true;
 	}
-
-	public void autonomousPeriodic() {
-		// I honestly hope that no one is stupid enough to add code to this
-		// method
-	}
-
-	private void hang() {
-		// Debug code
-		System.out.println("Hanging");
+	public boolean hasHung() {
+		return hasHung;
 	}
 }
