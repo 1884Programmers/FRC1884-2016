@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.commands.AutonomousHandler;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -26,7 +29,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of autonomous
 	 */
 	public void autonomousInit() {
-
+		AutonomousHandler.INSTANCE.autonomousInit();
 	}
 
 	/**
@@ -47,6 +50,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
+		Elevator.INSTANCE.teleopPeriodic();
+		Shooter.INSTANCE.teleopPeriodic();
 //		Aimer.INSTANCE.teleopPeriodic();
 	}
 }

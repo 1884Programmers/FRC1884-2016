@@ -5,13 +5,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousHandler {
 
-	private Command posCommand;
+	private Position posCommand;
 	private SendableChooser posChooser;
 
-	private Command defCommand;
+	private Defense defCommand;
 	private SendableChooser defChooser;
 
 	public static AutonomousHandler INSTANCE;
+	
+	private long autoStart;
+	private long currentTime;
 
 	public void bar() {
 	}
@@ -28,22 +31,21 @@ public class AutonomousHandler {
 		posChooser.addObject("4", new Position(4));
 		SmartDashboard.putData("Position Chooser", posChooser);
 		defChooser = new SendableChooser();
-		defChooser.addDefault("Portcullis", new Defense(1));
-		defChooser.addObject("Cheval de Frise", new Defense(2));
-		defChooser.addObject("Moat", new Defense(3));
-		defChooser.addObject("Ramparts", new Defense(4));
-		defChooser.addObject("Drawbridge", new Defense(5));
-		defChooser.addObject("Sally Port", new Defense(6));
-		defChooser.addObject("Rock Wall", new Defense(7));
-		defChooser.addObject("Rough Terrain", new Defense(8));
+		defChooser.addDefault("Portcullis", new Defense(Defense.PORTCULLIS));
+		defChooser.addObject("Cheval de Frise", new Defense(Defense.CHEVALDEFRISE));
+		defChooser.addObject("Moat", new Defense(Defense.MOAT));
+		defChooser.addObject("Ramparts", new Defense(Defense.RAMPARTS));
+		defChooser.addObject("Drawbridge", new Defense(Defense.DRAWBRIDGE));
+		defChooser.addObject("Sally Port", new Defense(Defense.SALLYPORT));
+		defChooser.addObject("Rock Wall", new Defense(Defense.ROCKWALL));
+		defChooser.addObject("Rough Terrain", new Defense(Defense.ROUGHTERRAIN));
 		SmartDashboard.putData("Defense Chooser", defChooser);
 	}
 
-	public void autonomousPeriodic() {
-		posCommand = (Command) posChooser.getSelected();
-		posCommand.start();
-		defCommand = (Command) defChooser.getSelected();
+	public void autonomousInit() {
+		posCommand = (Position) posChooser.getSelected();
+		defCommand = (Defense) defChooser.getSelected();
 		defCommand.start();
+		posCommand.start();
 	}
-
 }

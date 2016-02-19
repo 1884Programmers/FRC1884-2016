@@ -1,12 +1,13 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
 
-public class WestCoastGearbox implements Subsystem {
+public class WestCoastGearbox {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
@@ -35,22 +36,14 @@ public class WestCoastGearbox implements Subsystem {
 		outputPush = new DoubleSolenoid(0, 1);
 		ptoPush = new DoubleSolenoid(2, 3);
 
-		joystick = NEXUS.JOYSTICK;
+		joystick = NEXUS.DRIVESTICK;
 
 		leftSide = new VictorSP(LEFT_CHANNEL);
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
 		drive = new RobotDrive(leftSide, rightSide);
 	}
-
-	public void autonomousInit() {
-		// TODO (probably nothing)
-	}
-
-	public void autonomousPeriodic() {
-		// TODO
-	}
-
+	
 	public void teleopInit() {
 		// TODO (probably nothing)
 	}
@@ -66,7 +59,7 @@ public class WestCoastGearbox implements Subsystem {
 		rightSide.set(rightSpeed);
 	}
 
-	private void reverse() {
+	public void reverse() {
 		if (joystick.getRawButton(6)) {
 			drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, isInverted);
 			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, isInverted);
@@ -74,7 +67,7 @@ public class WestCoastGearbox implements Subsystem {
 		}
 	}
 
-	private void PTOShift() {
+	public void PTOShift() {
 		if (joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff
 				&& System.currentTimeMillis() - lastoutputButtonExtend > 200) {
 			outputPush.set(DoubleSolenoid.Value.kForward);
