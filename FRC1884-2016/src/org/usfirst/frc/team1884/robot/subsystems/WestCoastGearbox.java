@@ -98,7 +98,7 @@ public class WestCoastGearbox {
 			drive.tankDrive(joystick, 1, joystick, 5);
 		}
 
-		if (joystick.getRawButton(6)) {
+		if (joystick.getRawButton(5)) {
 			isArcadeDrive = !isArcadeDrive;
 		}
 	}
