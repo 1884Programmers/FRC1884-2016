@@ -6,6 +6,8 @@ import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.Spike;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Position implements Choices {
 
 	private int position;
@@ -18,9 +20,8 @@ public class Position implements Choices {
 		Spike.INSTANCE.turnOn();
 		switch (position) {
 		case 1:
-			System.out.println(
-					"You numpty, what the hell were you thinking when you said I was in front of the lowbar!"
-					+ "\nI refuse to attempt to center!");
+			SmartDashboard.putString("Defense Errors",
+					"You numpty, what the hell were you thinking when you said I was in front of the lowbar!");
 			break;
 		case 2:
 			while (GRIP.INSTANCE.getCenter() == -1) {
