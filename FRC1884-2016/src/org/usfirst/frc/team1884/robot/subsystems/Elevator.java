@@ -4,9 +4,11 @@ import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;;
 
 public class Elevator {
 	public static final Elevator INSTANCE;
@@ -54,6 +56,8 @@ public class Elevator {
 			carriage.set(0.25);
 		} else if(joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
 			carriage.set(-0.25);
+		} else {
+			carriage.set(0);
 		}
 	}
 	
@@ -65,6 +69,8 @@ public class Elevator {
 		if(Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
 			lift.set(1);
 			return false;
+		} else {
+			lift.set(0);
 		}
 		return true;
 	}
@@ -77,6 +83,8 @@ public class Elevator {
 		if(Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
 			carriage.set(-1);
 			return false;
+		} else {
+			carriage.set(0);
 		}
 		return true;
 	}
@@ -89,19 +97,33 @@ public class Elevator {
 		if(upLimitSwitch.get()) {
 			carriage.set(1);
 			return false;
+		} else {
+			carriage.set(0);
 		}
 		return true;
 	}
 	
 	/**
-	 * 
+	 * Needs to be called in a loop
 	 * @return Whether or not the carriage has finished lowering
 	 */
 	public boolean lowerCarriageAuto() {
 		if(downLimitSwitch.get()) {
 			carriage.set(-1);
 			return false;
+		} else {
+			carriage.set(0);
 		}
 		return true;
+	}
+	
+	public void flipAuto() {
+		flip.set(Value.kForward);
+		Timer.delay(0.5);
+		flip.set(Value.kReverse);
+	}
+	
+	public void flipReset() {
+		flip.set(Value.kOff);
 	}
 }
