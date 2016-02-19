@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.commands;
 
-public interface Command {
+public interface Choices {
 
 	public void start();
 

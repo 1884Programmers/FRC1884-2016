@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 public interface Subsystem {
 	public void autonomousInit();

@@ -6,15 +6,13 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;;
 
-public class Elevator implements Subsystem {
+public class Elevator {
 	public static final Elevator INSTANCE;
 
 	private static int LIFT_CHANNEL = 0;
-	private static int CARRIAGE_CHANNEL = 2;
+	private static int FLIP_CHANNEL = 2;
 
-	private CANTalon lift;
-	private CANTalon carriage;
-
+	private CANTalon lift, flip;
 	private Joystick joystick;
 
 	private DigitalInput switch1;
@@ -25,33 +23,22 @@ public class Elevator implements Subsystem {
 
 	public Elevator() {
 		lift = new CANTalon(LIFT_CHANNEL);
-		carriage = new CANTalon(CARRIAGE_CHANNEL);
-
-		joystick = NEXUS.JOYSTICK;
+		flip = new CANTalon(FLIP_CHANNEL);
+		joystick = NEXUS.OPERATORSTICK;
 	}
 
-	@Override
-	public void autonomousInit() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void autonomousPeriodic() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void teleopInit() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void teleopPeriodic() {
-		lift.set(joystick.getX());
-		//carriage shit
+		lift.set(joystick.getY());
+		if(joystick.getPOV(0) == 0) {
+			flip.set(0.25);
+		} else if(joystick.getPOV(0) == 180) {
+			flip.set(-0.25);
+		}
 	}
 
 }
