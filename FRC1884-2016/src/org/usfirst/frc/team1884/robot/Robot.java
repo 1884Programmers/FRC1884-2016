@@ -43,6 +43,6 @@ public class Robot extends IterativeRobot {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
-//		Aimer.INSTANCE.teleopPeriodic();
+		Aimer.INSTANCE.teleopPeriodic();
 	}
 }

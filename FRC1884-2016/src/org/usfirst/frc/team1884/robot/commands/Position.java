@@ -39,7 +39,7 @@ public class Position implements Choices {
 			break;
 		}
 		Aimer.INSTANCE.alignAuto();
-		Shooter.INSTANCE.shoot();
+		Shooter.INSTANCE.shootAuto();
 	}
 
 	public int getPosition() {

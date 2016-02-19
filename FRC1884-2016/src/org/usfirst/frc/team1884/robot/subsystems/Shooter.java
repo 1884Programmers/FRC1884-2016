@@ -3,8 +3,8 @@ package org.usfirst.frc.team1884.robot.subsystems;
 import org.usfirst.frc.team1884.robot.NEXUS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
 	private static final int SHOOTER_CHANNEL = 6;
@@ -12,6 +12,7 @@ public class Shooter {
 	private static final int EXTERNAL_INTAKE_CHANNEL = 3;
 
 	private static final double kp = 1.0;
+	private static final int setVelocity = 29000;
 	public static final Shooter INSTANCE;
 
 	static {
@@ -40,12 +41,23 @@ public class Shooter {
 
 		joystick = NEXUS.OPERATORSTICK;
 
-		p = new Proportional(kp, 29000);
+		p = new Proportional(kp, setVelocity);
 	}
 
-	public void shoot() {
-		internalIntake.set(1);
+	public void shootPeriodic() {
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
+		if(shooter.getEncVelocity() > setVelocity - 1000) {
+			internalIntake.set(1);
+		}
+	}
+	
+	public void shootAuto() {
+		shooter.set(p.getOutput(shooter.getEncVelocity()));
+		while(shooter.getEncVelocity() < setVelocity - 1000) {}
+		internalIntake.set(1);
+		Timer.delay(2);
+		shooter.set(0);
+		internalIntake.set(0);
 	}
 
 	public void intake() {
@@ -61,7 +73,7 @@ public class Shooter {
 	 */
 	public void teleopPeriodic() {
 		if(joystick.getRawButton(6)) {
-			shoot();
+			shootPeriodic();
 		} else if(joystick.getRawButton(7)){
 			intake();
 		} else {
