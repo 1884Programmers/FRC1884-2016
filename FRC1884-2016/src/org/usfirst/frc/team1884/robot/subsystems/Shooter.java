@@ -3,15 +3,15 @@ package org.usfirst.frc.team1884.robot.subsystems;
 import org.usfirst.frc.team1884.robot.NEXUS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Shooter {
 	private static final int SHOOTER_CHANNEL = 6;
 	private static final int INTERNAL_INTAKE_CHANNEL = 4;
 	private static final int EXTERNAL_INTAKE_CHANNEL = 3;
-	
-	private static final double kp = 1.0;
 
+	private static final double kp = 1.0;
 	public static final Shooter INSTANCE;
 
 	static {
@@ -39,15 +39,15 @@ public class Shooter {
 		externalIntake.setControlMode(0);
 
 		joystick = NEXUS.OPERATORSTICK;
-		
+
 		p = new Proportional(kp, 29000);
 	}
-	
+
 	public void shoot() {
 		internalIntake.set(1);
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
 	}
-	
+
 	public void intake() {
 		externalIntake.set(1);
 	}
@@ -57,7 +57,7 @@ public class Shooter {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public void teleopPeriodic() {
 		if(joystick.getRawButton(6)) {

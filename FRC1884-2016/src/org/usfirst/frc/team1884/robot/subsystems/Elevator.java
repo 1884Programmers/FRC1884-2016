@@ -3,6 +3,7 @@ package org.usfirst.frc.team1884.robot.subsystems;
 import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;;
 
 public class Elevator {
@@ -13,6 +14,8 @@ public class Elevator {
 
 	private CANTalon lift, flip;
 	private Joystick joystick;
+
+	private DigitalInput switch1;
 
 	static {
 		INSTANCE = new Elevator();
