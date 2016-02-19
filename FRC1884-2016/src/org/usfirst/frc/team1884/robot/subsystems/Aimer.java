@@ -73,6 +73,8 @@ public class Aimer {
 			if (Math.abs(p.getError()) > TOLERANCE) {
 				output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
 				WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
+			} else {
+				System.out.println("\n\n\n\n\nI have finished aligning!");
 			}
 		}
 		if (beginAlign) {

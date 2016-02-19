@@ -19,7 +19,6 @@ public class Shooter {
 		INSTANCE = new Shooter();
 	}
 
-	@SuppressWarnings("unused")
 	private Joystick joystick;
 	private CANTalon shooter, internalIntake, externalIntake;
 	private Proportional p;
@@ -44,14 +43,30 @@ public class Shooter {
 		p = new Proportional(kp, setVelocity);
 	}
 
-	public void shootPeriodic() {
+	public void shootPeriodicIdeally() {
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
 		if(shooter.getEncVelocity() > setVelocity - 1000) {
 			internalIntake.set(1);
 		}
 	}
 	
-	public void shootAuto() {
+	public void shootAutoIdeally() {
+		shooter.set(p.getOutput(shooter.getEncVelocity()));
+		while(shooter.getEncVelocity() < setVelocity - 1000) {}
+		internalIntake.set(1);
+		Timer.delay(2);
+		shooter.set(0);
+		internalIntake.set(0);
+	}
+	
+	public void shootPeriodicActually() {
+		shooter.set(p.getOutput(shooter.getEncVelocity()));
+		if(shooter.getEncVelocity() > setVelocity - 1000) {
+			internalIntake.set(1);
+		}
+	}
+	
+	public void shootAutoActually() {
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
 		while(shooter.getEncVelocity() < setVelocity - 1000) {}
 		internalIntake.set(1);
@@ -73,8 +88,8 @@ public class Shooter {
 	 */
 	public void teleopPeriodic() {
 		if(joystick.getRawButton(6)) {
-			shootPeriodic();
-		} else if(joystick.getRawButton(7)){
+			shootPeriodicActually();
+		} else if(joystick.getRawAxis(5) > 0){
 			intake();
 		} else {
 			shooter.set(0);
