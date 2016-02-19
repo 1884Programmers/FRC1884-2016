@@ -19,6 +19,7 @@ public class Aimer {
 	public final static Aimer INSTANCE;
 
 	private boolean beginAlign = false;
+	private boolean setup = false;
 
 	static {
 		INSTANCE = new Aimer();
@@ -72,6 +73,8 @@ public class Aimer {
 			if (Math.abs(p.getError()) > TOLERANCE) {
 				output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
 				WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
+			} else {
+				System.out.println("\n\n\n\n\nI have finished aligning!");
 			}
 		}
 		if (beginAlign) {
@@ -86,7 +89,14 @@ public class Aimer {
 
 	public void teleopPeriodic() {
 		if (joystick.getRawButton(5)) {
-			// align();
+			if(setup) {
+				align();
+			} else {
+				alignSetup();
+				setup = true;
+			}
+		} else {
+			setup = false;
 		}
 	}
 }

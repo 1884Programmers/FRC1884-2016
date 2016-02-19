@@ -11,30 +11,28 @@ public class WestCoastGearbox {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
-	private DoubleSolenoid outputPush, ptoPush;
+	private DoubleSolenoid gearShiftPush, ptoPush;
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
 
-	private long timeOfLastExtensionoutput = Long.MAX_VALUE;
-	private long timeOfLastExtensionpTO = Long.MAX_VALUE;
+	private long timeOfLastExtensionPTO = 0;
 
-	private long lastoutputButtonExtend = 0;
-	private long lastoutputButtonRetract = 0;
-	private long lastpTOButtonExtend = 0;
-	private long lastpTOButtonRetract = 0;
+	private long lastPTOButtonExtend = 0;
+	private long lastPTOButtonRetract = 0;
 
 	public static WestCoastGearbox INSTANCE;
 
-	private boolean isInverted;
+	private boolean isInverted = false;
+	private boolean isArcadeDrive = true;
 
 	static {
 		INSTANCE = new WestCoastGearbox();
 	}
 
 	private WestCoastGearbox() {
-		outputPush = new DoubleSolenoid(0, 1);
-		ptoPush = new DoubleSolenoid(2, 3);
+		gearShiftPush = new DoubleSolenoid(3, 2);
+		ptoPush = new DoubleSolenoid(1, 0);
 
 		joystick = NEXUS.DRIVESTICK;
 
@@ -42,14 +40,16 @@ public class WestCoastGearbox {
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
 		drive = new RobotDrive(leftSide, rightSide);
+		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
-	
+
 	public void teleopInit() {
 		// TODO (probably nothing)
 	}
 
 	public void teleopPeriodic() {
-		drive.arcadeDrive(joystick);
+		teleopDrive();
 		PTOShift();
 		reverse();
 	}
@@ -61,44 +61,45 @@ public class WestCoastGearbox {
 
 	public void reverse() {
 		if (joystick.getRawButton(6)) {
-			drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, isInverted);
-			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, isInverted);
 			isInverted = !isInverted;
+			drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, !isInverted);
+			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, !isInverted);
 		}
 	}
 
 	public void PTOShift() {
-		if (joystick.getRawButton(1) && outputPush.get() == DoubleSolenoid.Value.kOff
-				&& System.currentTimeMillis() - lastoutputButtonExtend > 200) {
-			outputPush.set(DoubleSolenoid.Value.kForward);
-			lastoutputButtonExtend = System.currentTimeMillis();
-			timeOfLastExtensionoutput = System.currentTimeMillis();
-		}
+		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
+		// always be extending in order to not rek our robot
+		gearShiftPush.set(DoubleSolenoid.Value.kForward);
+
+		//Luckily, the PTO is working fine
 		if (joystick.getRawButton(2) && ptoPush.get() == DoubleSolenoid.Value.kOff
-				&& System.currentTimeMillis() - lastpTOButtonExtend > 200) {
+				&& System.currentTimeMillis() - lastPTOButtonExtend > 200) {
 			ptoPush.set(DoubleSolenoid.Value.kForward);
-			lastpTOButtonExtend = System.currentTimeMillis();
-			timeOfLastExtensionpTO = System.currentTimeMillis();
-		}
-		if (joystick.getRawButton(3) && outputPush.get() == DoubleSolenoid.Value.kOff
-				&& System.currentTimeMillis() - lastoutputButtonRetract > 200) {
-			outputPush.set(DoubleSolenoid.Value.kReverse);
-			lastoutputButtonRetract = System.currentTimeMillis();
-			timeOfLastExtensionoutput = System.currentTimeMillis();
+			lastPTOButtonExtend = System.currentTimeMillis();
+			timeOfLastExtensionPTO = System.currentTimeMillis();
 		}
 		if (joystick.getRawButton(4) && ptoPush.get() == DoubleSolenoid.Value.kOff
-				&& System.currentTimeMillis() - lastpTOButtonRetract > 200) {
+				&& System.currentTimeMillis() - lastPTOButtonRetract > 200) {
 			ptoPush.set(DoubleSolenoid.Value.kReverse);
-			lastpTOButtonRetract = System.currentTimeMillis();
-			timeOfLastExtensionpTO = System.currentTimeMillis();
+			lastPTOButtonRetract = System.currentTimeMillis();
+			timeOfLastExtensionPTO = System.currentTimeMillis();
 		}
-		if (System.currentTimeMillis() - timeOfLastExtensionoutput > 1000) {
-			outputPush.set(DoubleSolenoid.Value.kOff);
-			timeOfLastExtensionoutput = Long.MAX_VALUE;
-		}
-		if (System.currentTimeMillis() - timeOfLastExtensionpTO > 1000) {
+		if (System.currentTimeMillis() - timeOfLastExtensionPTO > 1000) {
 			ptoPush.set(DoubleSolenoid.Value.kOff);
-			timeOfLastExtensionpTO = Long.MAX_VALUE;
+			timeOfLastExtensionPTO = Long.MAX_VALUE;
+		}
+	}
+
+	public void teleopDrive() {
+		if (isArcadeDrive) {
+			drive.arcadeDrive(joystick);
+		} else {
+			drive.tankDrive(joystick, 1, joystick, 5);
+		}
+
+		if (joystick.getRawButton(5)) {
+			isArcadeDrive = !isArcadeDrive;
 		}
 	}
 }
