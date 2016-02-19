@@ -60,31 +60,20 @@ public class Shooter {
 	}
 	
 	public void shootPeriodicActually() {
-		shooter.set(p.getOutput(shooter.getEncVelocity()));
-		if(shooter.getEncVelocity() > setVelocity - 1000) {
-			internalIntake.set(1);
-		}
+		//TODO when the robot gets turned over to us
 	}
 	
 	public void shootAutoActually() {
-		shooter.set(p.getOutput(shooter.getEncVelocity()));
-		while(shooter.getEncVelocity() < setVelocity - 1000) {}
-		internalIntake.set(1);
-		Timer.delay(2);
-		shooter.set(0);
-		internalIntake.set(0);
+		//TODO when the robot gets turned over to us
 	}
 
 	public void intake() {
-		externalIntake.set(1);
-	}
-
-	public void teleopInit() {
-		// TODO (probably nothing)
+		//TODO when the robot gets turned over to us
 	}
 
 	/**
-	 *
+	 * 
+	 * 
 	 */
 	public void teleopPeriodic() {
 		if(joystick.getRawButton(6)) {
