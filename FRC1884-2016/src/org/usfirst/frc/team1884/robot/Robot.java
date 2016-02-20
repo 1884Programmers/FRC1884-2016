@@ -46,8 +46,12 @@ public class Robot extends IterativeRobot {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
+<<<<<<< HEAD
 		System.out.println(shooterEncoder.getRate());
 		System.out.println(elevatorEncoder.getRate());
 //		Aimer.INSTANCE.teleopPeriodic();
+=======
+		Aimer.INSTANCE.teleopPeriodic();
+>>>>>>> 1884Programmers/master
 	}
 }
