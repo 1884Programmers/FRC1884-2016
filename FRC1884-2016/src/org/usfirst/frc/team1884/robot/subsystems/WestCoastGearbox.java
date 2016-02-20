@@ -15,6 +15,11 @@ public class WestCoastGearbox {
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
+	
+	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
+	private static final int GEAR_SHIFT_CHANNEL_RETRACT = 2;
+	private static final int PTO_CHANNEL_EXTEND = 3;
+	private static final int PTO_CHANNEL_RETRACT = 5;
 
 	private long timeOfLastExtensionPTO = 0;
 
@@ -31,8 +36,8 @@ public class WestCoastGearbox {
 	}
 
 	private WestCoastGearbox() {
-		gearShiftPush = new DoubleSolenoid(3, 2);
-		ptoPush = new DoubleSolenoid(1, 0);
+		gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
+		ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
 
 		joystick = NEXUS.DRIVESTICK;
 

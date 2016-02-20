@@ -19,8 +19,8 @@ public class Elevator {
 	/*
 	 * TODO Need to be tuned to fit the robot
 	 */
-	private static int FLIP_CHANNEL_EXTEND = 5;
-	private static int FLIP_CHANNEL_RETRACT = 4;
+	private static int FLIP_CHANNEL_EXTEND = 0;
+	private static int FLIP_CHANNEL_RETRACT = 1;
 	private static int UPLIMITSWITCH_CHANNEL = 0;
 	private static int DOWNLIMITSWITCH_CHANNEL = 1;
 	private static double NUM_ROTATIONS_RAISE = 2;
