@@ -40,8 +40,8 @@ public class WestCoastGearbox {
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
 		drive = new RobotDrive(leftSide, rightSide);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+//		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+//		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 
 	public void teleopInit() {
