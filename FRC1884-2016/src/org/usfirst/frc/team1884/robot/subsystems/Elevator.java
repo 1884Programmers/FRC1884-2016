@@ -123,6 +123,14 @@ public class Elevator {
 		flip.set(Value.kReverse);
 	}
 	
+	public void flipUp() {
+		flip.set(Value.kForward);
+	}
+	
+	public void flipDown() {
+		flip.set(Value.kReverse);
+	}
+	
 	public void flipReset() {
 		flip.set(Value.kOff);
 	}

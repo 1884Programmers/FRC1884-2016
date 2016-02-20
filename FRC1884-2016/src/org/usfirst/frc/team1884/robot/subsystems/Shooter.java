@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
 	private static final int SHOOTER_CHANNEL = 6;
-	private static final int INTERNAL_INTAKE_CHANNEL = 4;
-	private static final int EXTERNAL_INTAKE_CHANNEL = 3;
+	private static final int INTERNAL_INTAKE_CHANNEL = 3;
+	private static final int EXTERNAL_INTAKE_CHANNEL = 4;
 
 	private static final double kp = 1.0;
 	private static final int setVelocity = 29000;
@@ -32,8 +32,8 @@ public class Shooter {
 		shooter.setControlMode(0);
 		shooter.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 
-		internalIntake.enableBrakeMode(true);
-		internalIntake.setControlMode(0);
+		getInternalIntake().enableBrakeMode(true);
+		getInternalIntake().setControlMode(0);
 
 		externalIntake.enableBrakeMode(true);
 		externalIntake.setControlMode(0);
@@ -46,24 +46,26 @@ public class Shooter {
 	public void shootPeriodicIdeally() {
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
 		if(shooter.getEncVelocity() > setVelocity - 1000) {
-			internalIntake.set(1);
+			getInternalIntake().set(1);
 		}
 	}
 	
 	public void shootAutoIdeally() {
 		shooter.set(p.getOutput(shooter.getEncVelocity()));
 		while(shooter.getEncVelocity() < setVelocity - 1000) {}
-		internalIntake.set(1);
+		getInternalIntake().set(1);
 		Timer.delay(2);
 		shooter.set(0);
-		internalIntake.set(0);
-	}
-	
-	public void shootPeriodicActually() {
-		//TODO when the robot gets turned over to us
+		getInternalIntake().set(0);
 	}
 	
 	public void shootAutoActually() {
+		shootActually();
+		
+		//safety
+	}
+	
+	public void shootActually() {
 		//TODO when the robot gets turned over to us
 	}
 
@@ -76,13 +78,14 @@ public class Shooter {
 	 * 
 	 */
 	public void teleopPeriodic() {
-		if(joystick.getRawButton(6)) {
-			shootPeriodicActually();
-		} else if(joystick.getRawAxis(5) > 0){
-			intake();
-		} else {
-			shooter.set(0);
-			internalIntake.set(0);
-		}
+		
+	}
+
+	public CANTalon getShooter() {
+		return shooter;
+	}
+
+	public CANTalon getInternalIntake() {
+		return internalIntake;
 	}
 }
