@@ -1,8 +1,10 @@
 package org.usfirst.frc.team1884.robot.commands;
 
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Defense implements Choices {
 
@@ -28,13 +30,20 @@ public class Defense implements Choices {
 	public void start() {
 		switch (defense) {
 		case PORTCULLIS:
-			WestCoastGearbox.INSTANCE.setMotorSpeed(0.25, 0.25);
+			// Start with the arm down and carriage down
+			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(1);
-			
-			//Breach Defense
-			
-			//safety
+
+			// Breach Defenses(Raise drawbridge, flip up, drive through)
+			while (Elevator.INSTANCE.raiseAuto()) {
+			}
+			Elevator.INSTANCE.flipAuto();
+			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
+			Timer.delay(0.75);
+			Elevator.INSTANCE.flipReset();
 			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
+			while (Elevator.INSTANCE.lowerAuto()) {
+			}
 			break;
 		case ROUGHTERRAIN:
 		case MOAT:
@@ -47,24 +56,25 @@ public class Defense implements Choices {
 			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
 			break;
 		case DRAWBRIDGE:
-			System.out.println("You absolute numpty!\nWhy the hell am I in front of the drawbridge?!");
+			SmartDashboard.putString("Defense Errors",
+					"You absolute numpty! Why the hell am I in front of the drawbridge?!");
 			break;
 		case SALLYPORT:
-			WestCoastGearbox.INSTANCE.setMotorSpeed(0.25, 0.25);
-			Timer.delay(1);
-			
-			//Breach Defense
-			
-			//safety
-			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
+			SmartDashboard.putString("Defense Errors",
+					"I was promised that I would never do the sally port in autonomous");
 			break;
 		case CHEVALDEFRISE:
-			WestCoastGearbox.INSTANCE.setMotorSpeed(0.25, 0.25);
+			// Start the robot with the arm up and the carriage down
+			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(1);
-			
-			//Breach Defense
-			
-			//safety
+
+			// Breach Defense (lower arm, drive forwards)
+			while (Elevator.INSTANCE.lowerAuto()) {
+			}
+			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
+			Timer.delay(0.75);
+
+			// safety
 			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
 			break;
 		}
