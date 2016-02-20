@@ -26,7 +26,7 @@ public class WestCoastGearbox {
 	private long lastPTOButtonExtend = 0;
 	private long lastPTOButtonRetract = 0;
 
-	public static WestCoastGearbox INSTANCE;
+	public static final WestCoastGearbox INSTANCE;
 
 	private boolean isInverted = false;
 	private boolean isArcadeDrive = true;
