@@ -47,9 +47,13 @@ public class Robot extends IterativeRobot {
 		Elevator.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		System.out.println(shooterEncoder.getRate());
 		System.out.println(elevatorEncoder.getRate());
 //		Aimer.INSTANCE.teleopPeriodic();
+=======
+		Aimer.INSTANCE.teleopPeriodic();
+>>>>>>> 1884Programmers/master
 =======
 		Aimer.INSTANCE.teleopPeriodic();
 >>>>>>> 1884Programmers/master
