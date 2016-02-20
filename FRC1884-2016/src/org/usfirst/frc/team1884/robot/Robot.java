@@ -7,11 +7,14 @@ import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class Robot extends IterativeRobot {
 
 	DigitalInput limitSwitch;
+	Encoder shooterEncoder = new Encoder(0, 1);
+	Encoder elevatorEncoder = new Encoder(2, 3);
 
 	public void robotInit() {
 	}
@@ -43,6 +46,8 @@ public class Robot extends IterativeRobot {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
+		System.out.println(shooterEncoder.getRate());
+		System.out.println(elevatorEncoder.getRate());
 //		Aimer.INSTANCE.teleopPeriodic();
 	}
 }
