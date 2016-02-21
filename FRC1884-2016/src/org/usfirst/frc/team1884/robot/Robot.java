@@ -7,11 +7,14 @@ import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Robot extends IterativeRobot {
+
+	CameraServer server;
 
 	Joystick opJoystick;
 	Joystick driveJoystick;
@@ -22,8 +25,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		opJoystick = NEXUS.OPERATORSTICK;
 		driveJoystick = NEXUS.DRIVESTICK;
+		
 		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
 		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
+		
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		server.startAutomaticCapture("cam0");
 	}
 
 	/**
