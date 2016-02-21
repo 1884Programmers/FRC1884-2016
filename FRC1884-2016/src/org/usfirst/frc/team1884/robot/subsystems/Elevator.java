@@ -21,8 +21,9 @@ public class Elevator {
 	 */
 	private static int FLIP_CHANNEL_EXTEND = 0;
 	private static int FLIP_CHANNEL_RETRACT = 1;
-	private static int UPLIMITSWITCH_CHANNEL = 4;
-	private static int DOWNLIMITSWITCH_CHANNEL = 5;
+	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
+	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+
 	private static double NUM_ROTATIONS_RAISE = 2;
 
 	private CANTalon lift, carriage;
@@ -40,8 +41,8 @@ public class Elevator {
 		lift.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		carriage = new CANTalon(CARRIAGE_CHANNEL);
 		flip = new DoubleSolenoid(FLIP_CHANNEL_EXTEND, FLIP_CHANNEL_RETRACT);
-		upLimitSwitch = new DigitalInput(UPLIMITSWITCH_CHANNEL);
-		downLimitSwitch = new DigitalInput(DOWNLIMITSWITCH_CHANNEL);
+		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
+		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 		joystick = NEXUS.OPERATORSTICK;
 	}
 
