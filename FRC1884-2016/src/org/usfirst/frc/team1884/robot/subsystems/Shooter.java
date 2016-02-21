@@ -2,6 +2,7 @@ package org.usfirst.frc.team1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
@@ -64,7 +65,7 @@ public class Shooter {
 	public void shootActually() {
 		shooter.set(1);
 		internalIntake.set(1);
-		getExternalIntake().set(-0.5);
+		getExternalIntake().set(-1);
 		// TODO when the robot gets turned over to us
 	}
 
@@ -83,7 +84,6 @@ public class Shooter {
 	 * 
 	 */
 	public void teleopPeriodic() {
-
 	}
 
 	public CANTalon getShooter() {
