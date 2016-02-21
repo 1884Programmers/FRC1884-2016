@@ -15,7 +15,7 @@ public class WestCoastGearbox {
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
-	
+
 	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
 	private static final int GEAR_SHIFT_CHANNEL_RETRACT = 2;
 	private static final int PTO_CHANNEL_EXTEND = 3;
@@ -71,7 +71,7 @@ public class WestCoastGearbox {
 			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, !isInverted);
 		}
 	}
-	
+
 	public void secureGearShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
 		// always be extending in order to not rek our robot
@@ -81,7 +81,7 @@ public class WestCoastGearbox {
 	public void teleopDrive() {
 		if (isArcadeDrive) {
 			drive.arcadeDrive(joystick);
-//			drive.drive(joystick.getY() / 4, joystick.getX() / 4);
+			// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
 		} else {
 			drive.tankDrive(joystick, 1, joystick, 5);
 		}
@@ -90,16 +90,17 @@ public class WestCoastGearbox {
 			isArcadeDrive = !isArcadeDrive;
 		}
 	}
-	
+
 	/**
-	 * @deprecated Rip our dearly beloved, PTO. He died along with the dream of hanging and getting more points.
+	 * @deprecated Rip our dearly beloved, PTO. He died along with the dream of
+	 *             hanging and getting more points.
 	 */
 	public void PTOShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
 		// always be extending in order to not rek our robot
 		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 
-		//Luckily, the PTO is working fine
+		// Luckily, the PTO is working fine
 		if (joystick.getRawButton(2) && ptoPush.get() == DoubleSolenoid.Value.kOff
 				&& System.currentTimeMillis() - lastPTOButtonExtend > 200) {
 			ptoPush.set(DoubleSolenoid.Value.kForward);
