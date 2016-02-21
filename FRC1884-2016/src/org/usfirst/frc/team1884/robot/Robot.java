@@ -16,17 +16,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Robot extends IterativeRobot {
 
-<<<<<<< HEAD
 	DigitalInput limitSwitch;
 	Encoder shooterEncoder = new Encoder(0, 1);
 	Encoder elevatorEncoder = new Encoder(2, 3);
-=======
+
 	Joystick opJoystick;
 	Joystick driveJoystick;
-	
+
 	JoystickButton opButton1;
-	JoystickButton opButton2;	
->>>>>>> 1884Programmers/master
+	JoystickButton opButton2;
 
 	public void robotInit() {
 		opJoystick = NEXUS.OPERATORSTICK;
@@ -54,7 +52,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopInit() {
 		opButton1.whenPressed(new CommandFlipper());
-//		opButton2.whileHeld(new CommandShoot());
+		// opButton2.whileHeld(new CommandShoot());
 	}
 
 	/**
@@ -63,26 +61,15 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
-<<<<<<< HEAD
 		Shooter.INSTANCE.teleopPeriodic();
-<<<<<<< HEAD
-<<<<<<< HEAD
 		System.out.println(shooterEncoder.getRate());
 		System.out.println(elevatorEncoder.getRate());
-//		Aimer.INSTANCE.teleopPeriodic();
-=======
-		Aimer.INSTANCE.teleopPeriodic();
->>>>>>> 1884Programmers/master
-=======
-		Aimer.INSTANCE.teleopPeriodic();
->>>>>>> 1884Programmers/master
-=======
-		Aimer.INSTANCE.teleopPeriodic();
-		if(opJoystick.getRawButton(2)) {
+		// Aimer.INSTANCE.teleopPeriodic();
+
+		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
 			Shooter.INSTANCE.resetShooter();
 		}
->>>>>>> 1884Programmers/master
 	}
 }
