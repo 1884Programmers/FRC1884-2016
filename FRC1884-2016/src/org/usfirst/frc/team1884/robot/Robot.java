@@ -19,7 +19,7 @@ public class Robot extends IterativeRobot {
 	Joystick driveJoystick;
 	
 	JoystickButton opButton1;
-	JoystickButton opButton2;
+	JoystickButton opButton2;	
 
 	public void robotInit() {
 		opJoystick = NEXUS.OPERATORSTICK;
@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopInit() {
 		opButton1.whenPressed(new CommandFlipper());
-		opButton2.whileHeld(new CommandShoot());
+//		opButton2.whileHeld(new CommandShoot());
 	}
 
 	/**
@@ -57,5 +57,10 @@ public class Robot extends IterativeRobot {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
+		if(opJoystick.getRawButton(2)) {
+			Shooter.INSTANCE.shootActually();
+		} else {
+			Shooter.INSTANCE.resetShooter();
+		}
 	}
 }

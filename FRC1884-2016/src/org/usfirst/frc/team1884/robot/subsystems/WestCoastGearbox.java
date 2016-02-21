@@ -45,8 +45,8 @@ public class WestCoastGearbox {
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
 		drive = new RobotDrive(leftSide, rightSide);
-//		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-//		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 
 	public void teleopInit() {
@@ -55,7 +55,7 @@ public class WestCoastGearbox {
 
 	public void teleopPeriodic() {
 		teleopDrive();
-		PTOShift();
+		secureGearShift();
 		reverse();
 	}
 
@@ -71,7 +71,29 @@ public class WestCoastGearbox {
 			drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, !isInverted);
 		}
 	}
+	
+	public void secureGearShift() {
+		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
+		// always be extending in order to not rek our robot
+		gearShiftPush.set(DoubleSolenoid.Value.kForward);
+	}
 
+	public void teleopDrive() {
+		if (isArcadeDrive) {
+			drive.arcadeDrive(joystick);
+//			drive.drive(joystick.getY() / 4, joystick.getX() / 4);
+		} else {
+			drive.tankDrive(joystick, 1, joystick, 5);
+		}
+
+		if (joystick.getRawButton(5)) {
+			isArcadeDrive = !isArcadeDrive;
+		}
+	}
+	
+	/**
+	 * @deprecated Rip our dearly beloved, PTO. He died along with the dream of hanging and getting more points.
+	 */
 	public void PTOShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
 		// always be extending in order to not rek our robot
@@ -93,18 +115,6 @@ public class WestCoastGearbox {
 		if (System.currentTimeMillis() - timeOfLastExtensionPTO > 1000) {
 			ptoPush.set(DoubleSolenoid.Value.kOff);
 			timeOfLastExtensionPTO = Long.MAX_VALUE;
-		}
-	}
-
-	public void teleopDrive() {
-		if (isArcadeDrive) {
-			drive.arcadeDrive(joystick);
-		} else {
-			drive.tankDrive(joystick, 1, joystick, 5);
-		}
-
-		if (joystick.getRawButton(5)) {
-			isArcadeDrive = !isArcadeDrive;
 		}
 	}
 }
