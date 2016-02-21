@@ -19,17 +19,11 @@ public class Elevator {
 	/*
 	 * TODO Need to be tuned to fit the robot
 	 */
-<<<<<<< HEAD
-	private static int FLIP_CHANNEL_EXTEND = 5;
-	private static int FLIP_CHANNEL_RETRACT = 4;
-	private static int UP_LIMIT_SWITCH_CHANNEL = 0;
-	private static int DOWN_LIMIT_SWITCH_CHANNEL = 1;
-=======
 	private static int FLIP_CHANNEL_EXTEND = 0;
 	private static int FLIP_CHANNEL_RETRACT = 1;
-	private static int UPLIMITSWITCH_CHANNEL = 0;
-	private static int DOWNLIMITSWITCH_CHANNEL = 1;
->>>>>>> 1884Programmers/master
+	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
+	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+
 	private static double NUM_ROTATIONS_RAISE = 2;
 
 	private CANTalon lift, carriage;
@@ -58,7 +52,7 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		lift.set(joystick.getY());
+		lift.set(-joystick.getY());
 		if(joystick.getPOV(0) == 0 && upLimitSwitch.get()) {
 			carriage.set(0.25);
 		} else if(joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
@@ -125,17 +119,17 @@ public class Elevator {
 	}
 	
 	public void flipAuto() {
-		flip.set(Value.kForward);
-		Timer.delay(0.5);
 		flip.set(Value.kReverse);
+		Timer.delay(0.5);
+		flip.set(Value.kForward);
 	}
 	
 	public void flipUp() {
-		flip.set(Value.kForward);
+		flip.set(Value.kReverse);
 	}
 	
 	public void flipDown() {
-		flip.set(Value.kReverse);
+		flip.set(Value.kForward);
 	}
 	
 	public void flipReset() {
