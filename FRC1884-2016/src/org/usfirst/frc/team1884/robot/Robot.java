@@ -1,7 +1,8 @@
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.commands.AutonomousHandler;
-import org.usfirst.frc.team1884.robot.commands.CommandFlipper;
+import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
+import org.usfirst.frc.team1884.robot.commands.CommandShoot;
+import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 		
 		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
 		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
+		opButton1.whenPressed(new FlipperSequence());
 		
 		server = CameraServer.getInstance();
 		server.setQuality(50);
@@ -52,8 +54,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of operator control
 	 */
 	public void teleopInit() {
-		opButton1.whenPressed(new CommandFlipper());
-		// opButton2.whileHeld(new CommandShoot());
+
 	}
 
 	/**
