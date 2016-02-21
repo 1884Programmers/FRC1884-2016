@@ -66,11 +66,20 @@ public class Shooter {
 	}
 	
 	public void shootActually() {
+		shooter.set(1);
+		internalIntake.set(1);
+		externalIntake.set(-0.5);
 		//TODO when the robot gets turned over to us
 	}
 
 	public void intake() {
 		//TODO when the robot gets turned over to us
+	}
+	
+	public void resetShooter() {
+		shooter.set(0);
+		internalIntake.set(0);
+		externalIntake.set(0);
 	}
 
 	/**
