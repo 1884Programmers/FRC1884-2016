@@ -35,14 +35,14 @@ public class Defense implements Choices {
 			Timer.delay(1);
 
 			// Breach Defenses(Raise drawbridge, flip up, drive through)
-			while (Elevator.INSTANCE.raiseCarriageAuto()) {
+			while (Elevator.INSTANCE.raiseCarriage()) {
 			}
 			Elevator.INSTANCE.flipAuto();
 			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(0.75);
 			Elevator.INSTANCE.flipReset();
 			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
-			while (Elevator.INSTANCE.lowerCarriageAuto()) {
+			while (Elevator.INSTANCE.lowerCarriage()) {
 			}
 			break;
 		case ROUGHTERRAIN:
@@ -69,7 +69,7 @@ public class Defense implements Choices {
 			Timer.delay(1);
 
 			// Breach Defense (lower arm, drive forwards)
-			while (Elevator.INSTANCE.lowerCarriageAuto()) {
+			while (Elevator.INSTANCE.lowerCarriage()) {
 			}
 			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(0.75);
