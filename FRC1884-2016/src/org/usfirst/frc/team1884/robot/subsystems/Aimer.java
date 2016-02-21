@@ -42,8 +42,10 @@ public class Aimer {
 		Spike.INSTANCE.turnOn();
 		output = p.getOutput(GRIP.INSTANCE.getCenter());
 		while (Math.abs(p.getError()) > TOLERANCE) {
-			output = p.getOutput(GRIP.INSTANCE.getCenter());
-			WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
+			if (!(GRIP.INSTANCE.getCenter() == -1)) {
+				output = p.getOutput(GRIP.INSTANCE.getCenter());
+				WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
+			}
 		}
 		Spike.INSTANCE.turnOff();
 		output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
@@ -89,7 +91,7 @@ public class Aimer {
 
 	public void teleopPeriodic() {
 		if (joystick.getRawButton(5)) {
-			if(setup) {
+			if (setup) {
 				align();
 			} else {
 				alignSetup();

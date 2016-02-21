@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 

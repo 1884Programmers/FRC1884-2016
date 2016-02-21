@@ -14,9 +14,6 @@ public class AutonomousHandler {
 	private SendableChooser defChooser;
 
 	public static AutonomousHandler INSTANCE;
-	
-	private long autoStart;
-	private long currentTime;
 
 	public void bar() {
 	}
