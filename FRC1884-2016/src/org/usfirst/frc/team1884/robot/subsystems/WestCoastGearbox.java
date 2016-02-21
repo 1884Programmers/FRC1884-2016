@@ -11,19 +11,27 @@ public class WestCoastGearbox {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
+	/** @deprecated*/
 	private DoubleSolenoid gearShiftPush, ptoPush;
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
 
+	/** @deprecated*/
 	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
+	/** @deprecated*/
 	private static final int GEAR_SHIFT_CHANNEL_RETRACT = 2;
+	/** @deprecated*/
 	private static final int PTO_CHANNEL_EXTEND = 3;
+	/** @deprecated*/
 	private static final int PTO_CHANNEL_RETRACT = 5;
 
+	/** @deprecated*/
 	private long timeOfLastExtensionPTO = 0;
 
+	/** @deprecated*/
 	private long lastPTOButtonExtend = 0;
+	/** @deprecated*/
 	private long lastPTOButtonRetract = 0;
 
 	public static final WestCoastGearbox INSTANCE;
@@ -36,8 +44,8 @@ public class WestCoastGearbox {
 	}
 
 	private WestCoastGearbox() {
-		gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
-		ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
+		//gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
+		//ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
 
 		joystick = NEXUS.DRIVESTICK;
 
@@ -55,7 +63,6 @@ public class WestCoastGearbox {
 
 	public void teleopPeriodic() {
 		teleopDrive();
-		secureGearShift();
 		reverse();
 	}
 
@@ -72,6 +79,7 @@ public class WestCoastGearbox {
 		}
 	}
 
+	/** @deprecated*/
 	public void secureGearShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
 		// always be extending in order to not rek our robot

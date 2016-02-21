@@ -20,8 +20,10 @@ public class Elevator {
 	/*
 	 * TODO Need to be tuned to fit the robot
 	 */
-	private static int FLIP_CHANNEL_EXTEND = 0;
-	private static int FLIP_CHANNEL_RETRACT = 1;
+	private static int FLIP_CHANNEL_EXTEND_1 = 0;
+	private static int FLIP_CHANNEL_RETRACT_1 = 1;
+	private static int FLIP_CHANNEL_EXTEND_2 = 2;
+	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
 
@@ -32,7 +34,7 @@ public class Elevator {
 	private static double NUM_ROTATIONS_RAISE = 2;
 
 	private CANTalon carriage, arm;
-	private DoubleSolenoid flip;
+	private DoubleSolenoid flip1, flip2;
 	private Joystick joystick;
 
 	private DigitalInput upLimitSwitch;
@@ -52,7 +54,8 @@ public class Elevator {
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
 		
-		flip = new DoubleSolenoid(FLIP_CHANNEL_EXTEND, FLIP_CHANNEL_RETRACT);
+		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
+		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
 		
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
@@ -147,20 +150,25 @@ public class Elevator {
 	}
 
 	public void flipAuto() {
-		flip.set(Value.kReverse);
+		flip1.set(Value.kReverse);
+		flip2.set(Value.kReverse);
 		Timer.delay(0.5);
-		flip.set(Value.kForward);
+		flip1.set(Value.kForward);
+		flip2.set(Value.kForward);
 	}
 
 	public void flipUp() {
-		flip.set(Value.kReverse);
+		flip1.set(Value.kReverse);
+		flip2.set(Value.kReverse);
 	}
 
 	public void flipDown() {
-		flip.set(Value.kForward);
+		flip1.set(Value.kForward);
+		flip2.set(Value.kForward);
 	}
 
 	public void flipReset() {
-		flip.set(Value.kOff);
+		flip1.set(Value.kOff);
+		flip2.set(Value.kOff);
 	}
 }
