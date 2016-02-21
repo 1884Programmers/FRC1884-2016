@@ -28,7 +28,7 @@ public class Position implements Choices {
 				WestCoastGearbox.INSTANCE.setMotorSpeed(-0.1, -0.1);
 			}
 			break;
-		case 3://Hopefully already centered
+		case 3:// Hopefully already centered
 		case 4:
 		case 5:
 			while (GRIP.INSTANCE.getCenter() == -1) {
