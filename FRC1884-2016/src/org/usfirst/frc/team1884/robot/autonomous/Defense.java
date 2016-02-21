@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.autonomous;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
@@ -35,14 +35,14 @@ public class Defense implements Choices {
 			Timer.delay(1);
 
 			// Breach Defenses(Raise drawbridge, flip up, drive through)
-			while (Elevator.INSTANCE.raiseAuto()) {
+			while (Elevator.INSTANCE.raiseCarriageAuto()) {
 			}
 			Elevator.INSTANCE.flipAuto();
 			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(0.75);
 			Elevator.INSTANCE.flipReset();
 			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
-			while (Elevator.INSTANCE.lowerAuto()) {
+			while (Elevator.INSTANCE.lowerCarriageAuto()) {
 			}
 			break;
 		case ROUGHTERRAIN:
@@ -69,7 +69,7 @@ public class Defense implements Choices {
 			Timer.delay(1);
 
 			// Breach Defense (lower arm, drive forwards)
-			while (Elevator.INSTANCE.lowerAuto()) {
+			while (Elevator.INSTANCE.lowerCarriageAuto()) {
 			}
 			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
 			Timer.delay(0.75);

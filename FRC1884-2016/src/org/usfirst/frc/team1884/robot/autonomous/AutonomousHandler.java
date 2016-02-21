@@ -1,4 +1,6 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.autonomous;
+
+import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,6 +47,7 @@ public class AutonomousHandler {
 	public void autonomousInit() {
 		posCommand = (Position) posChooser.getSelected();
 		defCommand = (Defense) defChooser.getSelected();
+		WestCoastGearbox.INSTANCE.secureGearShift();
 		defCommand.start();
 		posCommand.start();
 	}
