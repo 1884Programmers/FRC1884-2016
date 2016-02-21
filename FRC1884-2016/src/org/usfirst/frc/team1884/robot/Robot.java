@@ -6,12 +6,8 @@ import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-=======
->>>>>>> 1884Programmers/master
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -63,15 +59,11 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
-<<<<<<< HEAD
 		Shooter.INSTANCE.teleopPeriodic();
 		System.out.println(shooterEncoder.getRate());
 		System.out.println(elevatorEncoder.getRate());
 		// Aimer.INSTANCE.teleopPeriodic();
 
-=======
-		Aimer.INSTANCE.teleopPeriodic();
->>>>>>> 1884Programmers/master
 		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
