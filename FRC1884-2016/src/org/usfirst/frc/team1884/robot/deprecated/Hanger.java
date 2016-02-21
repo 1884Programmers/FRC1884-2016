@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
 
@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * Max and Axel's Hanger
+ * @deprecated God damn it guys, you didn't work on the Hanger and now its dead
  */
 
 public class Hanger {

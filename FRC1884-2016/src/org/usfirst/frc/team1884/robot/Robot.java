@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.commands.AutonomousHandler;
+import org.usfirst.frc.team1884.robot.commands.CommandFlipper;
+import org.usfirst.frc.team1884.robot.commands.CommandShoot;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
@@ -9,14 +11,28 @@ import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Robot extends IterativeRobot {
 
+<<<<<<< HEAD
 	DigitalInput limitSwitch;
 	Encoder shooterEncoder = new Encoder(0, 1);
 	Encoder elevatorEncoder = new Encoder(2, 3);
+=======
+	Joystick opJoystick;
+	Joystick driveJoystick;
+	
+	JoystickButton opButton1;
+	JoystickButton opButton2;	
+>>>>>>> 1884Programmers/master
 
 	public void robotInit() {
+		opJoystick = NEXUS.OPERATORSTICK;
+		driveJoystick = NEXUS.DRIVESTICK;
+		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
+		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
 	}
 
 	/**
@@ -37,6 +53,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of operator control
 	 */
 	public void teleopInit() {
+		opButton1.whenPressed(new CommandFlipper());
+//		opButton2.whileHeld(new CommandShoot());
 	}
 
 	/**
@@ -45,6 +63,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
+<<<<<<< HEAD
 		Shooter.INSTANCE.teleopPeriodic();
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -56,6 +75,14 @@ public class Robot extends IterativeRobot {
 >>>>>>> 1884Programmers/master
 =======
 		Aimer.INSTANCE.teleopPeriodic();
+>>>>>>> 1884Programmers/master
+=======
+		Aimer.INSTANCE.teleopPeriodic();
+		if(opJoystick.getRawButton(2)) {
+			Shooter.INSTANCE.shootActually();
+		} else {
+			Shooter.INSTANCE.resetShooter();
+		}
 >>>>>>> 1884Programmers/master
 	}
 }
