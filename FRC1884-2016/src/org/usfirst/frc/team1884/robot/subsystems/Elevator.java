@@ -15,7 +15,7 @@ public class Elevator {
 
 	private static int LIFT_CHANNEL = 0;
 	private static int CARRIAGE_CHANNEL = 2;
-	
+
 	/*
 	 * TODO Need to be tuned to fit the robot
 	 */
@@ -39,7 +39,11 @@ public class Elevator {
 	public Elevator() {
 		lift = new CANTalon(LIFT_CHANNEL);
 		lift.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		lift.enableBrakeMode(true);
+
 		carriage = new CANTalon(CARRIAGE_CHANNEL);
+		carriage.enableBrakeMode(true);
+
 		flip = new DoubleSolenoid(FLIP_CHANNEL_EXTEND, FLIP_CHANNEL_RETRACT);
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
@@ -53,21 +57,22 @@ public class Elevator {
 
 	public void teleopPeriodic() {
 		lift.set(-joystick.getY());
-		if(joystick.getPOV(0) == 0 && upLimitSwitch.get()) {
+		if (joystick.getPOV(0) == 0 && upLimitSwitch.get()) {
 			carriage.set(0.25);
-		} else if(joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
+		} else if (joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
 			carriage.set(-0.25);
 		} else {
 			carriage.set(0);
 		}
 	}
-	
+
 	/**
 	 * Needs to be called in a loop
+	 * 
 	 * @return Whether or not the elevator has finished raising
 	 */
 	public boolean raiseAuto() {
-		if(Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
+		if (Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
 			lift.set(1);
 			return false;
 		} else {
@@ -75,13 +80,14 @@ public class Elevator {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Needs to be called in a loop
+	 * 
 	 * @return Whether or not the elevator has finished lowering
 	 */
 	public boolean lowerAuto() {
-		if(Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
+		if (Math.abs(lift.getEncPosition()) < NUM_ROTATIONS_RAISE) {
 			carriage.set(-1);
 			return false;
 		} else {
@@ -89,13 +95,14 @@ public class Elevator {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Needs to be called in a loop
+	 * 
 	 * @return Whether or not the carriage has finished raising
 	 */
 	public boolean raiseCarriageAuto() {
-		if(upLimitSwitch.get()) {
+		if (upLimitSwitch.get()) {
 			carriage.set(1);
 			return false;
 		} else {
@@ -103,13 +110,14 @@ public class Elevator {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Needs to be called in a loop
+	 * 
 	 * @return Whether or not the carriage has finished lowering
 	 */
 	public boolean lowerCarriageAuto() {
-		if(downLimitSwitch.get()) {
+		if (downLimitSwitch.get()) {
 			carriage.set(-1);
 			return false;
 		} else {
@@ -117,21 +125,21 @@ public class Elevator {
 		}
 		return true;
 	}
-	
+
 	public void flipAuto() {
 		flip.set(Value.kReverse);
 		Timer.delay(0.5);
 		flip.set(Value.kForward);
 	}
-	
+
 	public void flipUp() {
 		flip.set(Value.kReverse);
 	}
-	
+
 	public void flipDown() {
 		flip.set(Value.kForward);
 	}
-	
+
 	public void flipReset() {
 		flip.set(Value.kOff);
 	}
