@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * Max and Axel's Hanger
+ * 
  * @deprecated God damn it guys, you didn't work on the Hanger and now its dead
  */
 
@@ -49,6 +50,7 @@ public class Hanger {
 		// TODO
 		hasHung = true;
 	}
+
 	public boolean hasHung() {
 		return hasHung;
 	}

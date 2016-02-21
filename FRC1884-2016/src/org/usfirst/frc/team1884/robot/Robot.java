@@ -8,25 +8,32 @@ import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Robot extends IterativeRobot {
 
+	CameraServer server;
+
 	Joystick opJoystick;
 	Joystick driveJoystick;
-	
+
 	JoystickButton opButton1;
-	JoystickButton opButton2;	
+	JoystickButton opButton2;
 
 	public void robotInit() {
 		opJoystick = NEXUS.OPERATORSTICK;
 		driveJoystick = NEXUS.DRIVESTICK;
+		
 		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
 		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
 		opButton1.whenPressed(new FlipperSequence());
+		
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		server.startAutomaticCapture("cam0");
 	}
 
 	/**
@@ -47,6 +54,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of operator control
 	 */
 	public void teleopInit() {
+
 	}
 
 	/**
@@ -56,7 +64,7 @@ public class Robot extends IterativeRobot {
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
-		if(opJoystick.getRawButton(2)) {
+		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
 			Shooter.INSTANCE.resetShooter();
