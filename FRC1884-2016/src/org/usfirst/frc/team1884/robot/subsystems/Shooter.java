@@ -32,8 +32,8 @@ public class Shooter {
 		getInternalIntake().enableBrakeMode(true);
 		getInternalIntake().setControlMode(0);
 
-		externalIntake.enableBrakeMode(true);
-		externalIntake.setControlMode(0);
+		getExternalIntake().enableBrakeMode(true);
+		getExternalIntake().setControlMode(0);
 
 		p = new Proportional(kp, setVelocity);
 	}
@@ -64,7 +64,7 @@ public class Shooter {
 	public void shootActually() {
 		shooter.set(1);
 		internalIntake.set(1);
-		externalIntake.set(-0.5);
+		getExternalIntake().set(-0.5);
 		// TODO when the robot gets turned over to us
 	}
 
@@ -75,7 +75,7 @@ public class Shooter {
 	public void resetShooter() {
 		shooter.set(0);
 		internalIntake.set(0);
-		externalIntake.set(0);
+		getExternalIntake().set(0);
 	}
 
 	/**
@@ -92,5 +92,9 @@ public class Shooter {
 
 	public CANTalon getInternalIntake() {
 		return internalIntake;
+	}
+
+	public CANTalon getExternalIntake() {
+		return externalIntake;
 	}
 }

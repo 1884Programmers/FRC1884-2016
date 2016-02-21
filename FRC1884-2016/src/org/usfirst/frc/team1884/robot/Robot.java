@@ -1,8 +1,8 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
-import org.usfirst.frc.team1884.robot.commands.CommandShoot;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
+import org.usfirst.frc.team1884.robot.commands.shooter.ShootAllOn;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
