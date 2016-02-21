@@ -12,24 +12,22 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Robot extends IterativeRobot {
 
+	public static OI oi;
+	
 	CameraServer server;
 
 	Joystick opJoystick;
-	Joystick driveJoystick;
 
 	JoystickButton opButton1;
 	JoystickButton opButton2;
 
 	public void robotInit() {
+		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
-		driveJoystick = NEXUS.DRIVESTICK;
-		
-		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
-		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
-		opButton1.whenPressed(new FlipperSequence());
 		
 		server = CameraServer.getInstance();
 		server.setQuality(50);
@@ -47,7 +45,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-
+		Scheduler.getInstance().run();
 	}
 
 	/**
@@ -61,9 +59,11 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
+		Shooter.INSTANCE.teleopPeriodic();
 		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
