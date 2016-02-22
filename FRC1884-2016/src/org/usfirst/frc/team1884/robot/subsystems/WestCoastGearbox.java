@@ -73,10 +73,22 @@ public class WestCoastGearbox {
 		// } else {
 		// drive.tankDrive(joystick, 1, joystick, 5);
 		// }
-		noSwerve();
+//		noSwerve();
+		notTheStupidWayToDriveARobot();
 		// if (joystick.getRawButton(5)) {
 		// isArcadeDrive = !isArcadeDrive;
 		// }
+	}
+	
+	private void notTheStupidWayToDriveARobot() {
+		double y = joystick.getRawAxis(4);
+		double x = joystick.getRawAxis(1);
+		
+		x *= Math.abs(x)*1.08;
+		y *= Math.abs(y)*1.08;
+		
+		leftSide.set(-y+x);
+		rightSide.set(y+x);
 	}
 
 	public void noSwerve() {
