@@ -87,12 +87,12 @@ public class WestCoastGearbox {
 	}
 
 	public void teleopDrive() {
-		if (isArcadeDrive) {
-			drive.arcadeDrive(joystick);
-			// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
-		} else {
+//		if (isArcadeDrive) {
+//			drive.arcadeDrive(joystick);
+//			drive.drive(joystick.getY() / 4, joystick.getX() / 4);
+//		} else {
 			drive.tankDrive(joystick, 1, joystick, 5);
-		}
+//		}
 
 		if (joystick.getRawButton(5)) {
 			isArcadeDrive = !isArcadeDrive;
