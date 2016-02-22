@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	
+
 	CameraServer server;
 
 	Joystick opJoystick;
@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
-		
+
 		server = CameraServer.getInstance();
 		server.setQuality(50);
 		server.startAutomaticCapture("cam0");
