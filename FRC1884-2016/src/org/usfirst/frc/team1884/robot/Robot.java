@@ -1,8 +1,8 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
-import org.usfirst.frc.team1884.robot.commands.CommandShoot;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
+import org.usfirst.frc.team1884.robot.commands.shooter.ShootAllOn;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
@@ -13,25 +13,27 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class Robot extends IterativeRobot {
+<<<<<<< HEAD
 	DigitalInput limitSwitch;
 	Encoder shooterEncoder = new Encoder(0, 1);
 	Encoder elevatorEncoder = new Encoder(2, 3);
+=======
+
+	public static OI oi;
+	
+>>>>>>> 1884Programmers/master
 	CameraServer server;
 	Joystick opJoystick;
-	Joystick driveJoystick;
 
 	JoystickButton opButton1;
 	JoystickButton opButton2;
 
 	public void robotInit() {
+		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
-		driveJoystick = NEXUS.DRIVESTICK;
-		
-		opButton1 = new JoystickButton(NEXUS.OPERATORSTICK, 1);
-		opButton2 = new JoystickButton(NEXUS.OPERATORSTICK, 2);
-		opButton1.whenPressed(new FlipperSequence());
 		
 		server = CameraServer.getInstance();
 		server.setQuality(50);
@@ -49,7 +51,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-
+		Scheduler.getInstance().run();
 	}
 
 	/**
@@ -63,13 +65,19 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		Elevator.INSTANCE.teleopPeriodic();
+<<<<<<< HEAD
 		Shooter.INSTANCE.teleopPeriodic();
 		System.out.println(shooterEncoder.getRate());
 		System.out.println(elevatorEncoder.getRate());
 		// Aimer.INSTANCE.teleopPeriodic();
 
+=======
+		Aimer.INSTANCE.teleopPeriodic();
+		Shooter.INSTANCE.teleopPeriodic();
+>>>>>>> 1884Programmers/master
 		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
