@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
-		if (opJoystick.getRawButton(2)) {
+		if (opJoystick.getRawAxis(3) > 0.1) {
 			Shooter.INSTANCE.shootActually();
 		} else {
 			Shooter.INSTANCE.resetShooter();
