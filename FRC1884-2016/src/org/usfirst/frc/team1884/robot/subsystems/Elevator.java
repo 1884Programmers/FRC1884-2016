@@ -26,10 +26,13 @@ public class Elevator {
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	
+	private static boolean release = false;
+	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
 	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
 
-	private static int ENCODER_MAX, ENCODER_MIN;
+	private static int ENCODER_MAX = Integer.MAX_VALUE, ENCODER_MIN = Integer.MIN_VALUE;
 
 	private static double NUM_ROTATIONS_RAISE = 2;
 
@@ -75,18 +78,22 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		if (encoder.getDistance() == ENCODER_MAX || encoder.getDistance() == ENCODER_MIN) {
-			carriage.set(0);
+		if (encoder.getDistance() >= ENCODER_MAX) {
+			carriage.set(0.1);
+		} else if(encoder.getDistance() <= ENCODER_MIN) {
+			carriage.set(-0.1);
 		} else {
 			carriage.set(-joystick.getY());
 		}
-		if (joystick.getPOV(0) == 0 && upLimitSwitch.get()) {
-			arm.set(0.25);
-		} else if (joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
-			arm.set(-0.25);
+		
+		
+		if ((joystick.getRawAxis(5) > 0 && upLimitSwitch.get()) || (joystick.getRawAxis(5) < 0 && downLimitSwitch.get())) {
+			arm.set(joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
+		
+		flipTeleop();
 	}
 
 	/**
@@ -155,6 +162,20 @@ public class Elevator {
 		Timer.delay(0.5);
 		flip1.set(Value.kForward);
 		flip2.set(Value.kForward);
+	}
+	
+	public void flipTeleop() {
+		if (joystick.getRawButton(5)) {
+			flipUp();
+			release = false;
+		} else if (!release) {
+			release = true;
+			flipDown();
+			timeOfLastRetraction = System.currentTimeMillis();
+		} else if(System.currentTimeMillis() - timeOfLastRetraction > 1000){
+			flipReset();
+			timeOfLastRetraction = Long.MAX_VALUE;
+		}
 	}
 
 	public void flipUp() {
