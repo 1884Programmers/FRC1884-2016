@@ -27,7 +27,7 @@ public class Aimer {
 
 	private Aimer() {
 		p = new Proportional(KP, SETPOINT);
-		joystick = NEXUS.OPERATORSTICK;
+		joystick = NEXUS.DRIVESTICK;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class Aimer {
 	}
 
 	public void teleopPeriodic() {
-		if (joystick.getRawButton(5)) {
+		if (joystick.getRawAxis(2) > 0.1) {
 			if (setup) {
 				align();
 			} else {

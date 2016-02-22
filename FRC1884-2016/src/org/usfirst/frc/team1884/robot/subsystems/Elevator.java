@@ -41,8 +41,8 @@ public class Elevator {
 	private DoubleSolenoid flip1, flip2;
 	private Joystick joystick;
 
-	private DigitalInput upLimitSwitch;
 	private DigitalInput downLimitSwitch;
+	private DigitalInput upLimitSwitch;
 
 	private Encoder encoder;
 
@@ -61,8 +61,8 @@ public class Elevator {
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
 
-		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
-		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
+		downLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
+		upLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 
 		joystick = NEXUS.OPERATORSTICK;
 
@@ -80,21 +80,22 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		if (encoder.getDistance() >= ENCODER_MAX) {
+		/* if (encoder.getDistance() >= ENCODER_MAX) {
 			carriage.set(0.1);
 		} else if (encoder.getDistance() <= ENCODER_MIN) {
 			carriage.set(-0.1);
-		} else {
+		} else*/ if (Math.abs(joystick.getY()) > 0.1){
 			carriage.set(-joystick.getY());
+		} else {
+			carriage.set(0);
 		}
 
-		if ((joystick.getRawAxis(5) > 0 && upLimitSwitch.get())
-				|| (joystick.getRawAxis(5) < 0 && downLimitSwitch.get())) {
-			arm.set(joystick.getRawAxis(5));
+		if (((joystick.getRawAxis(5) > 0 && !downLimitSwitch.get())
+				|| (joystick.getRawAxis(5) < 0 && upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
+			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
-
 		flipTeleop();
 	}
 
@@ -134,7 +135,7 @@ public class Elevator {
 	 * @return Whether or not the arm has finished raising
 	 */
 	public boolean raiseArmAuto() {
-		if (upLimitSwitch.get()) {
+		if (downLimitSwitch.get()) {
 			arm.set(0.25);
 			return false;
 		} else {
@@ -149,7 +150,7 @@ public class Elevator {
 	 * @return Whether or not the arm has finished lowering
 	 */
 	public boolean lowerArmAuto() {
-		if (downLimitSwitch.get()) {
+		if (upLimitSwitch.get()) {
 			arm.set(-0.25);
 			return false;
 		} else {

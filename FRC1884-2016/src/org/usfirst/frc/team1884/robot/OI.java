@@ -16,11 +16,14 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
  */
 public class OI {
 	Joystick driveStick = NEXUS.DRIVESTICK, opStick = NEXUS.OPERATORSTICK;
+	JoystickButton button5 = new JoystickButton(opStick, 5), button6 = new JoystickButton(opStick, 6);
 	Trigger opPOVUp = new POVUpOp();
 	Trigger opPOVDown = new POVDownOp();
 	
 	public OI() {
-		opPOVUp.whenActive(new FlipperUp());
-		opPOVDown.whenActive(new FlipperDown());
+//		opPOVUp.whenActive(new FlipperUp());
+//		opPOVDown.whenActive(new FlipperDown());
+		button5.whenPressed(new FlipperDown());
+		button6.whenPressed(new FlipperUp());
 	}
 }

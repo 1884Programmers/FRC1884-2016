@@ -37,9 +37,11 @@ public class WestCoastGearbox {
 		leftSide = new VictorSP(LEFT_CHANNEL);
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
-		drive = new RobotDrive(leftSide, rightSide);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		// drive = new RobotDrive(leftSide, rightSide);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		leftSide.setInverted(true);
+		rightSide.setInverted(false);
 	}
 
 	public void teleopInit() {
@@ -69,32 +71,32 @@ public class WestCoastGearbox {
 		// drive.arcadeDrive(joystick);
 		// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
 		// } else {
-		drive.tankDrive(joystick, 1, joystick, 5);
+		// drive.tankDrive(joystick, 1, joystick, 5);
 		// }
-
+		noSwerve();
 		// if (joystick.getRawButton(5)) {
 		// isArcadeDrive = !isArcadeDrive;
 		// }
 	}
 
 	public void noSwerve() {
-		if (joystick.getRawAxis(1) == 0 && joystick.getRawAxis(5) == 0) {
+		if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
 			leftSide.set(0);
 			rightSide.set(0);
-		} else if (joystick.getRawAxis(1) != 0 && joystick.getRawAxis(5) == 0) {
+		} else if (Math.abs(joystick.getRawAxis(1)) > 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
 			leftSide.set(joystick.getRawAxis(1));
 			rightSide.set(joystick.getRawAxis(1));
 			joystickOneFirst = true;
-		} else if (joystick.getRawAxis(1) == 0 && joystick.getRawAxis(5) != 0) {
-			leftSide.set(joystick.getRawAxis(5));
-			rightSide.set(-joystick.getRawAxis(5));
+		} else if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) > 0.1) {
+			leftSide.set(-joystick.getRawAxis(4));
+			rightSide.set(joystick.getRawAxis(4));
 			joystickOneFirst = false;
 		} else if (joystickOneFirst) {
 			leftSide.set(joystick.getRawAxis(1));
 			rightSide.set(joystick.getRawAxis(1));
 		} else if (!joystickOneFirst) {
-			leftSide.set(joystick.getRawAxis(5));
-			rightSide.set(-joystick.getRawAxis(5));
+			leftSide.set(joystick.getRawAxis(4));
+			rightSide.set(-joystick.getRawAxis(4));
 		}
 	}
 
