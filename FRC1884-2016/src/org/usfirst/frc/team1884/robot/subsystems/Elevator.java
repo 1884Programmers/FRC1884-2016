@@ -24,9 +24,10 @@ public class Elevator {
 	private static int FLIP_CHANNEL_RETRACT_1 = 1;
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
+
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
-	
+
 	private static boolean release = false;
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
@@ -53,16 +54,16 @@ public class Elevator {
 		carriage = new CANTalon(CARRIAGE_CHANNEL);
 		carriage.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		carriage.enableBrakeMode(true);
-		
+
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
-		
+
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
-		
+
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
-		
+
 		joystick = NEXUS.OPERATORSTICK;
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
@@ -80,19 +81,19 @@ public class Elevator {
 	public void teleopPeriodic() {
 		if (encoder.getDistance() >= ENCODER_MAX) {
 			carriage.set(0.1);
-		} else if(encoder.getDistance() <= ENCODER_MIN) {
+		} else if (encoder.getDistance() <= ENCODER_MIN) {
 			carriage.set(-0.1);
 		} else {
 			carriage.set(-joystick.getY());
 		}
-		
-		
-		if ((joystick.getRawAxis(5) > 0 && upLimitSwitch.get()) || (joystick.getRawAxis(5) < 0 && downLimitSwitch.get())) {
+
+		if ((joystick.getRawAxis(5) > 0 && upLimitSwitch.get())
+				|| (joystick.getRawAxis(5) < 0 && downLimitSwitch.get())) {
 			arm.set(joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
-		
+
 		flipTeleop();
 	}
 
@@ -163,7 +164,7 @@ public class Elevator {
 		flip1.set(Value.kForward);
 		flip2.set(Value.kForward);
 	}
-	
+
 	public void flipTeleop() {
 		if (joystick.getRawButton(5)) {
 			flipUp();
@@ -172,7 +173,7 @@ public class Elevator {
 			release = true;
 			flipDown();
 			timeOfLastRetraction = System.currentTimeMillis();
-		} else if(System.currentTimeMillis() - timeOfLastRetraction > 1000){
+		} else if (System.currentTimeMillis() - timeOfLastRetraction > 1000) {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}

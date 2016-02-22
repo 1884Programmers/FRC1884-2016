@@ -2,7 +2,6 @@ package org.usfirst.frc.team1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
@@ -84,6 +83,11 @@ public class Shooter {
 	 * 
 	 */
 	public void teleopPeriodic() {
+		if (opJoystick.getRawAxis(3) > 0.1) {
+			Shooter.INSTANCE.shootActually();
+		} else {
+			Shooter.INSTANCE.resetShooter();
+		}
 	}
 
 	public CANTalon getShooter() {
