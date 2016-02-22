@@ -1,11 +1,16 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.NEXUS;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
+	private Joystick joystick;
+	
 	private static final int SHOOTER_CHANNEL = 6;
 	private static final int INTERNAL_INTAKE_CHANNEL = 3;
 	private static final int EXTERNAL_INTAKE_CHANNEL = 4;
@@ -37,6 +42,7 @@ public class Shooter {
 		getExternalIntake().setControlMode(0);
 
 		p = new Proportional(kp, setVelocity);
+		joystick = NEXUS.OPERATORSTICK;
 	}
 
 	public void shootPeriodicIdeally() {
@@ -78,12 +84,48 @@ public class Shooter {
 		internalIntake.set(0);
 		getExternalIntake().set(0);
 	}
+	
+	public void shootLowGoal(){
+		shooter.set(-1);
+		internalIntake.set(-1);
+		getExternalIntake().set(1);
+	}
+	
+	public void releaseBall() {
+		internalIntake.set(-0.25);
+		getExternalIntake().set(0.25);
+	}
+	
+	public void holdBall() {
+		internalIntake.set(0.5);
+		getExternalIntake().set(-0.5);
+	}
 
 	/**
 	 * 
 	 * 
 	 */
 	public void teleopPeriodic() {
+		if (joystick.getRawAxis(3) > 0.1) {
+			shootActually();
+		} else {
+			resetShooter();
+		}
+		if (joystick.getRawAxis(2) > 0.1){
+			shootLowGoal();
+		} else {
+			resetShooter();
+		}
+		if(joystick.getRawButton(1)) {
+			releaseBall();
+		} else {
+			resetShooter();
+		}
+		if(joystick.getRawButton(2)) {
+			holdBall();
+		} else {
+			resetShooter();
+		}
 	}
 
 	public CANTalon getShooter() {

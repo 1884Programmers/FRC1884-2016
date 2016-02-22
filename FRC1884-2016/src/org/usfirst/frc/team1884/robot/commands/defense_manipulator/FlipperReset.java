@@ -4,7 +4,7 @@ import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-class FlipperReset extends Command {
+public class FlipperReset extends Command {
 
 	@Override
 	protected void initialize() {
@@ -20,7 +20,7 @@ class FlipperReset extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override

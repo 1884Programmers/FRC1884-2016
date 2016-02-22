@@ -90,7 +90,7 @@ public class Aimer {
 	}
 
 	public void teleopPeriodic() {
-		if (joystick.getRawButton(4)) {
+		if (joystick.getRawButton(5)) {
 			if (setup) {
 				align();
 			} else {

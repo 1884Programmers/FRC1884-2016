@@ -27,7 +27,7 @@ public class Elevator {
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
 	
-	private static boolean release = false;
+	private static boolean release = true;
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
 	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
@@ -70,6 +70,7 @@ public class Elevator {
 
 	public void robotInit() {
 		encoder.reset(); // starts at top before match
+		this.flipReset();
 	}
 
 	public void teleopInit() {
