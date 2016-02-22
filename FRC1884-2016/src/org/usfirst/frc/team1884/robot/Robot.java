@@ -7,27 +7,18 @@ import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-=======
-
 import edu.wpi.first.wpilibj.CameraServer;
->>>>>>> 1884Programmers/master
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Robot extends IterativeRobot {
-
-<<<<<<< HEAD
 	DigitalInput limitSwitch;
 	Encoder shooterEncoder = new Encoder(0, 1);
 	Encoder elevatorEncoder = new Encoder(2, 3);
-=======
 	CameraServer server;
->>>>>>> 1884Programmers/master
-
 	Joystick opJoystick;
 	Joystick driveJoystick;
 
