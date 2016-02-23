@@ -25,8 +25,8 @@ public class Elevator {
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 
-	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
-	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	private static int UP_LIMIT_SWITCH_CHANNEL = 2;
+	private static int DOWN_LIMIT_SWITCH_CHANNEL = 3;
 	private static boolean release = true;
 
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
@@ -73,7 +73,7 @@ public class Elevator {
 	}
 
 	public void robotInit() {
-		encoder.reset(); // starts at top before match
+		encoder.reset(); // starts at bottom before match
 		this.flipReset();
 	}
 
@@ -212,5 +212,17 @@ public class Elevator {
 	public void flipReset() {
 		flip1.set(Value.kOff);
 		flip2.set(Value.kOff);
+	}
+
+	public double getCarriageDistance() {
+		return encoder.getDistance();
+	}
+
+	public void setArm(double outputValue) {
+		arm.set(outputValue);
+	}
+	
+	public void setCarriage(double outputValue) {
+		carriage.set(outputValue);
 	}
 }
