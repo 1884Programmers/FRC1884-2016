@@ -23,8 +23,8 @@ public class Elevator {
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 
-	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
-	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	private static int UP_LIMIT_SWITCH_CHANNEL = 2;
+	private static int DOWN_LIMIT_SWITCH_CHANNEL = 3;
 	private static boolean release = true;
 
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
