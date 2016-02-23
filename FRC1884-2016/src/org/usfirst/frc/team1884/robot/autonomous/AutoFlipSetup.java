@@ -1,17 +1,19 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.autonomous;
 
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CommandAlign extends Command {
+public class AutoFlipSetup extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Aimer.INSTANCE.alignAuto();
+		WestCoastGearbox.INSTANCE.setMotorSpeed(-1, 1);
+		Elevator.INSTANCE.raiseArm();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

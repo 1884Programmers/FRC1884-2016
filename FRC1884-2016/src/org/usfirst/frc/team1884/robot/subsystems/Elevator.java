@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.NEXUS;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -7,7 +9,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Elevator {
 	public static final Elevator INSTANCE;
@@ -66,6 +68,8 @@ public class Elevator {
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
+		
+		joystick = NEXUS.OPERATORSTICK;
 	}
 
 	public void robotInit() {
@@ -83,7 +87,8 @@ public class Elevator {
 		 * if (encoder.getDistance() >= ENCODER_MAX) { carriage.set(0.1); } else
 		 * if (encoder.getDistance() <= ENCODER_MIN) { carriage.set(-0.1); }
 		 * else
-		 */ if (Math.abs(joystick.getY()) > 0.1) {
+		 */
+		if (Math.abs(joystick.getY()) > 0.1) {
 			carriage.set(-joystick.getY());
 		} else {
 			carriage.set(0);
@@ -144,6 +149,10 @@ public class Elevator {
 		}
 		return true;
 	}
+	
+	public void raiseArm() {
+		arm.set(0.25);
+	}
 
 	/**
 	 * Needs to be called in a loop
@@ -158,6 +167,14 @@ public class Elevator {
 			arm.set(0);
 		}
 		return true;
+	}
+	
+	public void lowerArm() {
+		arm.set(-0.25);
+	}
+	
+	public void resetArm() {
+		arm.set(0);
 	}
 
 	public void flipAuto() {
@@ -180,7 +197,6 @@ public class Elevator {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}
-
 	}
 
 	public void flipUp() {

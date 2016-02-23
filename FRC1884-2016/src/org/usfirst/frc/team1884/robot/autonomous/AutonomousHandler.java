@@ -44,7 +44,6 @@ public class AutonomousHandler {
 	public void autonomousInit() {
 		posCommand = (Position) posChooser.getSelected();
 		defCommand = (Defense) defChooser.getSelected();
-		WestCoastGearbox.INSTANCE.secureGearShift();
 		defCommand.start();
 		posCommand.start();
 	}
