@@ -29,7 +29,7 @@ public class Elevator {
 
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
-	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
+	private static int ENCODER_CHANNEL_A = 3, ENCODER_CHANNEL_B = 4;
 
 	private static int ENCODER_MAX = Integer.MAX_VALUE, ENCODER_MIN = Integer.MIN_VALUE;
 
@@ -96,6 +96,8 @@ public class Elevator {
 			arm.set(0);
 		}
 		flipTeleop();
+		
+		System.out.println(encoder.get());
 	}
 
 	/**
