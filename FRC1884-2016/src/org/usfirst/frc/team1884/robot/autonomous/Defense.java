@@ -20,6 +20,7 @@ public class Defense implements Choices {
 	public static final int SALLYPORT = 5;
 	public static final int ROCKWALL = 6;
 	public static final int ROUGHTERRAIN = 7;
+	public static boolean isPortcullis = false;
 
 	public Defense(int defense) {
 		this.defense = defense;
@@ -32,20 +33,7 @@ public class Defense implements Choices {
 	public void start() {
 		switch (defense) {
 		case PORTCULLIS:
-			// Start with the arm down and carriage down
-			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
-			Timer.delay(1);
-
-			// Breach Defenses(Raise drawbridge, flip up, drive through)
-			while (Elevator.INSTANCE.raiseCarriage()) {
-			}
-			Elevator.INSTANCE.flipAuto();
-			WestCoastGearbox.INSTANCE.setMotorSpeed(-0.25, 0.25);
-			Timer.delay(0.75);
-			Elevator.INSTANCE.flipReset();
-			WestCoastGearbox.INSTANCE.setMotorSpeed(0, 0);
-			while (Elevator.INSTANCE.lowerCarriage()) {
-			}
+			isPortcullis = true;
 			break;
 		case ROUGHTERRAIN:
 		case MOAT:

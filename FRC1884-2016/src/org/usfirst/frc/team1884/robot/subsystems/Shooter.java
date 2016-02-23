@@ -71,8 +71,7 @@ public class Shooter {
 	public void shootActually() {
 		shooter.set(1);
 		internalIntake.set(1);
-		getExternalIntake().set(-1);
-		// TODO when the robot gets turned over to us
+		externalIntake.set(-1);
 	}
 
 	public void intake() {
@@ -82,23 +81,23 @@ public class Shooter {
 	public void resetShooter() {
 		shooter.set(0);
 		internalIntake.set(0);
-		getExternalIntake().set(0);
+		externalIntake.set(0);
 	}
 
 	public void shootLowGoal() {
 		shooter.set(-1);
 		internalIntake.set(-1);
-		getExternalIntake().set(1);
+		externalIntake.set(1);
 	}
 
 	public void releaseBall() {
-		internalIntake.set(-0.25);
-		getExternalIntake().set(0.25);
+		internalIntake.set(-0.5);
+		externalIntake.set(0.5);
 	}
 
 	public void holdBall() {
 		internalIntake.set(0.5);
-		getExternalIntake().set(-0.5);
+		externalIntake.set(-0.5);
 	}
 
 	/**
@@ -108,20 +107,11 @@ public class Shooter {
 	public void teleopPeriodic() {
 		if (joystick.getRawAxis(3) > 0.1) {
 			shootActually();
-		} else {
-			resetShooter();
-		}
-		if (joystick.getRawAxis(2) > 0.1) {
+		} else if (joystick.getRawAxis(2) > 0.1) {
 			shootLowGoal();
-		} else {
-			resetShooter();
-		}
-		if (joystick.getRawButton(1)) {
+		} else if (joystick.getRawButton(1)) {
 			releaseBall();
-		} else {
-			resetShooter();
-		}
-		if (joystick.getRawButton(2)) {
+		} else if (joystick.getRawButton(2)) {
 			holdBall();
 		} else {
 			resetShooter();

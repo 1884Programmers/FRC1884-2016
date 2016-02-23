@@ -1,9 +1,11 @@
 package org.usfirst.frc.team1884.robot;
 
+import org.usfirst.frc.team1884.robot.autonomous.PortcullisRoutine;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperDown;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperUp;
 import org.usfirst.frc.team1884.robot.triggers.POVDownOp;
 import org.usfirst.frc.team1884.robot.triggers.POVUpOp;
+import org.usfirst.frc.team1884.robot.triggers.PortcullisChosen;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -17,13 +19,13 @@ public class OI {
 	Joystick driveStick = NEXUS.DRIVESTICK, opStick = NEXUS.OPERATORSTICK;
 	JoystickButton opButton1 = new JoystickButton(opStick, 1);
 	JoystickButton button5 = new JoystickButton(opStick, 5), button6 = new JoystickButton(opStick, 6);
-	Trigger opPOVUp = new POVUpOp();
-	Trigger opPOVDown = new POVDownOp();
+	Trigger portcullisChosen = new PortcullisChosen();
 
 	public OI() {
 //		opPOVUp.whenActive(new FlipperUp());
 //		opPOVDown.whenActive(new FlipperDown());
 		button5.whenPressed(new FlipperDown());
 		button6.whenPressed(new FlipperUp());
+		portcullisChosen.whenActive(new PortcullisRoutine());
 	}
 }
