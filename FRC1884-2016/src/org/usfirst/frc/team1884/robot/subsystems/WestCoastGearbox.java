@@ -98,23 +98,10 @@ public class WestCoastGearbox {
 	boolean toggleDriveLast;
 	
 	public void teleopDrive() {
-<<<<<<< HEAD
-		// if (isArcadeDrive) {
-		// drive.arcadeDrive(joystick);
-		// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
-		// } else {
-		// drive.tankDrive(joystick, 1, joystick, 5);
-		// }
-		// noSwerve();
-		noSwerve();
-		// if (joystick.getRawButton(5)) {
-		// isArcadeDrive = !isArcadeDrive;
-		// }
-=======
 		if(isTankDrive) {
 			drive.tankDrive(joystick, joystick);
 		} else {
-			notTheStupidWayToDriveARobot();
+			limitedSwerve();
 		}
 		
 		if (joystick.getRawButton(5) && !toggleDrive && !toggleDriveLast) {
@@ -124,10 +111,9 @@ public class WestCoastGearbox {
 			toggleDrive = false;
 		}
 		toggleDriveLast = toggleDrive;
->>>>>>> 1884Programmers/master
 	}
 
-	private void notTheStupidWayToDriveARobot() {
+	private void limitedSwerve() {
 		double y = joystick.getRawAxis(4);
 		double x = joystick.getRawAxis(1);
 
@@ -138,7 +124,7 @@ public class WestCoastGearbox {
 		rightSide.set(y + x);
 	}
 
-	/** @depracated */
+	/** @deprecated */
 	public void noSwerve() {
 		if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
 			leftSide.set(0);
