@@ -69,7 +69,7 @@ public class Elevator {
 	}
 
 	public void robotInit() {
-		encoder.reset(); // starts at top before match
+		encoder.reset(); // starts at bottom before match
 		this.flipReset();
 	}
 
@@ -194,5 +194,17 @@ public class Elevator {
 	public void flipReset() {
 		flip1.set(Value.kOff);
 		flip2.set(Value.kOff);
+	}
+
+	public double getCarriageDistance() {
+		return encoder.getDistance();
+	}
+
+	public void setArm(double outputValue) {
+		arm.set(outputValue);
+	}
+	
+	public void setCarriage(double outputValue) {
+		carriage.set(outputValue);
 	}
 }
