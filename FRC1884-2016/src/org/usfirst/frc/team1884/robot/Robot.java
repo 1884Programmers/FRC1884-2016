@@ -2,6 +2,7 @@ package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
@@ -62,30 +63,30 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
-		// Elevator.INSTANCE.teleopPeriodic();
+		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
 		
-		/* if(opJoystick.getPOV() == 0) {
-			Shooter.INSTANCE.getExternalIntake().set(-1);
-		} else if(opJoystick.getPOV() == 180) {
-			Shooter.INSTANCE.getExternalIntake().set(1);
-		} else {
-			Shooter.INSTANCE.getExternalIntake().set(0);
-		}
-		
-		if(opJoystick.getPOV() == 90) {
-			Shooter.INSTANCE.getInternalIntake().set(1);
-		} else if(opJoystick.getPOV() == 270) {
-			Shooter.INSTANCE.getInternalIntake().set(-1);
-		} else {
-			Shooter.INSTANCE.getInternalIntake().set(0);
-		}
-		
-		if(opJoystick.getRawButton(3)) {
-			Shooter.INSTANCE.getShooter().set(1);
-		} else {
-			Shooter.INSTANCE.getShooter().set(0);
-		} */
+//		 if(opJoystick.getPOV() == 0) {
+//			Shooter.INSTANCE.getExternalIntake().set(-1);
+//		} else if(opJoystick.getPOV() == 180) {
+//			Shooter.INSTANCE.getExternalIntake().set(1);
+//		} else {
+//			Shooter.INSTANCE.getExternalIntake().set(0);
+//		}
+//		
+//		if(opJoystick.getPOV() == 90) {
+//			Shooter.INSTANCE.getInternalIntake().set(1);
+//		} else if(opJoystick.getPOV() == 270) {
+//			Shooter.INSTANCE.getInternalIntake().set(-1);
+//		} else {
+//			Shooter.INSTANCE.getInternalIntake().set(0);
+//		}
+//		
+//		if(opJoystick.getRawButton(3)) {
+//			Shooter.INSTANCE.getShooter().set(1);
+//		} else {
+//			Shooter.INSTANCE.getShooter().set(0);
+//		} 
 	}
 }
