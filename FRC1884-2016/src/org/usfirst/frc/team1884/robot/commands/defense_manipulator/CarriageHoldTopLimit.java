@@ -8,30 +8,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FlipperUp extends Command {
+public class CarriageHoldTopLimit extends Command {
 
 	// Time in milliseconds
 	long startTime;
 	int timeOutTime;
 
-	public FlipperUp() {
+	public CarriageHoldTopLimit() {
 		super();
 		this.timeOutTime = 500;
 	}
 	
-	public FlipperUp(int timeOutTime) {
+	public CarriageHoldTopLimit(int timeOutTime) {
 		super();
 		this.timeOutTime = timeOutTime;
 	}
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Elevator.INSTANCE.flipUp();
 		startTime = System.currentTimeMillis();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		// TODO
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
