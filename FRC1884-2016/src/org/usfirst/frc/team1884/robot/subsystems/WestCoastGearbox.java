@@ -98,11 +98,7 @@ public class WestCoastGearbox {
 	boolean toggleDriveLast;
 
 	public void teleopDrive() {
-		if (isTankDrive) {
-			drive.tankDrive(joystick, joystick);
-		} else {
-			limitedSwerve();
-		}
+		limitedSwerve();
 
 		if (joystick.getRawButton(5) && !toggleDrive && !toggleDriveLast) {
 			isTankDrive = !isTankDrive;
