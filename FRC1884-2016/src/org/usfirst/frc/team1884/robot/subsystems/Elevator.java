@@ -31,7 +31,7 @@ public class Elevator {
 
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
-	private static int ENCODER_CHANNEL_A = 3, ENCODER_CHANNEL_B = 4;
+	private static int ENCODER_CHANNEL_A = 4, ENCODER_CHANNEL_B = 5;
 
 	private static int ENCODER_MAX = Integer.MAX_VALUE, ENCODER_MIN = Integer.MIN_VALUE;
 
@@ -51,25 +51,24 @@ public class Elevator {
 	}
 
 	public Elevator() {
+		
 		carriage = new CANTalon(CARRIAGE_CHANNEL);
 		carriage.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		carriage.enableBrakeMode(true);
-
+		
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
-
+		
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
-
+		
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
-
-		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
-		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
-
+		
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
 		
 		joystick = NEXUS.OPERATORSTICK;
+		
 	}
 
 	public void robotInit() {
@@ -94,15 +93,15 @@ public class Elevator {
 			carriage.set(0);
 		}
 
-		if (((joystick.getRawAxis(5) > 0 && !downLimitSwitch.get())
-				|| (joystick.getRawAxis(5) < 0 && upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
+		if (((joystick.getRawAxis(5) > 0 && downLimitSwitch.get())
+				|| (joystick.getRawAxis(5) < 0 && !upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
 			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
 		flipTeleop();
 		
-		System.out.println(encoder.get());
+		System.out.println(encoder.getRaw());
 	}
 
 	/**
@@ -215,7 +214,8 @@ public class Elevator {
 	}
 
 	public double getCarriageDistance() {
-		return encoder.getDistance();
+//		return encoder.getDistance();
+		return 0.0;
 	}
 
 	public void setArm(double outputValue) {

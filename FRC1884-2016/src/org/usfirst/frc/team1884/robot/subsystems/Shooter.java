@@ -71,7 +71,7 @@ public class Shooter {
 	public void shootActually() {
 		shooter.set(1);
 		internalIntake.set(1);
-		externalIntake.set(-1);
+		//externalIntake.set(-1);
 	}
 
 	public void intake() {
@@ -91,13 +91,17 @@ public class Shooter {
 	}
 
 	public void releaseBall() {
-		internalIntake.set(-0.5);
-		externalIntake.set(0.5);
+		internalIntake.set(-0.25);
+		externalIntake.set(0.25);
 	}
 
 	public void holdBall() {
 		internalIntake.set(0.5);
 		externalIntake.set(-0.5);
+	}
+	
+	public void pickUp() {
+		externalIntake.set(-1);
 	}
 
 	/**
@@ -105,7 +109,8 @@ public class Shooter {
 	 *
 	 */
 	public void teleopPeriodic() {
-		if (joystick.getRawAxis(3) > 0.1) {
+		if (joystick.getRawAxis(3) > 0.1 && joystick.getRawButton(4)) {
+			pickUp();
 			shootActually();
 		} else if (joystick.getRawAxis(2) > 0.1) {
 			shootLowGoal();
@@ -113,6 +118,8 @@ public class Shooter {
 			releaseBall();
 		} else if (joystick.getRawButton(2)) {
 			holdBall();
+		} else if (joystick.getRawAxis(3) > 0.1 ){
+			shootActually();
 		} else {
 			resetShooter();
 		}
