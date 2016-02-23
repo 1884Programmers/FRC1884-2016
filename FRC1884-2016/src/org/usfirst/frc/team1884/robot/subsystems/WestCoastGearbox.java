@@ -32,7 +32,7 @@ public class WestCoastGearbox {
 
 	/** @deprecated */
 	private long lastPTOButtonExtend = 0;
-	/** @deprecated*/
+	/** @deprecated */
 	private long lastPTOButtonRetract = 0;
 
 	public static final WestCoastGearbox INSTANCE;
@@ -48,29 +48,30 @@ public class WestCoastGearbox {
 
 	private WestCoastGearbox() {
 
-
-//		gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
-//		ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
+		// gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND,
+		// GEAR_SHIFT_CHANNEL_RETRACT);
+		// ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND,
+		// PTO_CHANNEL_RETRACT);
 
 		joystick = NEXUS.DRIVESTICK;
 
 		leftSide = new VictorSP(LEFT_CHANNEL);
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
-//		drive = new RobotDrive(leftSide, rightSide);
-//		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-//		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		// drive = new RobotDrive(leftSide, rightSide);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 		leftSide.setInverted(true);
 		rightSide.setInverted(false);
 	}
 	
 	public void teleopInit() {
-//		TODO (probably nothing)
+		// TODO (probably nothing)
 	}
 
 	public void teleopPeriodic() {
 		teleopDrive();
-//		reverse();
+		// reverse();
 	}
 
 	public void setMotorSpeed(double leftSpeed, double rightSpeed) {
@@ -86,7 +87,7 @@ public class WestCoastGearbox {
 		}
 	}
 
-	/** @deprecated*/
+	/** @deprecated */
 	public void secureGearShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
 		// always be extending in order to not rek our robot
@@ -97,6 +98,19 @@ public class WestCoastGearbox {
 	boolean toggleDriveLast;
 	
 	public void teleopDrive() {
+<<<<<<< HEAD
+		// if (isArcadeDrive) {
+		// drive.arcadeDrive(joystick);
+		// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
+		// } else {
+		// drive.tankDrive(joystick, 1, joystick, 5);
+		// }
+		// noSwerve();
+		noSwerve();
+		// if (joystick.getRawButton(5)) {
+		// isArcadeDrive = !isArcadeDrive;
+		// }
+=======
 		if(isTankDrive) {
 			drive.tankDrive(joystick, joystick);
 		} else {
@@ -110,6 +124,7 @@ public class WestCoastGearbox {
 			toggleDrive = false;
 		}
 		toggleDriveLast = toggleDrive;
+>>>>>>> 1884Programmers/master
 	}
 
 	private void notTheStupidWayToDriveARobot() {
@@ -123,6 +138,7 @@ public class WestCoastGearbox {
 		rightSide.set(y + x);
 	}
 
+	/** @depracated */
 	public void noSwerve() {
 		if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
 			leftSide.set(0);

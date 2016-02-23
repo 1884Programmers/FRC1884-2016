@@ -26,9 +26,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
 
-		server = CameraServer.getInstance();
-		server.setQuality(50);
-		server.startAutomaticCapture("cam0");
+		// server = CameraServer.getInstance();
+		// server.setQuality(50);
+		// server.startAutomaticCapture("cam0");
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
-		Elevator.INSTANCE.teleopPeriodic();
+		// Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
 
