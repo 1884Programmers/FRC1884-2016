@@ -11,12 +11,16 @@ public class WestCoastGearbox {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
+<<<<<<< HEAD
 	/** @deprecated*/
 	private DoubleSolenoid gearShiftPush, ptoPush;
+=======
+>>>>>>> 1884Programmers/master
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
 
+<<<<<<< HEAD
 	/** @deprecated*/
 	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
 	/** @deprecated*/
@@ -34,27 +38,40 @@ public class WestCoastGearbox {
 	/** @deprecated*/
 	private long lastPTOButtonRetract = 0;
 
+=======
+>>>>>>> 1884Programmers/master
 	public static final WestCoastGearbox INSTANCE;
 
 	private boolean isInverted = false;
 	private boolean isArcadeDrive = true;
+
+	private boolean joystickOneFirst = false;
 
 	static {
 		INSTANCE = new WestCoastGearbox();
 	}
 
 	private WestCoastGearbox() {
+<<<<<<< HEAD
 		//gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
 		//ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
+=======
+		// gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND,
+		// GEAR_SHIFT_CHANNEL_RETRACT);
+		// ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND,
+		// PTO_CHANNEL_RETRACT);
+>>>>>>> 1884Programmers/master
 
 		joystick = NEXUS.DRIVESTICK;
 
 		leftSide = new VictorSP(LEFT_CHANNEL);
 		rightSide = new VictorSP(RIGHT_CHANNEL);
 
-		drive = new RobotDrive(leftSide, rightSide);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		// drive = new RobotDrive(leftSide, rightSide);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		leftSide.setInverted(true);
+		rightSide.setInverted(false);
 	}
 
 	public void teleopInit() {
@@ -63,7 +80,11 @@ public class WestCoastGearbox {
 
 	public void teleopPeriodic() {
 		teleopDrive();
+<<<<<<< HEAD
 		reverse();
+=======
+		// reverse();
+>>>>>>> 1884Programmers/master
 	}
 
 	public void setMotorSpeed(double leftSpeed, double rightSpeed) {
@@ -79,6 +100,7 @@ public class WestCoastGearbox {
 		}
 	}
 
+<<<<<<< HEAD
 	/** @deprecated*/
 	public void secureGearShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
@@ -86,18 +108,72 @@ public class WestCoastGearbox {
 		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 	}
 
+=======
+>>>>>>> 1884Programmers/master
 	public void teleopDrive() {
-		if (isArcadeDrive) {
-			drive.arcadeDrive(joystick);
-			// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
-		} else {
-			drive.tankDrive(joystick, 1, joystick, 5);
-		}
+		// if (isArcadeDrive) {
+		// drive.arcadeDrive(joystick);
+		// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
+		// } else {
+		// drive.tankDrive(joystick, 1, joystick, 5);
+		// }
+//		noSwerve();
+		notTheStupidWayToDriveARobot();
+		// if (joystick.getRawButton(5)) {
+		// isArcadeDrive = !isArcadeDrive;
+		// }
+	}
+	
+	private void notTheStupidWayToDriveARobot() {
+		double y = joystick.getRawAxis(4);
+		double x = joystick.getRawAxis(1);
+		
+		x *= Math.abs(x)*1.08;
+		y *= Math.abs(y)*1.08;
+		
+		leftSide.set(-y+x);
+		rightSide.set(y+x);
+	}
 
-		if (joystick.getRawButton(5)) {
-			isArcadeDrive = !isArcadeDrive;
+	public void noSwerve() {
+		if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
+			leftSide.set(0);
+			rightSide.set(0);
+		} else if (Math.abs(joystick.getRawAxis(1)) > 0.1 && Math.abs(joystick.getRawAxis(4)) < 0.1) {
+			leftSide.set(joystick.getRawAxis(1));
+			rightSide.set(joystick.getRawAxis(1));
+			joystickOneFirst = true;
+		} else if (Math.abs(joystick.getRawAxis(1)) < 0.1 && Math.abs(joystick.getRawAxis(4)) > 0.1) {
+			leftSide.set(-joystick.getRawAxis(4));
+			rightSide.set(joystick.getRawAxis(4));
+			joystickOneFirst = false;
+		} else if (joystickOneFirst) {
+			leftSide.set(joystick.getRawAxis(1));
+			rightSide.set(joystick.getRawAxis(1));
+		} else if (!joystickOneFirst) {
+			leftSide.set(joystick.getRawAxis(4));
+			rightSide.set(-joystick.getRawAxis(4));
 		}
 	}
+
+	/** @deprecated */
+	private DoubleSolenoid gearShiftPush;
+	/** @deprecated */
+	private DoubleSolenoid ptoPush;
+	/** @deprecated */
+	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
+	/** @deprecated */
+	private static final int GEAR_SHIFT_CHANNEL_RETRACT = 2;
+	/** @deprecated */
+	private static final int PTO_CHANNEL_EXTEND = 3;
+	/** @deprecated */
+	private static final int PTO_CHANNEL_RETRACT = 5;
+	/** @deprecated */
+	private long timeOfLastExtensionPTO = 0;
+	/** @deprecated */
+	private long lastPTOButtonExtend = 0;
+	/** @deprecated */
+	private long lastPTOButtonRetract = 0;
 
 	/**
 	 * @deprecated Rip our dearly beloved, PTO. He died along with the dream of
@@ -125,5 +201,12 @@ public class WestCoastGearbox {
 			ptoPush.set(DoubleSolenoid.Value.kOff);
 			timeOfLastExtensionPTO = Long.MAX_VALUE;
 		}
+	}
+
+	/** @deprecated */
+	public void secureGearShift() {
+		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
+		// always be extending in order to not rek our robot
+		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 	}
 }

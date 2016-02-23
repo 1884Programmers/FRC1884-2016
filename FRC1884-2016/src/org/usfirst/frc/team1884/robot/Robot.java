@@ -1,8 +1,11 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
+<<<<<<< HEAD
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
 import org.usfirst.frc.team1884.robot.commands.shooter.ShootAllOn;
+=======
+>>>>>>> 1884Programmers/master
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
@@ -23,7 +26,11 @@ public class Robot extends IterativeRobot {
 =======
 
 	public static OI oi;
+<<<<<<< HEAD
 	
+>>>>>>> 1884Programmers/master
+=======
+
 >>>>>>> 1884Programmers/master
 	CameraServer server;
 	Joystick opJoystick;
@@ -34,7 +41,11 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 1884Programmers/master
 		server = CameraServer.getInstance();
 		server.setQuality(50);
 		server.startAutomaticCapture("cam0");
@@ -77,11 +88,14 @@ public class Robot extends IterativeRobot {
 =======
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
+<<<<<<< HEAD
 >>>>>>> 1884Programmers/master
 		if (opJoystick.getRawButton(2)) {
 			Shooter.INSTANCE.shootActually();
 		} else {
 			Shooter.INSTANCE.resetShooter();
 		}
+=======
+>>>>>>> 1884Programmers/master
 	}
 }

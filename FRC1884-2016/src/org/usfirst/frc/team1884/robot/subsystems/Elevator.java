@@ -24,12 +24,19 @@ public class Elevator {
 	private static int FLIP_CHANNEL_RETRACT_1 = 1;
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1884Programmers/master
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	private static boolean release = true;
+
+	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
 	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
 
-	private static int ENCODER_MAX, ENCODER_MIN;
+	private static int ENCODER_MAX = Integer.MAX_VALUE, ENCODER_MIN = Integer.MIN_VALUE;
 
 	private static double NUM_ROTATIONS_RAISE = 2;
 
@@ -37,8 +44,8 @@ public class Elevator {
 	private DoubleSolenoid flip1, flip2;
 	private Joystick joystick;
 
-	private DigitalInput upLimitSwitch;
 	private DigitalInput downLimitSwitch;
+	private DigitalInput upLimitSwitch;
 
 	private Encoder encoder;
 
@@ -50,9 +57,10 @@ public class Elevator {
 		carriage = new CANTalon(CARRIAGE_CHANNEL);
 		carriage.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		carriage.enableBrakeMode(true);
-		
+
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
+<<<<<<< HEAD
 		
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
@@ -60,6 +68,15 @@ public class Elevator {
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 		
+=======
+
+		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
+		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
+
+		downLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
+		upLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
+
+>>>>>>> 1884Programmers/master
 		joystick = NEXUS.OPERATORSTICK;
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
@@ -67,6 +84,7 @@ public class Elevator {
 
 	public void robotInit() {
 		encoder.reset(); // starts at top before match
+		this.flipReset();
 	}
 
 	public void teleopInit() {
@@ -75,23 +93,28 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		if (encoder.getDistance() == ENCODER_MAX || encoder.getDistance() == ENCODER_MIN) {
-			carriage.set(0);
-		} else {
+		/* if (encoder.getDistance() >= ENCODER_MAX) {
+			carriage.set(0.1);
+		} else if (encoder.getDistance() <= ENCODER_MIN) {
+			carriage.set(-0.1);
+		} else*/ if (Math.abs(joystick.getY()) > 0.1){
 			carriage.set(-joystick.getY());
+		} else {
+			carriage.set(0);
 		}
-		if (joystick.getPOV(0) == 0 && upLimitSwitch.get()) {
-			arm.set(0.25);
-		} else if (joystick.getPOV(0) == 180 && downLimitSwitch.get()) {
-			arm.set(-0.25);
+
+		if (((joystick.getRawAxis(5) > 0 && !downLimitSwitch.get())
+				|| (joystick.getRawAxis(5) < 0 && upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
+			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
+		flipTeleop();
 	}
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the carriage has finished raising
 	 */
 	public boolean raiseCarriage() {
@@ -106,7 +129,7 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the carriage has finished lowering
 	 */
 	public boolean lowerCarriage() {
@@ -121,11 +144,11 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the arm has finished raising
 	 */
 	public boolean raiseArmAuto() {
-		if (upLimitSwitch.get()) {
+		if (downLimitSwitch.get()) {
 			arm.set(0.25);
 			return false;
 		} else {
@@ -136,11 +159,11 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the arm has finished lowering
 	 */
 	public boolean lowerArmAuto() {
-		if (downLimitSwitch.get()) {
+		if (upLimitSwitch.get()) {
 			arm.set(-0.25);
 			return false;
 		} else {
@@ -155,6 +178,23 @@ public class Elevator {
 		Timer.delay(0.5);
 		flip1.set(Value.kForward);
 		flip2.set(Value.kForward);
+<<<<<<< HEAD
+=======
+	}
+
+	public void flipTeleop() {
+		if (joystick.getRawButton(5)) {
+			flipUp();
+			release = false;
+		} else if (!release) {
+			release = true;
+			flipDown();
+			timeOfLastRetraction = System.currentTimeMillis();
+		} else if (System.currentTimeMillis() - timeOfLastRetraction > 1000) {
+			flipReset();
+			timeOfLastRetraction = Long.MAX_VALUE;
+		}
+>>>>>>> 1884Programmers/master
 	}
 
 	public void flipUp() {

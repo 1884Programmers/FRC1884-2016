@@ -8,28 +8,36 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-class FlipperUp extends Command {
-	
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	setTimeout(0.5);
-    	Elevator.INSTANCE.flipUp();
-    }
+public class FlipperUp extends Command {
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {}
+	// Time in milliseconds
+	long startTime;
+	int timeOutTime = 500;
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Elevator.INSTANCE.flipUp();
+		Timer.delay(0.5);
+		startTime = System.currentTimeMillis();
+		
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return (System.currentTimeMillis() - startTime >= timeOutTime);
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		Elevator.INSTANCE.flipReset();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }
