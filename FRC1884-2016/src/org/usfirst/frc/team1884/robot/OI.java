@@ -1,5 +1,14 @@
 package org.usfirst.frc.team1884.robot;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+=======
+=======
+>>>>>>> 1884Programmers/master
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperDown;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
 import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperUp;
@@ -9,6 +18,10 @@ import org.usfirst.frc.team1884.robot.triggers.POVUpOp;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
+>>>>>>> 1884Programmers/master
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,6 +29,15 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
  */
 public class OI {
 	Joystick driveStick = NEXUS.DRIVESTICK, opStick = NEXUS.OPERATORSTICK;
+<<<<<<< HEAD
+<<<<<<< HEAD
+	JoystickButton opButton1 = new JoystickButton(opStick, 1);
+	
+	public OI() {
+		opButton1.whenPressed(new FlipperSequence());
+=======
+=======
+>>>>>>> 1884Programmers/master
 	JoystickButton button5 = new JoystickButton(opStick, 5), button6 = new JoystickButton(opStick, 6);
 	Trigger opPOVUp = new POVUpOp();
 	Trigger opPOVDown = new POVDownOp();
@@ -25,5 +47,9 @@ public class OI {
 //		opPOVDown.whenActive(new FlipperDown());
 		button5.whenPressed(new FlipperDown());
 		button6.whenPressed(new FlipperUp());
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
+>>>>>>> 1884Programmers/master
 	}
 }
