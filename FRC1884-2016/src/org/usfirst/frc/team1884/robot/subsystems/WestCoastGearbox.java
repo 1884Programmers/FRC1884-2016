@@ -38,7 +38,7 @@ public class WestCoastGearbox {
 	public static final WestCoastGearbox INSTANCE;
 
 	private boolean isInverted = false;
-	private boolean isArcadeDrive = true;
+	private boolean isTankDrive = false;
 
 	private boolean joystickOneFirst = false;
 
@@ -64,7 +64,7 @@ public class WestCoastGearbox {
 		leftSide.setInverted(true);
 		rightSide.setInverted(false);
 	}
-
+	
 	public void teleopInit() {
 		// TODO (probably nothing)
 	}
@@ -93,8 +93,12 @@ public class WestCoastGearbox {
 		// always be extending in order to not rek our robot
 		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 	}
-
+	
+	boolean toggleDrive;
+	boolean toggleDriveLast;
+	
 	public void teleopDrive() {
+<<<<<<< HEAD
 		// if (isArcadeDrive) {
 		// drive.arcadeDrive(joystick);
 		// drive.drive(joystick.getY() / 4, joystick.getX() / 4);
@@ -106,6 +110,21 @@ public class WestCoastGearbox {
 		// if (joystick.getRawButton(5)) {
 		// isArcadeDrive = !isArcadeDrive;
 		// }
+=======
+		if(isTankDrive) {
+			drive.tankDrive(joystick, joystick);
+		} else {
+			notTheStupidWayToDriveARobot();
+		}
+		
+		if (joystick.getRawButton(5) && !toggleDrive && !toggleDriveLast) {
+			isTankDrive = !isTankDrive;
+			toggleDrive = true;
+		} else {
+			toggleDrive = false;
+		}
+		toggleDriveLast = toggleDrive;
+>>>>>>> 1884Programmers/master
 	}
 
 	private void notTheStupidWayToDriveARobot() {
