@@ -12,14 +12,18 @@ public class WestCoastGearbox {
 	private static final int RIGHT_CHANNEL = 1;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/** @deprecated*/
 	private DoubleSolenoid gearShiftPush, ptoPush;
+=======
+>>>>>>> 1884Programmers/master
 =======
 >>>>>>> 1884Programmers/master
 	private Joystick joystick;
 	private RobotDrive drive;
 	private VictorSP leftSide, rightSide;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/** @deprecated*/
 	private static final int GEAR_SHIFT_CHANNEL_EXTEND = 4;
@@ -40,6 +44,8 @@ public class WestCoastGearbox {
 
 =======
 >>>>>>> 1884Programmers/master
+=======
+>>>>>>> 1884Programmers/master
 	public static final WestCoastGearbox INSTANCE;
 
 	private boolean isInverted = false;
@@ -53,13 +59,19 @@ public class WestCoastGearbox {
 
 	private WestCoastGearbox() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND, GEAR_SHIFT_CHANNEL_RETRACT);
 		//ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND, PTO_CHANNEL_RETRACT);
 =======
+=======
+>>>>>>> 1884Programmers/master
 		// gearShiftPush = new DoubleSolenoid(GEAR_SHIFT_CHANNEL_EXTEND,
 		// GEAR_SHIFT_CHANNEL_RETRACT);
 		// ptoPush = new DoubleSolenoid(PTO_CHANNEL_EXTEND,
 		// PTO_CHANNEL_RETRACT);
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
 >>>>>>> 1884Programmers/master
 
 		joystick = NEXUS.DRIVESTICK;
@@ -81,7 +93,11 @@ public class WestCoastGearbox {
 	public void teleopPeriodic() {
 		teleopDrive();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		reverse();
+=======
+		// reverse();
+>>>>>>> 1884Programmers/master
 =======
 		// reverse();
 >>>>>>> 1884Programmers/master
@@ -101,6 +117,7 @@ public class WestCoastGearbox {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/** @deprecated*/
 	public void secureGearShift() {
 		// RIP Gear Shift, our dearly beloved, which Mr. Ali would like to
@@ -108,6 +125,8 @@ public class WestCoastGearbox {
 		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 	}
 
+=======
+>>>>>>> 1884Programmers/master
 =======
 >>>>>>> 1884Programmers/master
 	public void teleopDrive() {

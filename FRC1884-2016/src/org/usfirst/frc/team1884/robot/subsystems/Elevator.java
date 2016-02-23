@@ -25,6 +25,10 @@ public class Elevator {
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1884Programmers/master
 =======
 
 >>>>>>> 1884Programmers/master
@@ -61,6 +65,7 @@ public class Elevator {
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
@@ -69,6 +74,8 @@ public class Elevator {
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 		
 =======
+=======
+>>>>>>> 1884Programmers/master
 
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
@@ -76,6 +83,9 @@ public class Elevator {
 		downLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		upLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
 >>>>>>> 1884Programmers/master
 		joystick = NEXUS.OPERATORSTICK;
 
@@ -179,7 +189,10 @@ public class Elevator {
 		flip1.set(Value.kForward);
 		flip2.set(Value.kForward);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1884Programmers/master
 	}
 
 	public void flipTeleop() {
@@ -194,6 +207,9 @@ public class Elevator {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
 >>>>>>> 1884Programmers/master
 	}
 

@@ -5,6 +5,10 @@ import org.usfirst.frc.team1884.robot.NEXUS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import edu.wpi.first.wpilibj.Joystick;
+>>>>>>> 1884Programmers/master
 =======
 import edu.wpi.first.wpilibj.Joystick;
 >>>>>>> 1884Programmers/master
@@ -87,7 +91,10 @@ public class Shooter {
 		internalIntake.set(0);
 		getExternalIntake().set(0);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1884Programmers/master
 	}
 
 	public void shootLowGoal(){
@@ -104,6 +111,9 @@ public class Shooter {
 	public void holdBall() {
 		internalIntake.set(0.5);
 		getExternalIntake().set(-0.5);
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
 >>>>>>> 1884Programmers/master
 	}
 
@@ -113,7 +123,10 @@ public class Shooter {
 	 */
 	public void teleopPeriodic() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1884Programmers/master
 		if (joystick.getRawAxis(3) > 0.1) {
 			shootActually();
 		} else {
@@ -134,6 +147,9 @@ public class Shooter {
 		} else {
 			resetShooter();
 		}
+<<<<<<< HEAD
+>>>>>>> 1884Programmers/master
+=======
 >>>>>>> 1884Programmers/master
 	}
 
