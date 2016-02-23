@@ -1,8 +1,6 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
-import org.usfirst.frc.team1884.robot.commands.defense_manipulator.FlipperSequence;
-import org.usfirst.frc.team1884.robot.commands.shooter.ShootAllOn;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
@@ -17,9 +15,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	
-	CameraServer server;
 
+	CameraServer server;
 	Joystick opJoystick;
 
 	JoystickButton opButton1;
@@ -28,7 +25,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
-		
+
 		server = CameraServer.getInstance();
 		server.setQuality(50);
 		server.startAutomaticCapture("cam0");
@@ -64,6 +61,6 @@ public class Robot extends IterativeRobot {
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
-		
+
 	}
 }

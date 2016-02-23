@@ -18,8 +18,8 @@ public class Hanger {
 	private static final int HANGING_BUTTON = 8;
 	private boolean hasHung = false;
 	private static final int MOTOR_CHANNEL = 5;
-	private static final int ENCODER_CHANNEL_A = 0;
-	private static final int ENCODER_CHANNEL_B = 1;
+	private static final int ENCODER_CHANNEL_A = 9;
+	private static final int ENCODER_CHANNEL_B = 8;
 
 	private Joystick joystick;
 	private CANTalon motor;
@@ -36,7 +36,7 @@ public class Hanger {
 	}
 
 	public void teleopInit() {
-		// TODO (probably nothing)
+		encoder.reset();
 	}
 
 	public void teleopPeriodic() {
@@ -44,6 +44,8 @@ public class Hanger {
 			hang();
 			hasHung = true;
 		}
+		System.out.println(encoder.getRaw());
+		
 	}
 
 	public void hang() {

@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import org.usfirst.frc.team1884.robot.NEXUS;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -27,8 +25,8 @@ public class Elevator {
 
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	private static boolean release = true;
 
-	private static boolean release = false;
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
 	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
@@ -41,8 +39,8 @@ public class Elevator {
 	private DoubleSolenoid flip1, flip2;
 	private Joystick joystick;
 
-	private DigitalInput upLimitSwitch;
 	private DigitalInput downLimitSwitch;
+	private DigitalInput upLimitSwitch;
 
 	private Encoder encoder;
 
@@ -64,13 +62,15 @@ public class Elevator {
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
 
-		joystick = NEXUS.OPERATORSTICK;
+		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
+		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
 	}
 
 	public void robotInit() {
 		encoder.reset(); // starts at top before match
+		this.flipReset();
 	}
 
 	public void teleopInit() {
@@ -79,27 +79,28 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		if (encoder.getDistance() >= ENCODER_MAX) {
-			carriage.set(0.1);
-		} else if (encoder.getDistance() <= ENCODER_MIN) {
-			carriage.set(-0.1);
-		} else {
+		/*
+		 * if (encoder.getDistance() >= ENCODER_MAX) { carriage.set(0.1); } else
+		 * if (encoder.getDistance() <= ENCODER_MIN) { carriage.set(-0.1); }
+		 * else
+		 */ if (Math.abs(joystick.getY()) > 0.1) {
 			carriage.set(-joystick.getY());
+		} else {
+			carriage.set(0);
 		}
 
-		if ((joystick.getRawAxis(5) > 0 && upLimitSwitch.get())
-				|| (joystick.getRawAxis(5) < 0 && downLimitSwitch.get())) {
-			arm.set(joystick.getRawAxis(5));
+		if (((joystick.getRawAxis(5) > 0 && !downLimitSwitch.get())
+				|| (joystick.getRawAxis(5) < 0 && upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
+			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
-
 		flipTeleop();
 	}
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the carriage has finished raising
 	 */
 	public boolean raiseCarriage() {
@@ -114,7 +115,7 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the carriage has finished lowering
 	 */
 	public boolean lowerCarriage() {
@@ -129,11 +130,11 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the arm has finished raising
 	 */
 	public boolean raiseArmAuto() {
-		if (upLimitSwitch.get()) {
+		if (downLimitSwitch.get()) {
 			arm.set(0.25);
 			return false;
 		} else {
@@ -144,11 +145,11 @@ public class Elevator {
 
 	/**
 	 * Needs to be called in a loop
-	 * 
+	 *
 	 * @return Whether or not the arm has finished lowering
 	 */
 	public boolean lowerArmAuto() {
-		if (downLimitSwitch.get()) {
+		if (upLimitSwitch.get()) {
 			arm.set(-0.25);
 			return false;
 		} else {
@@ -177,6 +178,7 @@ public class Elevator {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}
+
 	}
 
 	public void flipUp() {
