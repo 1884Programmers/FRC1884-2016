@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
+import org.usfirst.frc.team1884.robot.NEXUS;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -7,7 +9,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Elevator {
 	public static final Elevator INSTANCE;
@@ -23,13 +25,13 @@ public class Elevator {
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
 
-	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
-	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
+	private static int UP_LIMIT_SWITCH_CHANNEL = 2;
+	private static int DOWN_LIMIT_SWITCH_CHANNEL = 3;
 	private static boolean release = true;
 
 	private static long timeOfLastRetraction = Long.MAX_VALUE;
 
-	private static int ENCODER_CHANNEL_A = 0, ENCODER_CHANNEL_B = 1;
+	private static int ENCODER_CHANNEL_A = 3, ENCODER_CHANNEL_B = 4;
 
 	private static int ENCODER_MAX = Integer.MAX_VALUE, ENCODER_MIN = Integer.MIN_VALUE;
 
@@ -66,10 +68,12 @@ public class Elevator {
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
+		
+		joystick = NEXUS.OPERATORSTICK;
 	}
 
 	public void robotInit() {
-		encoder.reset(); // starts at top before match
+		encoder.reset(); // starts at bottom before match
 		this.flipReset();
 	}
 
@@ -83,7 +87,8 @@ public class Elevator {
 		 * if (encoder.getDistance() >= ENCODER_MAX) { carriage.set(0.1); } else
 		 * if (encoder.getDistance() <= ENCODER_MIN) { carriage.set(-0.1); }
 		 * else
-		 */ if (Math.abs(joystick.getY()) > 0.1) {
+		 */
+		if (Math.abs(joystick.getY()) > 0.1) {
 			carriage.set(-joystick.getY());
 		} else {
 			carriage.set(0);
@@ -96,6 +101,8 @@ public class Elevator {
 			arm.set(0);
 		}
 		flipTeleop();
+		
+		System.out.println(encoder.get());
 	}
 
 	/**
@@ -142,6 +149,10 @@ public class Elevator {
 		}
 		return true;
 	}
+	
+	public void raiseArm() {
+		arm.set(0.25);
+	}
 
 	/**
 	 * Needs to be called in a loop
@@ -156,6 +167,14 @@ public class Elevator {
 			arm.set(0);
 		}
 		return true;
+	}
+	
+	public void lowerArm() {
+		arm.set(-0.25);
+	}
+	
+	public void resetArm() {
+		arm.set(0);
 	}
 
 	public void flipAuto() {
@@ -178,7 +197,6 @@ public class Elevator {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}
-
 	}
 
 	public void flipUp() {
@@ -194,5 +212,17 @@ public class Elevator {
 	public void flipReset() {
 		flip1.set(Value.kOff);
 		flip2.set(Value.kOff);
+	}
+
+	public double getCarriageDistance() {
+		return encoder.getDistance();
+	}
+
+	public void setArm(double outputValue) {
+		arm.set(outputValue);
+	}
+	
+	public void setCarriage(double outputValue) {
+		carriage.set(outputValue);
 	}
 }
