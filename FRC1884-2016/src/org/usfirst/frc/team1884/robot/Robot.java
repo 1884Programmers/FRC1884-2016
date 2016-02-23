@@ -17,7 +17,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	CameraServer server;
-
 	Joystick opJoystick;
 
 	JoystickButton opButton1;
@@ -62,5 +61,6 @@ public class Robot extends IterativeRobot {
 		Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
+
 	}
 }
