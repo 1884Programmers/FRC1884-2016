@@ -4,27 +4,20 @@ import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import edu.wpi.first.wpilibj.Joystick;
->>>>>>> 1884Programmers/master
-=======
-import edu.wpi.first.wpilibj.Joystick;
->>>>>>> 1884Programmers/master
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Shooter {
-	private Joystick joystick;
-
 	private static final int SHOOTER_CHANNEL = 6;
 	private static final int INTERNAL_INTAKE_CHANNEL = 3;
 	private static final int EXTERNAL_INTAKE_CHANNEL = 4;
 
 	private static final double kp = 1.0;
 	private static final int setVelocity = 29000;
+
 	public static final Shooter INSTANCE;
+
+	private Joystick joystick;
 
 	static {
 		INSTANCE = new Shooter();
@@ -90,14 +83,9 @@ public class Shooter {
 		shooter.set(0);
 		internalIntake.set(0);
 		getExternalIntake().set(0);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1884Programmers/master
 	}
 
-	public void shootLowGoal(){
+	public void shootLowGoal() {
 		shooter.set(-1);
 		internalIntake.set(-1);
 		getExternalIntake().set(1);
@@ -111,10 +99,6 @@ public class Shooter {
 	public void holdBall() {
 		internalIntake.set(0.5);
 		getExternalIntake().set(-0.5);
-<<<<<<< HEAD
->>>>>>> 1884Programmers/master
-=======
->>>>>>> 1884Programmers/master
 	}
 
 	/**
@@ -122,35 +106,26 @@ public class Shooter {
 	 *
 	 */
 	public void teleopPeriodic() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1884Programmers/master
 		if (joystick.getRawAxis(3) > 0.1) {
 			shootActually();
 		} else {
 			resetShooter();
 		}
-		if (joystick.getRawAxis(2) > 0.1){
+		if (joystick.getRawAxis(2) > 0.1) {
 			shootLowGoal();
 		} else {
 			resetShooter();
 		}
-		if(joystick.getRawButton(1)) {
+		if (joystick.getRawButton(1)) {
 			releaseBall();
 		} else {
 			resetShooter();
 		}
-		if(joystick.getRawButton(2)) {
+		if (joystick.getRawButton(2)) {
 			holdBall();
 		} else {
 			resetShooter();
 		}
-<<<<<<< HEAD
->>>>>>> 1884Programmers/master
-=======
->>>>>>> 1884Programmers/master
 	}
 
 	public CANTalon getShooter() {

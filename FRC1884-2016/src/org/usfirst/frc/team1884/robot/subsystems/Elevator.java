@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
-import org.usfirst.frc.team1884.robot.NEXUS;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,14 +22,7 @@ public class Elevator {
 	private static int FLIP_CHANNEL_RETRACT_1 = 1;
 	private static int FLIP_CHANNEL_EXTEND_2 = 2;
 	private static int FLIP_CHANNEL_RETRACT_2 = 3;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 1884Programmers/master
-=======
-
->>>>>>> 1884Programmers/master
 	private static int UP_LIMIT_SWITCH_CHANNEL = 4;
 	private static int DOWN_LIMIT_SWITCH_CHANNEL = 5;
 	private static boolean release = true;
@@ -64,30 +55,15 @@ public class Elevator {
 
 		arm = new CANTalon(ARM_CHANNEL);
 		arm.enableBrakeMode(true);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
+
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
-		
+
 		upLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
 		downLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
-		
-=======
-=======
->>>>>>> 1884Programmers/master
 
 		flip1 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_1, FLIP_CHANNEL_RETRACT_1);
 		flip2 = new DoubleSolenoid(FLIP_CHANNEL_EXTEND_2, FLIP_CHANNEL_RETRACT_2);
-
-		downLimitSwitch = new DigitalInput(UP_LIMIT_SWITCH_CHANNEL);
-		upLimitSwitch = new DigitalInput(DOWN_LIMIT_SWITCH_CHANNEL);
-
-<<<<<<< HEAD
->>>>>>> 1884Programmers/master
-=======
->>>>>>> 1884Programmers/master
-		joystick = NEXUS.OPERATORSTICK;
 
 		encoder = new Encoder(ENCODER_CHANNEL_A, ENCODER_CHANNEL_B);
 	}
@@ -103,11 +79,11 @@ public class Elevator {
 	}
 
 	public void teleopPeriodic() {
-		/* if (encoder.getDistance() >= ENCODER_MAX) {
-			carriage.set(0.1);
-		} else if (encoder.getDistance() <= ENCODER_MIN) {
-			carriage.set(-0.1);
-		} else*/ if (Math.abs(joystick.getY()) > 0.1){
+		/*
+		 * if (encoder.getDistance() >= ENCODER_MAX) { carriage.set(0.1); } else
+		 * if (encoder.getDistance() <= ENCODER_MIN) { carriage.set(-0.1); }
+		 * else
+		 */ if (Math.abs(joystick.getY()) > 0.1) {
 			carriage.set(-joystick.getY());
 		} else {
 			carriage.set(0);
@@ -188,11 +164,6 @@ public class Elevator {
 		Timer.delay(0.5);
 		flip1.set(Value.kForward);
 		flip2.set(Value.kForward);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1884Programmers/master
 	}
 
 	public void flipTeleop() {
@@ -207,10 +178,7 @@ public class Elevator {
 			flipReset();
 			timeOfLastRetraction = Long.MAX_VALUE;
 		}
-<<<<<<< HEAD
->>>>>>> 1884Programmers/master
-=======
->>>>>>> 1884Programmers/master
+
 	}
 
 	public void flipUp() {
