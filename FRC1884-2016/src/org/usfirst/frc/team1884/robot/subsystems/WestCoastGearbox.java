@@ -64,7 +64,7 @@ public class WestCoastGearbox {
 		leftSide.setInverted(true);
 		rightSide.setInverted(false);
 	}
-	
+
 	public void teleopInit() {
 		// TODO (probably nothing)
 	}
@@ -93,17 +93,17 @@ public class WestCoastGearbox {
 		// always be extending in order to not rek our robot
 		gearShiftPush.set(DoubleSolenoid.Value.kForward);
 	}
-	
+
 	boolean toggleDrive;
 	boolean toggleDriveLast;
-	
+
 	public void teleopDrive() {
-		if(isTankDrive) {
+		if (isTankDrive) {
 			drive.tankDrive(joystick, joystick);
 		} else {
 			limitedSwerve();
 		}
-		
+
 		if (joystick.getRawButton(5) && !toggleDrive && !toggleDriveLast) {
 			isTankDrive = !isTankDrive;
 			toggleDrive = true;
