@@ -67,7 +67,7 @@ Order Of Tags:
 **Prerequisites**
 * A Github Account
 * [Github Desktop](http://desktop.github.com)
-* Eclipse (set up with [WPILIB](https://wpilib.screenstepslive.com/s/4485/m/13809/l/145002-installing-eclipse-c-java)) (recommended)  
+* Eclipse (set up with [WPILIBJ](https://wpilib.screenstepslive.com/s/4485/m/13809/l/145002-installing-eclipse-c-java)) (recommended)  
   
 **Setup**  
 1. Ask the programming team to add you to the 1884Programmers organization.  
