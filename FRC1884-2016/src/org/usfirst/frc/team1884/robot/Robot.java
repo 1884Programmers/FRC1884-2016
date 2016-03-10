@@ -21,18 +21,14 @@ public class Robot extends IterativeRobot {
 
 	JoystickButton opButton1;
 	JoystickButton opButton2;
-	
-	Compressor comp;
 
 	public void robotInit() {
 		oi = new OI();
 		opJoystick = NEXUS.OPERATORSTICK;
-
-		comp = new Compressor(0);
 		
-		// server = CameraServer.getInstance();
-		// server.setQuality(50);
-		// server.startAutomaticCapture("cam0");
+		server = CameraServer.getInstance();
+		server.setQuality(50);
+		server.startAutomaticCapture("cam0");
 	}
 
 	/**
@@ -53,7 +49,6 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of operator control
 	 */
 	public void teleopInit() {
-		comp.start();
 	}
 
 	/**
@@ -61,31 +56,12 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		/*Replace with default commands*/
+		
 		WestCoastGearbox.INSTANCE.teleopPeriodic();
 		// Elevator.INSTANCE.teleopPeriodic();
 		Aimer.INSTANCE.teleopPeriodic();
 		Shooter.INSTANCE.teleopPeriodic();
-		
-		/* if(opJoystick.getPOV() == 0) {
-			Shooter.INSTANCE.getExternalIntake().set(-1);
-		} else if(opJoystick.getPOV() == 180) {
-			Shooter.INSTANCE.getExternalIntake().set(1);
-		} else {
-			Shooter.INSTANCE.getExternalIntake().set(0);
-		}
-		
-		if(opJoystick.getPOV() == 90) {
-			Shooter.INSTANCE.getInternalIntake().set(1);
-		} else if(opJoystick.getPOV() == 270) {
-			Shooter.INSTANCE.getInternalIntake().set(-1);
-		} else {
-			Shooter.INSTANCE.getInternalIntake().set(0);
-		}
-		
-		if(opJoystick.getRawButton(3)) {
-			Shooter.INSTANCE.getShooter().set(1);
-		} else {
-			Shooter.INSTANCE.getShooter().set(0);
-		} */
 	}
 }
