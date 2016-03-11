@@ -5,21 +5,23 @@ import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Spins internal intake and shooter at full speed and external intake at half-speed.
+ *
  */
-public class ShootAllOn extends Command {
+public class ExpellBall extends Command {
 	
-	public ShootAllOn() {
+	long startTime;
+	int timeOutTime = 500;
+	
+	public ExpellBall() {
 		this.requires(Shooter.INSTANCE);
 	}
 
-	boolean isFinished = false;
-
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Shooter.INSTANCE.getShooter().set(1);
-		Shooter.INSTANCE.getInternalIntake().set(1);
-		Shooter.INSTANCE.getExternalIntake().set(-0.5);
+		startTime = System.currentTimeMillis();
+		Shooter.INSTANCE.getShooter().set(-1);
+		Shooter.INSTANCE.getInternalIntake().set(-1);
+		Shooter.INSTANCE.getExternalIntake().set(0.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -29,7 +31,7 @@ public class ShootAllOn extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isFinished;
+		return (System.currentTimeMillis() - startTime >= timeOutTime);
 	}
 
 	// Called once after isFinished returns true

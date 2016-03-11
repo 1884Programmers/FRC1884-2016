@@ -30,7 +30,8 @@ public class Intake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	Shooter.INSTANCE.getInternalIntake().set(0);
+    	Shooter.INSTANCE.getExternalIntake().set(0);
     }
 
     // Called when another command which requires one or more of the same
