@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
+import org.usfirst.frc.team1884.robot.commands.ElevatorTeleopPeriodic;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -10,8 +11,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Elevator {
+public class Elevator extends Subsystem {
 	public static final Elevator INSTANCE;
 
 	private static int CARRIAGE_CHANNEL = 0;
@@ -224,5 +226,10 @@ public class Elevator {
 	
 	public void setCarriage(double outputValue) {
 		carriage.set(outputValue);
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		this.setDefaultCommand(new ElevatorTeleopPeriodic());	
 	}
 }

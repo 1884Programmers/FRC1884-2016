@@ -2,7 +2,6 @@ package org.usfirst.frc.team1884.robot.commands.defense_manipulator;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

@@ -11,12 +11,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Position implements Choices {
 
 	private int position;
+	public static boolean shoot = false;
 
 	public Position(int position) {
 		this.position = position;
 	}
-
+	
 	public void start() {
+		
+	}
+	
+	public void startShoot() {
 		Spike.INSTANCE.turnOn();
 		switch (position) {
 		case 1:

@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 public class PortcullisChosen extends Trigger {
     
     public boolean get() {
-        return Defense.isPortcullis;
+    	boolean isPortcullis = Defense.isPortcullis;
+    	Defense.isPortcullis = false;
+        return isPortcullis;
     }
 }

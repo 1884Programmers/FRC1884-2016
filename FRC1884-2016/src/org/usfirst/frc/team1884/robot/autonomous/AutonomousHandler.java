@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1884.robot.autonomous;
 
-import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

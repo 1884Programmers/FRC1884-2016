@@ -10,6 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoFlipSetup extends Command {
 
+	public AutoFlipSetup() {
+		this.requires(Elevator.INSTANCE);
+		this.requires(WestCoastGearbox.INSTANCE);
+	}
+	
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		WestCoastGearbox.INSTANCE.setMotorSpeed(-1, 1);

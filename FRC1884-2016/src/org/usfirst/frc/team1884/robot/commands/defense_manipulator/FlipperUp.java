@@ -2,7 +2,6 @@ package org.usfirst.frc.team1884.robot.commands.defense_manipulator;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,18 +11,8 @@ public class FlipperUp extends Command {
 
 	// Time in milliseconds
 	long startTime;
-	int timeOutTime;
+	int timeOutTime = 500;
 
-	public FlipperUp() {
-		super();
-		this.timeOutTime = 500;
-	}
-	
-	public FlipperUp(int timeOutTime) {
-		super();
-		this.timeOutTime = timeOutTime;
-	}
-	
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Elevator.INSTANCE.flipUp();
@@ -48,5 +37,4 @@ public class FlipperUp extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 	}
-	
 }

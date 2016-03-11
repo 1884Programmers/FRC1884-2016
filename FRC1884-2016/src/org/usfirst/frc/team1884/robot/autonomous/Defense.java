@@ -1,5 +1,4 @@
 
-
 package org.usfirst.frc.team1884.robot.autonomous;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
@@ -33,6 +32,8 @@ public class Defense implements Choices {
 	public void start() {
 		switch (defense) {
 		case PORTCULLIS:
+			// activates the PortcullisChosen trigger, which will do the command
+			// sequence which raises the portcullis
 			isPortcullis = true;
 			break;
 		case ROUGHTERRAIN:

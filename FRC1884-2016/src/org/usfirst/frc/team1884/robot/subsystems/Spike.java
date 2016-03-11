@@ -1,8 +1,9 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Spike {
+public class Spike extends Subsystem {
 
 	public final static Spike INSTANCE;
 
@@ -22,6 +23,12 @@ public class Spike {
 
 	public void turnOff() {
 		relay.set(Relay.Value.kOff);
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
