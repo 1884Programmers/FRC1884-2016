@@ -2,6 +2,7 @@ package org.usfirst.frc.team1884.robot.subsystems;
 
 import java.io.IOException;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @since 29/1/2016
  *
  */
-public class GRIP {
+public class GRIP extends Subsystem{
 	private NetworkTable table;
 
 	public final static GRIP INSTANCE;
@@ -59,5 +60,11 @@ public class GRIP {
 			return -1;
 		}
 		return centerX[largestIndex];
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }
