@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class FlipperSequence extends CommandGroup {
-    
     public  FlipperSequence() {
         addSequential(new FlipperUp());
         addSequential(new FlipperDown());
