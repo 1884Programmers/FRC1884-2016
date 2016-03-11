@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WestCoastGearboxTeleopPeriodic extends Command {
 
     public WestCoastGearboxTeleopPeriodic() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	this.requires(WestCoastGearbox.INSTANCE);
     }
 
     // Called just before this Command runs the first time

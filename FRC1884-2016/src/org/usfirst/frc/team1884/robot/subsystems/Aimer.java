@@ -3,8 +3,9 @@ package org.usfirst.frc.team1884.robot.subsystems;
 import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Aimer {
+public class Aimer extends Subsystem {
 
 	private final static double KP = 1.0 / 160.0;
 	private final static double SETPOINT = 160.0;
@@ -100,5 +101,11 @@ public class Aimer {
 		} else {
 			setup = false;
 		}
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1884.robot.commands.shooter;
 
-import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,6 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Intake extends Command {
 
+	public Intake() {
+		this.requires(Shooter.INSTANCE);
+	}
+	
     // Called just before this Command runs the first time
     protected void initialize() {
     	Shooter.INSTANCE.getInternalIntake().set(0.5);

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1884.robot.commands;
 
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,6 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Aim extends Command {
+	
+	public Aim() {
+		this.requires(Aimer.INSTANCE);
+		this.requires(WestCoastGearbox.INSTANCE);
+	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {

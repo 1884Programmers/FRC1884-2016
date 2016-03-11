@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterTeleopPeriodic extends Command {
 
     public ShooterTeleopPeriodic() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        this.requires(Shooter.INSTANCE);
     }
 
     // Called just before this Command runs the first time

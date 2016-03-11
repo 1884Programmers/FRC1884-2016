@@ -2,6 +2,7 @@ package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.Shooter;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class Robot extends IterativeRobot {
+public class ActualRobot extends IterativeRobot {
 
 	public static OI oi;
 
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called once at the beginning of operator control
 	 */
 	public void teleopInit() {
+		Elevator.INSTANCE.teleopInit();
 	}
 
 	/**
@@ -56,12 +58,5 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		/*Replace with default commands*/
-		
-		WestCoastGearbox.INSTANCE.teleopPeriodic();
-		// Elevator.INSTANCE.teleopPeriodic();
-		Aimer.INSTANCE.teleopPeriodic();
-		Shooter.INSTANCE.teleopPeriodic();
 	}
 }

@@ -1,17 +1,16 @@
 package org.usfirst.frc.team1884.robot.commands;
 
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AimerTeleopPeriodic extends Command {
+public class ElevatorTeleopPeriodic extends Command {
 
-    public AimerTeleopPeriodic() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ElevatorTeleopPeriodic() {
+        this.requires(Elevator.INSTANCE);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +19,7 @@ public class AimerTeleopPeriodic extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Aimer.INSTANCE.teleopPeriodic();
+    	Elevator.INSTANCE.teleopPeriodic();
     }
 
     // Make this return true when this Command no longer needs to run execute()

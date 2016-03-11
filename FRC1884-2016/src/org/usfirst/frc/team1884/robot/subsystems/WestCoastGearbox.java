@@ -1,13 +1,15 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
+import org.usfirst.frc.team1884.robot.commands.WestCoastGearboxTeleopPeriodic;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class WestCoastGearbox {
+public class WestCoastGearbox extends Subsystem {
 	private static final int LEFT_CHANNEL = 0;
 	private static final int RIGHT_CHANNEL = 1;
 
@@ -140,5 +142,10 @@ public class WestCoastGearbox {
 			leftSide.set(joystick.getRawAxis(4));
 			rightSide.set(-joystick.getRawAxis(4));
 		}
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		this.setDefaultCommand(new WestCoastGearboxTeleopPeriodic());
 	}
 }

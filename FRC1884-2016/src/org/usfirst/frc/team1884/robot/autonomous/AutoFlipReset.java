@@ -9,6 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoFlipReset extends Command {
 
+	public AutoFlipReset() {
+		this.requires(Elevator.INSTANCE);
+	}
 
     // Called just before this Command runs the first time
     protected void initialize() {

@@ -1,13 +1,15 @@
 package org.usfirst.frc.team1884.robot.subsystems;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
+import org.usfirst.frc.team1884.robot.commands.ShooterTeleopPeriodic;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Shooter {
+public class Shooter extends Subsystem {
 	private static final int SHOOTER_CHANNEL = 6;
 	private static final int INTERNAL_INTAKE_CHANNEL = 3;
 	private static final int EXTERNAL_INTAKE_CHANNEL = 4;
@@ -128,5 +130,10 @@ public class Shooter {
 
 	public CANTalon getExternalIntake() {
 		return externalIntake;
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		this.setDefaultCommand(new ShooterTeleopPeriodic());
 	}
 }
