@@ -73,7 +73,6 @@ public class Shooter extends Subsystem {
 	public void shootActually() {
 		shooter.set(1);
 		internalIntake.set(1);
-		//externalIntake.set(-1);
 	}
 
 	public void intake() {
@@ -111,7 +110,7 @@ public class Shooter extends Subsystem {
 	 *
 	 */
 	public void teleopPeriodic() {
-		if (joystick.getRawAxis(3) > 0.1 && joystick.getRawButton(4)) {
+		if (joystick.getRawAxis(3) > 0.1) {
 			pickUp();
 			shootActually();
 		} else if (joystick.getRawAxis(2) > 0.1) {
@@ -120,8 +119,6 @@ public class Shooter extends Subsystem {
 			releaseBall();
 		} else if (joystick.getRawButton(2)) {
 			holdBall();
-		} else if (joystick.getRawAxis(3) > 0.1 ){
-			shootActually();
 		} else {
 			resetShooter();
 		}
