@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @since 29/1/2016
  *
  */
-public class GRIP extends Subsystem{
+public class GRIP extends Subsystem {
 	private NetworkTable table;
 
 	public final static GRIP INSTANCE;
