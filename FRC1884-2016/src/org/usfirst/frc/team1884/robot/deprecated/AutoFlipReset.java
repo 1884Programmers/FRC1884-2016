@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.autonomous;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+@Deprecated
 public class AutoFlipReset extends Command {
 
 	public AutoFlipReset() {

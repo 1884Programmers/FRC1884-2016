@@ -1,10 +1,11 @@
-package org.usfirst.frc.team1884.robot.commands.defense_manipulator;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
+@Deprecated
 public class FlipperSequence extends CommandGroup {
     public  FlipperSequence() {
         addSequential(new FlipperUp());

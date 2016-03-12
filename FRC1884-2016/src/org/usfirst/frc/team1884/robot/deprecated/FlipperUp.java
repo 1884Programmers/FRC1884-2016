@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.commands.defense_manipulator;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FlipperDown extends Command {
+@Deprecated
+public class FlipperUp extends Command {
 
 	// Time in milliseconds
 	long startTime;
@@ -15,7 +16,7 @@ public class FlipperDown extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Elevator.INSTANCE.flipDown();
+		Elevator.INSTANCE.flipUp();
 		startTime = System.currentTimeMillis();
 	}
 
