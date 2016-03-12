@@ -10,6 +10,7 @@ public class Aimer extends Subsystem {
 	private final static double KP = 1.0 / 160.0;
 	private final static double SETPOINT = 160.0;
 	private final static double TOLERANCE = 5.0;
+	private static final double DISTANCE_FROM_TOWER = 56;
 
 	private double output;
 
@@ -49,6 +50,7 @@ public class Aimer extends Subsystem {
 			}
 		}
 		Spike.INSTANCE.turnOff();
+		p.setSetpoint(DISTANCE_FROM_TOWER);
 		output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
 		while (Math.abs(p.getError()) > TOLERANCE) {
 			output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
