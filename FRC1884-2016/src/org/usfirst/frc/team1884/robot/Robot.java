@@ -1,7 +1,8 @@
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
+import org.usfirst.frc.team1884.robot.autonomous.AutoChooser;
 import org.usfirst.frc.team1884.robot.autonomous.EasyAutonomous;
+import org.usfirst.frc.team1884.robot.deprecated.AutonomousHandler;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -30,14 +31,14 @@ public class Robot extends IterativeRobot {
 		server.setQuality(50);
 		server.startAutomaticCapture("cam0");
 		auto = new EasyAutonomous();
+		AutoChooser.setup();
 	}
 
 	/**
 	 * This function is called once at the beginning of autonomous
 	 */
 	public void autonomousInit() {
-//		AutonomousHandler.INSTANCE.autonomousInit();
-		auto.start();
+		AutoChooser.start();
 	}
 
 	/**

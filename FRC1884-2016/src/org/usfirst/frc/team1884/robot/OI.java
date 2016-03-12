@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.PortcullisRoutine;
-import org.usfirst.frc.team1884.robot.commands.Aim;
-import org.usfirst.frc.team1884.robot.commands.AimInterrupt;
-import org.usfirst.frc.team1884.robot.commands.shooter.ExpellBall;
+import org.usfirst.frc.team1884.robot.deprecated.Aim;
+import org.usfirst.frc.team1884.robot.deprecated.AimInterrupt;
+import org.usfirst.frc.team1884.robot.deprecated.ExpellBall;
 import org.usfirst.frc.team1884.robot.deprecated.FlipperDown;
 import org.usfirst.frc.team1884.robot.deprecated.FlipperUp;
 import org.usfirst.frc.team1884.robot.triggers.ExpellBallAuto;

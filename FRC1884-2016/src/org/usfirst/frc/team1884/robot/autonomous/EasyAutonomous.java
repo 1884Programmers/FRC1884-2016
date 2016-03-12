@@ -17,7 +17,7 @@ public class EasyAutonomous extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	WestCoastGearbox.INSTANCE.setMotorSpeed(-0.5, -0.5);
+    	WestCoastGearbox.INSTANCE.setMotorSpeed(-1, -1);
     	startTime = System.currentTimeMillis();
     }
 
@@ -27,7 +27,7 @@ public class EasyAutonomous extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (System.currentTimeMillis() - startTime >= 4000);
+        return (System.currentTimeMillis() - startTime >= 5000);
     }
 
     // Called once after isFinished returns true

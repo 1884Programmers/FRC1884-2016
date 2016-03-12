@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot;
 
-import org.usfirst.frc.team1884.robot.commands.Aim;
+import org.usfirst.frc.team1884.robot.deprecated.Aim;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;

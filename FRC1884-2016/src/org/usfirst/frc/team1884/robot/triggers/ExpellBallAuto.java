@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.triggers;
 
-import org.usfirst.frc.team1884.robot.autonomous.Position;
+import org.usfirst.frc.team1884.robot.deprecated.Position;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 

@@ -22,6 +22,7 @@ public class Hanger {
 	private static final int ENCODER_CHANNEL_B = 8;
 
 	private Joystick joystick;
+	@SuppressWarnings("unused")
 	private CANTalon motor;
 	private Encoder encoder;
 

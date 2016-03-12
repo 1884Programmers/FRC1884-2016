@@ -90,16 +90,15 @@ public class Elevator extends Subsystem {
 			carriage.set(0);
 		}
 
-		if (((joystick.getRawAxis(5) > 0 && downLimitSwitch.get())
+		/* if (((joystick.getRawAxis(5) > 0 && downLimitSwitch.get())
 					|| (joystick.getRawAxis(5) < 0 && !upLimitSwitch.get())
 					|| joystick.getRawButton(5))
 				&& Math.abs(joystick.getRawAxis(5)) > 0.2) {
 			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
-		}
+		} */
 		
-		/*
 		// No Limit Switches
 		if (((joystick.getRawAxis(5) > 0)
 				|| (joystick.getRawAxis(5) < 0)) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
@@ -107,7 +106,6 @@ public class Elevator extends Subsystem {
 		} else {
 			arm.set(0);
 		}
-		*/
 		
 //		flipTeleop();
 	}

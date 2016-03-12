@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1884.robot.autonomous;
 
+import org.usfirst.frc.team1884.robot.deprecated.AimSequence;
 import org.usfirst.frc.team1884.robot.deprecated.AutoFlip;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
