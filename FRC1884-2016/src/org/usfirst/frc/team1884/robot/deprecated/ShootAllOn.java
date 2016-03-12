@@ -1,27 +1,24 @@
-package org.usfirst.frc.team1884.robot.commands.shooter;
-
-import org.usfirst.frc.team1884.robot.subsystems.Shooter;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Spins internal intake and shooter at full speed and external intake at half-speed.
  */
-public class ExpellBall extends Command {
+@Deprecated
+public class ShootAllOn extends Command {
 	
-	long startTime;
-	int timeOutTime = 500;
-	
-	public ExpellBall() {
+	public ShootAllOn() {
 		this.requires(Shooter.INSTANCE);
 	}
 
+	boolean isFinished = false;
+
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		startTime = System.currentTimeMillis();
-		Shooter.INSTANCE.getShooter().set(-1);
-		Shooter.INSTANCE.getInternalIntake().set(-1);
-		Shooter.INSTANCE.getExternalIntake().set(0.5);
+		Shooter.INSTANCE.getShooter().set(1);
+		Shooter.INSTANCE.getInternalIntake().set(1);
+		Shooter.INSTANCE.getExternalIntake().set(-0.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,7 +28,7 @@ public class ExpellBall extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (System.currentTimeMillis() - startTime >= timeOutTime);
+		return isFinished;
 	}
 
 	// Called once after isFinished returns true

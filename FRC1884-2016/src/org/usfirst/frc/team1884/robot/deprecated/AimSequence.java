@@ -1,14 +1,11 @@
-package org.usfirst.frc.team1884.robot.autonomous;
-
-import org.usfirst.frc.team1884.robot.commands.Aim;
-import org.usfirst.frc.team1884.robot.deprecated.FlipperDown;
-import org.usfirst.frc.team1884.robot.deprecated.FlipperReset;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
+@Deprecated
 public class AimSequence extends CommandGroup {
     
     public  AimSequence() {

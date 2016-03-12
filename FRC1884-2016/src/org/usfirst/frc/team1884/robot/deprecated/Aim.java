@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
 import org.usfirst.frc.team1884.robot.subsystems.Aimer;
@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+@Deprecated
 public class Aim extends Command {
 	Joystick opJoystick;
 	

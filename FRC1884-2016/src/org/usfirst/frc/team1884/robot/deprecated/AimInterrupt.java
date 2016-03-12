@@ -1,22 +1,21 @@
-package org.usfirst.frc.team1884.robot.commands.shooter;
+package org.usfirst.frc.team1884.robot.deprecated;
 
-import org.usfirst.frc.team1884.robot.subsystems.Shooter;
+import org.usfirst.frc.team1884.robot.subsystems.Aimer;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Intake extends Command {
+@Deprecated
+public class AimInterrupt extends Command {
 
-	public Intake() {
-		this.requires(Shooter.INSTANCE);
-	}
-	
+    public AimInterrupt() {
+        requires(Aimer.INSTANCE);
+    }
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Shooter.INSTANCE.getInternalIntake().set(0.5);
-    	Shooter.INSTANCE.getExternalIntake().set(-0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,19 +24,15 @@ public class Intake extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Shooter.INSTANCE.getInternalIntake().set(0);
-    	Shooter.INSTANCE.getExternalIntake().set(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Shooter.INSTANCE.getInternalIntake().set(0);
-    	Shooter.INSTANCE.getExternalIntake().set(0);
     }
 }

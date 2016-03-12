@@ -1,20 +1,20 @@
-package org.usfirst.frc.team1884.robot.commands;
-
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AimInterrupt extends Command {
+public class AimSequenceSetup extends Command {
 
-    public AimInterrupt() {
-        requires(Aimer.INSTANCE);
+    public AimSequenceSetup() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,7 +23,7 @@ public class AimInterrupt extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
