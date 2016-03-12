@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1884.robot.deprecated;
 
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

@@ -1,5 +1,6 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
+@Deprecated
 public class Proportional {
 
 	private double kp;

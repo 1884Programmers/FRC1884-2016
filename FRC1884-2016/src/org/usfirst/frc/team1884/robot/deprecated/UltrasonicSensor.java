@@ -1,7 +1,8 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 
+@Deprecated
 public class UltrasonicSensor {
 	public static final UltrasonicSensor INSTANCE;
 

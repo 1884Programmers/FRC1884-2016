@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import java.io.IOException;
 
@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @author Kaito Arai
  * @version 1
  * @since 29/1/2016
- *
+ * 
  */
+@Deprecated
 public class GRIP extends Subsystem {
 	private NetworkTable table;
 
@@ -65,6 +66,6 @@ public class GRIP extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

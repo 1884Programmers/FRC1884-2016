@@ -2,7 +2,6 @@ package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
 import org.usfirst.frc.team1884.robot.commands.IntakeTeleopPeriodic;
-import org.usfirst.frc.team1884.robot.subsystems.Proportional;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
