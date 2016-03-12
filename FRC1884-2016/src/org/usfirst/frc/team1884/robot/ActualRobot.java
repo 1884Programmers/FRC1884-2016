@@ -1,12 +1,14 @@
 package org.usfirst.frc.team1884.robot;
 
 import org.usfirst.frc.team1884.robot.autonomous.AutonomousHandler;
+import org.usfirst.frc.team1884.robot.autonomous.EasyAutonomous;
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class ActualRobot extends IterativeRobot {
@@ -32,7 +34,9 @@ public class ActualRobot extends IterativeRobot {
 	 * This function is called once at the beginning of autonomous
 	 */
 	public void autonomousInit() {
-		AutonomousHandler.INSTANCE.autonomousInit();
+//		AutonomousHandler.INSTANCE.autonomousInit();
+		Command auto = new EasyAutonomous();
+		auto.start();
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class OI {
 		button6.whenPressed(new FlipperUp());
 		portcullisChosen.whenActive(new PortcullisRoutine());
 		expellBallAuto.whenActive(new ExpellBall());
-		driveLeftTrigger.whenActive(new Aim());
-		driveRightTrigger.whenActive(new AimInterrupt());
+//		driveLeftTrigger.whenActive(new Aim());
+//		driveRightTrigger.whenActive(new AimInterrupt());
 	}
 }
