@@ -46,7 +46,7 @@ public class Aimer extends Subsystem {
 		while (Math.abs(p.getError()) > TOLERANCE) {
 			if (!(GRIP.INSTANCE.getCenter() == -1)) {
 				output = p.getOutput(GRIP.INSTANCE.getCenter());
-				WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
+				WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
 			}
 		}
 		Spike.INSTANCE.turnOff();
@@ -54,7 +54,7 @@ public class Aimer extends Subsystem {
 		output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
 		while (Math.abs(p.getError()) > TOLERANCE) {
 			output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
-			WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
+			WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
 		}
 	}
 

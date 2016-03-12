@@ -119,6 +119,8 @@ public class Shooter extends Subsystem {
 			releaseBall();
 		} else if (joystick.getRawButton(2)) {
 			holdBall();
+		} else if(joystick.getRawButton(3)) {
+			this.shootLowGoal();
 		} else {
 			resetShooter();
 		}
