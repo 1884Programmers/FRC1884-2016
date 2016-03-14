@@ -1,12 +1,13 @@
-package org.usfirst.frc.team1884.robot;
+package org.usfirst.frc.team1884.robot.deprecated;
 
-import org.usfirst.frc.team1884.robot.deprecated.Aim;
+import org.usfirst.frc.team1884.robot.NEXUS;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
+@Deprecated
 public class AlignBot extends IterativeRobot {
 	Joystick opStick;
 	JoystickButton button1;

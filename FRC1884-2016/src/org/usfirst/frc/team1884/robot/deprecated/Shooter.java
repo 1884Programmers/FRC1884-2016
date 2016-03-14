@@ -147,6 +147,5 @@ public class Shooter extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		this.setDefaultCommand(new IntakeTeleopPeriodic());
 	}
 }
