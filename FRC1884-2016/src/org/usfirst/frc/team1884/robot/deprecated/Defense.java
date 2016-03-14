@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team1884.robot.autonomous;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.subsystems.Elevator;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
@@ -7,6 +7,7 @@ import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+@Deprecated
 public class Defense implements Choices {
 
 	private int defense;

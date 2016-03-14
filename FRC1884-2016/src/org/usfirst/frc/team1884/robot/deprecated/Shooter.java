@@ -1,7 +1,7 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
-import org.usfirst.frc.team1884.robot.commands.ShooterTeleopPeriodic;
+import org.usfirst.frc.team1884.robot.commands.IntakeTeleopPeriodic;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+@Deprecated
 public class Shooter extends Subsystem {
 	private static final int SHOOTER_CHANNEL = 6;
 	private static final int INTERNAL_INTAKE_CHANNEL = 3;
@@ -104,6 +105,10 @@ public class Shooter extends Subsystem {
 	public void pickUp() {
 		externalIntake.set(-1);
 	}
+	
+	public void stopInflux() {
+		externalIntake.set(1);
+	}
 
 	/**
 	 *
@@ -119,6 +124,10 @@ public class Shooter extends Subsystem {
 			releaseBall();
 		} else if (joystick.getRawButton(2)) {
 			holdBall();
+		} else if(joystick.getRawButton(3)) {
+			this.shootLowGoal();
+		} else if(joystick.getRawButton(5)) {
+			this.stopInflux();
 		} else {
 			resetShooter();
 		}
@@ -138,6 +147,5 @@ public class Shooter extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		this.setDefaultCommand(new ShooterTeleopPeriodic());
 	}
 }

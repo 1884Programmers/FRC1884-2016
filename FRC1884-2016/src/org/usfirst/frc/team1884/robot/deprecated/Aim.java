@@ -1,9 +1,6 @@
-package org.usfirst.frc.team1884.robot.commands;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
-import org.usfirst.frc.team1884.robot.subsystems.Aimer;
-import org.usfirst.frc.team1884.robot.subsystems.GRIP;
-import org.usfirst.frc.team1884.robot.subsystems.Spike;
 import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -12,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+@Deprecated
 public class Aim extends Command {
 	Joystick opJoystick;
 	

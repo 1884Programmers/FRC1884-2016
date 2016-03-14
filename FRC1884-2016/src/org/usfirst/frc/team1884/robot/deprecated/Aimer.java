@@ -1,10 +1,12 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import org.usfirst.frc.team1884.robot.NEXUS;
+import org.usfirst.frc.team1884.robot.subsystems.WestCoastGearbox;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+@Deprecated
 public class Aimer extends Subsystem {
 
 	private final static double KP = 1.0 / 160.0;
@@ -46,7 +48,7 @@ public class Aimer extends Subsystem {
 		while (Math.abs(p.getError()) > TOLERANCE) {
 			if (!(GRIP.INSTANCE.getCenter() == -1)) {
 				output = p.getOutput(GRIP.INSTANCE.getCenter());
-				WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
+				WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
 			}
 		}
 		Spike.INSTANCE.turnOff();
@@ -54,7 +56,7 @@ public class Aimer extends Subsystem {
 		output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
 		while (Math.abs(p.getError()) > TOLERANCE) {
 			output = p.getOutput(UltrasonicSensor.INSTANCE.getDistanceInches());
-			WestCoastGearbox.INSTANCE.setMotorSpeed(output, -output);
+			WestCoastGearbox.INSTANCE.setMotorSpeed(output, output);
 		}
 	}
 

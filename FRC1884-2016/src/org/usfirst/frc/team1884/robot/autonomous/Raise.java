@@ -10,6 +10,11 @@ public class Raise extends Command {
 	private static int CARRIAGE_POWER;
 	private static int DRIVE_POWER;
 	private static int TOP_LIMIT;
+	
+	public Raise() {
+		this.requires(Elevator.INSTANCE);
+		this.requires(WestCoastGearbox.INSTANCE);
+	}
 
 	@Override
 	protected void initialize() {

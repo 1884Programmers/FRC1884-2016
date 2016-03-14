@@ -1,12 +1,11 @@
-package org.usfirst.frc.team1884.robot.commands.shooter;
-
-import org.usfirst.frc.team1884.robot.subsystems.Shooter;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * Spins internal intake and shooter at full speed and external intake at half-speed.
  */
+@Deprecated
 public class ShootAllOn extends Command {
 	
 	public ShootAllOn() {

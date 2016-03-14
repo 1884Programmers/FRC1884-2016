@@ -1,21 +1,19 @@
-package org.usfirst.frc.team1884.robot.autonomous;
-
-import org.usfirst.frc.team1884.robot.subsystems.Elevator;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutoFlipReset extends Command {
+@Deprecated
+public class AimInterrupt extends Command {
 
-	public AutoFlipReset() {
-		this.requires(Elevator.INSTANCE);
-	}
+    public AimInterrupt() {
+        requires(Aimer.INSTANCE);
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Elevator.INSTANCE.resetArm();
     }
 
     // Called repeatedly when this Command is scheduled to run

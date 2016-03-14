@@ -1,8 +1,9 @@
-package org.usfirst.frc.team1884.robot.subsystems;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+@Deprecated
 public class Spike extends Subsystem {
 
 	public final static Spike INSTANCE;

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1884.robot.triggers;
 
-import org.usfirst.frc.team1884.robot.autonomous.Defense;
+import org.usfirst.frc.team1884.robot.deprecated.Defense;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 

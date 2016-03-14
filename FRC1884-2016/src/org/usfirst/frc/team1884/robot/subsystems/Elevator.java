@@ -84,26 +84,30 @@ public class Elevator extends Subsystem {
 	}
 
 	public void teleopPeriodic() {
-		/*
-		 * if (encoder.getDistance() >= ENCODER_MAX) { carriage.set(0.1); } else
-		 * if (encoder.getDistance() <= ENCODER_MIN) { carriage.set(-0.1); }
-		 * else
-		 */
 		if (Math.abs(joystick.getY()) > 0.1) {
 			carriage.set(-joystick.getY());
 		} else {
 			carriage.set(0);
 		}
 
-		if (((joystick.getRawAxis(5) > 0 && downLimitSwitch.get())
-				|| (joystick.getRawAxis(5) < 0 && !upLimitSwitch.get())) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
+		/* if (((joystick.getRawAxis(5) > 0 && downLimitSwitch.get())
+					|| (joystick.getRawAxis(5) < 0 && !upLimitSwitch.get())
+					|| joystick.getRawButton(5))
+				&& Math.abs(joystick.getRawAxis(5)) > 0.2) {
+			arm.set(-joystick.getRawAxis(5));
+		} else {
+			arm.set(0);
+		} */
+		
+		// No Limit Switches
+		if (((joystick.getRawAxis(5) > 0)
+				|| (joystick.getRawAxis(5) < 0)) && Math.abs(joystick.getRawAxis(5)) > 0.2) {
 			arm.set(-joystick.getRawAxis(5));
 		} else {
 			arm.set(0);
 		}
-		flipTeleop();
 		
-		System.out.println(encoder.getRaw());
+//		flipTeleop();
 	}
 
 	/**

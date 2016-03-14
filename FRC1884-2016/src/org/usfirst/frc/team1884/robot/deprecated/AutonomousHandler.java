@@ -1,8 +1,9 @@
-package org.usfirst.frc.team1884.robot.autonomous;
+package org.usfirst.frc.team1884.robot.deprecated;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+@Deprecated
 public class AutonomousHandler {
 
 	private Position posCommand;
