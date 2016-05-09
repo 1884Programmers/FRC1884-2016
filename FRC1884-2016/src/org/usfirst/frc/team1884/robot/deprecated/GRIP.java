@@ -45,9 +45,12 @@ public class GRIP extends Subsystem {
 		double largestNumber = 0;
 		double[] area = table.getNumberArray("targets/area", new double[0]);
 		double[] centerX = table.getNumberArray("targets/centerX", new double[0]);
+<<<<<<< HEAD:Official Test Code/src/org/usfirst/frc/team1884/robot/subsystems/GRIP.java
+=======
 		if (area.length != centerX.length) {
 			return -1;
 		}
+>>>>>>> master:FRC1884-2016/src/org/usfirst/frc/team1884/robot/deprecated/GRIP.java
 		if (area.length == 0) {
 			return -1;
 		}
